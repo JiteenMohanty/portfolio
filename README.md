@@ -59,7 +59,7 @@ Requires Node 18+ (built and tested on Node 20).
 ```
 portfolio/
 ├── public/                 # static assets
-│   ├── resume.pdf          # ← your resume (served at /resume.pdf)
+│   ├── resume.pdf          # ← resume (served at /resume.pdf)
 │   ├── favicon.svg
 │   ├── og-image.png        # social share image (1200×630)
 │   └── apple-touch-icon.png
@@ -72,7 +72,7 @@ portfolio/
 │   │   ├── sections/       # Hero, About, Experience, … Contact
 │   │   └── terminal/       # hidden terminal easter egg
 │   ├── constants/          # nav links, section ids
-│   ├── data/               # ← all content (edit these)
+│   ├── data/               # ← all content
 │   ├── hooks/              # useTheme, useScrollSpy, useEasterEgg, …
 │   ├── pages/              # Home, ProjectDetail, NotFound
 │   ├── theme/              # ThemeProvider
