@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <title>Jiteen Mohanty — Full Stack Engineer & Product Builder</title>
+    <meta
+      name="description"
+      content="Jiteen Mohanty is a Full Stack Engineer specializing in scalable backend systems, workflow automation, and AI-powered products. I turn complex processes into intuitive experiences."
+    />
+    <meta name="author" content="Jiteen Mohanty" />
+    <meta
+      name="keywords"
+      content="Jiteen Mohanty, Full Stack Engineer, Java, Spring Boot, React, Microservices, Backend Engineer, AI, Product Builder, Software Engineer, India"
+    />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#080a0f" />
+    <link rel="canonical" href="https://jiteenmohanty.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jiteenmohanty.vercel.app/" />
+    <meta property="og:site_name" content="Jiteen Mohanty" />
+    <meta property="og:title" content="Jiteen Mohanty — Full Stack Engineer & Product Builder" />
+    <meta
+      property="og:description"
+      content="I build products that transform complex processes into intuitive experiences — from enterprise workflow automation to AI-powered platforms."
+    />
+    <meta property="og:image" content="https://jiteenmohanty.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Jiteen Mohanty — Full Stack Engineer & Product Builder" />
+    <meta
+      name="twitter:description"
+      content="I build products that transform complex processes into intuitive experiences — from enterprise workflow automation to AI-powered platforms."
+    />
+    <meta name="twitter:image" content="https://jiteenmohanty.vercel.app/og-image.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jiteen Mohanty",
+        "url": "https://jiteenmohanty.vercel.app/",
+        "image": "https://jiteenmohanty.vercel.app/og-image.png",
+        "jobTitle": "Full Stack Engineer",
+        "email": "mailto:jiteen.dev@gmail.com",
+        "worksFor": { "@type": "Organization", "name": "Hansa Solutions" },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Siksha 'O' Anusandhan University"
+        },
+        "address": { "@type": "PostalPlace", "addressCountry": "India" },
+        "knowsAbout": [
+          "Java",
+          "Spring Boot",
+          "Microservices",
+          "REST APIs",
+          "React",
+          "Backend Engineering",
+          "AI Integration"
+        ],
+        "sameAs": [
+          "https://github.com/JiteenMohanty",
+          "https://www.linkedin.com/in/jiteen-mohanty-61b814133"
+        ]
+      }
+    </script>
+
+    <!-- Set theme before paint to avoid flash of incorrect theme -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored || (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') document.documentElement.classList.add('dark');
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
