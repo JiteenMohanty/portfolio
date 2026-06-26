@@ -104,8 +104,6 @@ Everything is data-driven — no need to touch components:
 
 ---
 
----
-
 ## 🥚 Easter Egg
 
 Type **`whois jiteen`** anywhere, or hit **`Ctrl`/`⌘` + `K`**. Try `projects`, `skills`, `music`, `secret`.
