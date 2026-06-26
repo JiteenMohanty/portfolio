@@ -1,6 +1,6 @@
 # Jiteen Mohanty — Portfolio
 
-A polished, product-grade personal portfolio for **Jiteen Mohanty**, Full Stack Engineer & Product Builder. Built to feel like a software product, not a résumé page — with light/dark theming, subtle Framer Motion, detailed project case studies, a journey timeline, and a hidden terminal easter egg.
+A polished, product-grade personal portfolio of **Jiteen Mohanty**, Full Stack Engineer & Product Builder. Built to feel like a software product, not a résumé page — with light/dark theming, subtle Framer Motion, detailed project case studies, a journey timeline, and a hidden terminal easter egg.
 
 > Inspiration: Linear · Stripe · Vercel · Raycast · Notion.
 
@@ -102,64 +102,13 @@ Everything is data-driven — no need to touch components:
 | Fun facts           | `src/data/funFacts.js`    |
 | Terminal responses  | `src/data/terminal.js`    |
 
-### Adding project screenshots
-
-Project galleries currently show an elegant **representative mockup** (no real screenshots shipped). To add real images:
-
-1. Drop images in `public/projects/<slug>/`.
-2. Add them to that project's `gallery` array in `src/data/projects.js`:
-   ```js
-   gallery: [
-     { src: '/projects/home-hub/dashboard.png', alt: 'Security dashboard' },
-     { src: '/projects/home-hub/visitor.png', alt: 'Visitor approval' },
-   ]
-   ```
-   The gallery automatically turns into a carousel when images are present.
-
-### Replacing the resume
-
-Replace `public/resume.pdf`. The Hero, Navbar, Resume section, and terminal `resume` command all link to `/resume.pdf`.
-
 ---
-
-## 🌐 Deploy to Vercel
-
-**Option A — Dashboard**
-
-1. Push this folder to a GitHub repo.
-2. On [vercel.com](https://vercel.com) → **New Project** → import the repo.
-3. Framework preset auto-detects **Vite**. Defaults are correct:
-   - Build command: `npm run build`
-   - Output directory: `dist`
-4. **Deploy**. `vercel.json` already adds SPA rewrites so `/projects/...` deep links work.
-
-**Option B — CLI**
-
-```bash
-npm i -g vercel
-vercel          # preview deploy
-vercel --prod   # production deploy
-```
-
-### After deploying
-
-Update the absolute URLs to your real domain in:
-- `index.html` — `og:url`, `twitter:image`, `canonical`, JSON-LD `url`
-- `public/og-image.png` is already generated; regenerate if you rebrand.
-
-Also deployable as-is to **Netlify** (publish dir `dist`, with an SPA redirect) or **GitHub Pages** (add a `base` in `vite.config.js`).
 
 ---
 
 ## 🥚 Easter Egg
 
 Type **`whois jiteen`** anywhere, or hit **`Ctrl`/`⌘` + `K`**. Try `projects`, `skills`, `music`, `secret`.
-
----
-
-## 📝 Notes on content
-
-A couple of details were reconciled between the résumé and the brief: graduation is shown as **June 2024** (B.Tech, SOA University), and Project 3 is titled **LegalConnectIndia** (HackerWar 4.0 winner). Adjust any of this in `src/data/`.
 
 ---
 
