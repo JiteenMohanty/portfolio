@@ -157,7 +157,13 @@ export const projects = [
     ],
 
     links: { live: null, github: null, note: 'In active development' },
-    gallery: [],
+    gallery: [
+      { src: '/projects/ai-claims/screenshot-dashboard.png', alt: 'Claims dashboard — live stats, status breakdown chart, and recent AI activity' },
+      { src: '/projects/ai-claims/screenshot-claims.png', alt: 'Claims list — policy number, claimant, type, AI review status, and amount' },
+      { src: '/projects/ai-claims/screenshot-claim-detail.png', alt: 'Claim detail — AI analysis panel with risk score, summary, and recommended action' },
+      { src: '/projects/ai-claims/screenshot-documents.png', alt: 'Document upload — attach supporting files to an existing claim' },
+      { src: '/projects/ai-claims/screenshot-login.png', alt: 'Login screen — branded entry point for the AI Claims Processing Platform' },
+    ],
   },
 
   {
