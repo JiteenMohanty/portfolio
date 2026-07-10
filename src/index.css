@@ -6,33 +6,37 @@
 /*  Design tokens — semantic colors stored as RGB channels so that
     Tailwind opacity utilities (bg-brand/10, etc.) work everywhere.    */
 /* ------------------------------------------------------------------ */
+/* Spider-Verse palette. Light = comic newsprint; dark = NYC night sky.
+   brand = Spidey red, accent = glitch cyan, pop = dimension magenta. */
 :root {
-  --base: 255 255 255;
+  --base: 253 250 243; /* warm newsprint paper */
   --surface: 255 255 255;
-  --elevated: 248 250 252;
-  --border: 226 232 240;
-  --ink: 15 23 42;
-  --muted: 71 85 105;
-  --faint: 148 163 184;
-  --brand: 79 70 229; /* indigo-600 */
-  --brand-strong: 67 56 202; /* indigo-700 */
-  --accent: 5 150 105; /* emerald-600 */
-  --accent-strong: 4 120 87; /* emerald-700 */
+  --elevated: 246 240 229;
+  --border: 229 220 202;
+  --ink: 24 16 44; /* deep purple-black print ink */
+  --muted: 88 76 122;
+  --faint: 148 138 176;
+  --brand: 226 29 62; /* print red */
+  --brand-strong: 190 18 50;
+  --accent: 0 140 178; /* print cyan */
+  --accent-strong: 0 112 142;
+  --pop: 216 27 132; /* print magenta */
   color-scheme: light;
 }
 
 .dark {
-  --base: 8 10 15; /* near-black w/ a hint of indigo */
-  --surface: 17 20 27;
-  --elevated: 23 27 36;
-  --border: 38 44 56;
-  --ink: 230 235 243;
-  --muted: 154 166 184;
-  --faint: 107 118 137;
-  --brand: 129 140 248; /* indigo-400 */
-  --brand-strong: 99 102 241; /* indigo-500 */
-  --accent: 52 211 153; /* emerald-400 */
-  --accent-strong: 16 185 129; /* emerald-500 */
+  --base: 11 7 22; /* Spider-Verse night */
+  --surface: 19 13 34;
+  --elevated: 27 19 48;
+  --border: 47 35 82;
+  --ink: 240 234 255;
+  --muted: 176 164 210;
+  --faint: 122 108 160;
+  --brand: 255 62 92; /* neon Spidey red */
+  --brand-strong: 230 41 74;
+  --accent: 34 221 255; /* glitch cyan */
+  --accent-strong: 0 184 217;
+  --pop: 255 46 166; /* dimension magenta */
   color-scheme: dark;
 }
 
@@ -108,20 +112,62 @@
     @apply scroll-mt-24 py-20 sm:py-28;
   }
 
+  /* Comic caption box — the classic white "MEANWHILE…" panel label.
+     Deliberately stays white-on-ink in both themes, like a printed sticker. */
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-brand;
+    @apply inline-flex w-fit items-center gap-2 rounded-md border-2 px-3 py-1 text-sm uppercase;
+    font-family: 'Bangers', 'Impact', fantasy;
+    letter-spacing: 0.08em;
+    background: #fffdf6;
+    color: #18102c;
+    border-color: #18102c;
+    box-shadow: 3px 3px 0 0 rgb(var(--brand));
+    transform: rotate(-1.2deg);
+  }
+  /* the decorative dash inside old eyebrows has no place in a caption box */
+  .eyebrow > span[aria-hidden] {
+    display: none;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-brand via-brand to-accent bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand via-pop to-accent bg-clip-text text-transparent;
+  }
+
+  /* Occasional dimensional glitch — RGB split + jitter, mostly at rest. */
+  @keyframes glitch {
+    0%, 88%, 100% {
+      transform: none;
+      text-shadow: none;
+    }
+    89% {
+      transform: translate(-2px, 1px) skewX(-1.5deg);
+      text-shadow: 3px 0 rgb(var(--accent)), -3px 0 rgb(var(--pop));
+    }
+    92% {
+      transform: translate(2px, -1px);
+      text-shadow: -3px 0 rgb(var(--accent)), 3px 0 rgb(var(--pop));
+    }
+    95% {
+      transform: translate(-1px, 0);
+      text-shadow: 2px 0 rgb(var(--pop)), -2px 0 rgb(var(--accent));
+    }
+  }
+  .glitch {
+    animation: glitch 5s infinite;
   }
 
   .card {
     @apply rounded-3xl border border-border bg-surface shadow-soft;
   }
 
+  /* Chromatic print-misregistration shadow on hover — cyan + red plates. */
   .card-hover {
-    @apply transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:border-brand/40 hover:shadow-glow;
+    @apply transition-all duration-300 ease-out-expo hover:-translate-y-1 hover:border-brand/40;
+  }
+  .card-hover:hover {
+    box-shadow:
+      5px 5px 0 0 rgb(var(--accent) / 0.55),
+      10px 10px 0 0 rgb(var(--brand) / 0.35);
   }
 
   .chip {
@@ -136,7 +182,18 @@
   }
 
   .btn-primary {
-    @apply btn bg-brand text-white shadow-soft hover:bg-brand-strong hover:shadow-glow active:translate-y-px;
+    @apply btn bg-brand text-white;
+    border: 2px solid rgb(var(--ink));
+    box-shadow: 3px 3px 0 0 rgb(var(--ink));
+  }
+  .btn-primary:hover {
+    @apply bg-brand-strong;
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 0 rgb(var(--ink));
+  }
+  .btn-primary:active {
+    transform: translate(3px, 3px);
+    box-shadow: 0 0 0 0 rgb(var(--ink));
   }
 
   .btn-ghost {
@@ -155,6 +212,15 @@
   .bg-dots {
     background-image: radial-gradient(rgb(var(--faint) / 0.35) 1px, transparent 1px);
     background-size: 22px 22px;
+  }
+
+  /* Ben-Day halftone print texture — offset rows like CMYK dots. */
+  .bg-halftone {
+    background-image:
+      radial-gradient(rgb(var(--ink) / 0.14) 1.2px, transparent 1.4px),
+      radial-gradient(rgb(var(--brand) / 0.08) 1.2px, transparent 1.4px);
+    background-size: 12px 12px, 12px 12px;
+    background-position: 0 0, 6px 6px;
   }
 }
 

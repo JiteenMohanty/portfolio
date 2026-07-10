@@ -13,11 +13,14 @@ import { useTypedPhrase } from '@/hooks/useEasterEgg'
 import { profile } from '@/data/profile'
 import { projects } from '@/data/projects'
 import { primarySkills } from '@/data/skills'
+import { journey } from '@/data/timeline'
 import {
   helpLines,
   musicLines,
   futureLines,
   secretLines,
+  thwipLines,
+  spideyLines,
 } from '@/data/terminal'
 
 const TerminalContext = createContext({ openTerminal: () => {}, closeTerminal: () => {} })
@@ -45,8 +48,9 @@ export function TerminalProvider({ children }) {
   const openTerminal = useCallback(() => setOpen(true), [])
   const closeTerminal = useCallback(() => setOpen(false), [])
 
-  // Type "whois jiteen" anywhere to summon it.
+  // Type "whois jiteen" (or just "thwip") anywhere to summon it.
   useTypedPhrase('whois jiteen', openTerminal)
+  useTypedPhrase('thwip', openTerminal)
 
   // Ctrl / Cmd + K toggles it.
   useEffect(() => {
@@ -110,6 +114,7 @@ function CommandTerminal({ open, onClose }) {
             L(''),
             L(profile.brandStatement),
             L(''),
+            L([`alias    `, 'muted'], `your friendly neighborhood engineer 🕷️`),
             L([`location `, 'muted'], profile.location),
             L([`mission  `, 'muted'], `turn complex processes into intuitive experiences`),
           ]
@@ -137,6 +142,31 @@ function CommandTerminal({ open, onClose }) {
             L(''),
             L([`backend-first`, 'accent'], `, with React on top and AI in the loop.`),
           ]
+          break
+        case 'thwip':
+          out = thwipLines.map((l, i) => L([l, i < 5 ? 'accent' : undefined]))
+          break
+        case 'canon':
+        case 'canon events':
+        case 'canon-events':
+          out = [
+            L(`canon events — moments that couldn't be skipped:`),
+            L(''),
+            ...journey
+              .filter((j) => j.year !== 'Next')
+              .map((j) => L([`  [${j.year}] `, 'muted'], j.title)),
+            L(''),
+            L([`the next one is still loading…`, 'muted']),
+          ]
+          break
+        case 'spidey':
+        case 'spiderman':
+        case 'spider-man':
+          out = spideyLines.map((l) => L(l))
+          break
+        case 'power':
+        case 'with great power':
+          out = [L([`…comes great responsibility. — uncle ben`, 'accent'])]
           break
         case 'music':
           out = musicLines.map((l) => L(l))
@@ -246,7 +276,7 @@ function CommandTerminal({ open, onClose }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 12, scale: 0.98 }}
             transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-            className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0b0e14] font-mono text-[13px] leading-relaxed shadow-2xl"
+            className="relative z-10 w-full max-w-2xl overflow-hidden rounded-2xl border border-white/10 bg-[#0e0920] font-mono text-[13px] leading-relaxed shadow-2xl"
             onClick={() => inputRef.current?.focus()}
           >
             {/* Title bar */}

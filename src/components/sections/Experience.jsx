@@ -10,7 +10,7 @@ function TerminalLog({ job }) {
   const slug = job.company.toLowerCase().replace(/\s+/g, '-')
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0e14] shadow-card">
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0e0920] shadow-card">
       <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-2.5">
         <span className="flex gap-1.5">
           <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
@@ -60,7 +60,7 @@ export function Experience() {
     <section id="experience" className="section">
       <div className="container-px">
         <SectionHeading
-          eyebrow="Experience"
+          eyebrow="The Day Job"
           title="Shipping enterprise systems into production."
           description="Where I learned to make backends fast, search smart, and documents process themselves."
         />

@@ -10,8 +10,8 @@ export function Projects() {
     <section id="projects" className="section">
       <div className="container-px">
         <SectionHeading
-          eyebrow="Projects"
-          title="Selected work, told as case studies."
+          eyebrow="Missions"
+          title="Selected missions, told as case studies."
           description="Each of these is a product I designed and built end-to-end. Open one to see the problem, the architecture, and what I learned."
         />
 

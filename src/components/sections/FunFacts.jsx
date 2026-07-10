@@ -8,8 +8,8 @@ export function FunFacts() {
     <section id="fun" className="section">
       <div className="container-px">
         <SectionHeading
-          eyebrow="Beyond the code"
-          title="When I'm not shipping."
+          eyebrow="Beyond the Mask"
+          title="When the mask comes off."
           description="A few things that keep me curious, creative, and caffeinated."
         />
 
@@ -43,7 +43,7 @@ export function FunFacts() {
           {/* terminal teaser card */}
           <motion.div
             variants={childFadeUp}
-            className="card flex flex-col justify-between bg-[#0b0e14] p-6 font-mono text-sm text-slate-300"
+            className="card flex flex-col justify-between bg-[#0e0920] p-6 font-mono text-sm text-slate-300"
           >
             <div>
               <span className="text-emerald-400">jiteen@portfolio:~$</span>{' '}

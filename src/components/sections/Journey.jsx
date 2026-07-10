@@ -50,8 +50,8 @@ export function Journey() {
       <div className="container-px">
         <SectionHeading
           align="center"
-          eyebrow="Journey"
-          title="From first commit to building products."
+          eyebrow="Canon Events"
+          title="Moments that couldn't be skipped."
           description="The path so far — school, a hackathon win, enterprise engineering, and products of my own."
         />
 

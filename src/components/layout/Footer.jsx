@@ -94,13 +94,14 @@ export function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
           <p className="flex items-center gap-1.5 text-xs text-faint">
             © {year} Jiteen Mohanty · Built with
-            <Heart className="h-3.5 w-3.5 text-brand" /> using React, Tailwind & Framer Motion
+            <Heart className="h-3.5 w-3.5 text-brand" /> and great responsibility — React,
+            Tailwind & Framer Motion
           </p>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
           >
-            Back to top
+            Swing to top
             <ArrowUp className="h-3.5 w-3.5" />
           </button>
         </div>

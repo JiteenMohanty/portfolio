@@ -30,7 +30,7 @@ export function Contact() {
             </span>
 
             <h2 className="mx-auto mt-5 max-w-2xl text-balance text-3xl font-bold leading-tight sm:text-5xl">
-              Let's build something <span className="gradient-text">meaningful</span> together.
+              Got a problem in your <span className="gradient-text">neighborhood</span>?
             </h2>
             <p className="mx-auto mt-5 max-w-xl text-pretty text-muted sm:text-lg">
               Have a product to build, a role to fill, or just want to talk systems and AI? My

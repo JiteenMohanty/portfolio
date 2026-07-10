@@ -12,7 +12,7 @@ export function About() {
     <section id="about" className="section">
       <div className="container-px">
         <SectionHeading
-          eyebrow="About"
+          eyebrow="Origin Story"
           title="I turn problems into APIs, APIs into products."
           description="Backend-first, product-minded, and curious about the humans on the other side of the screen."
         />

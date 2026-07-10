@@ -13,6 +13,9 @@ export const helpLines = [
   { cmd: 'whois', desc: 'who is Jiteen, really' },
   { cmd: 'projects', desc: 'list things I have built' },
   { cmd: 'skills', desc: 'my technical toolkit' },
+  { cmd: 'thwip', desc: 'fire a web' },
+  { cmd: 'canon', desc: 'my canon events' },
+  { cmd: 'spidey', desc: 'why all the webs?' },
   { cmd: 'music', desc: 'what is playing while I build' },
   { cmd: 'future', desc: 'where this is all going' },
   { cmd: 'social', desc: 'where to find me' },
@@ -20,6 +23,25 @@ export const helpLines = [
   { cmd: 'secret', desc: '???' },
   { cmd: 'clear', desc: 'clear the screen' },
   { cmd: 'exit', desc: 'close the terminal' },
+]
+
+export const thwipLines = [
+  '      \\   |   /',
+  '   \\   \\  |  /   /',
+  '  ── ── ( ● ) ── ──',
+  '   /   /  |  \\   \\',
+  '      /   |   \\',
+  '',
+  'THWIP! 🕸️  web deployed — and like my code, it sticks.',
+]
+
+export const spideyLines = [
+  'big big Spider-Man fan. so the portfolio suits up too. 🕷️',
+  '',
+  '"I\'m half Batman and half Spider-Man,',
+  ' cause I got no super powers and I\'m broke."',
+  '',
+  'with great power comes great responsibility. — uncle ben',
 ]
 
 export const musicLines = [

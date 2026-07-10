@@ -13,8 +13,8 @@ export function Education() {
     <section id="education" className="section">
       <div className="container-px">
         <SectionHeading
-          eyebrow="Education"
-          title="The foundation."
+          eyebrow="Training Arc"
+          title="Every hero trains first."
           description="Computer Science, and the discipline of doing the work well."
         />
 

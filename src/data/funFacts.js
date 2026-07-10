@@ -1,5 +1,10 @@
 export const funFacts = [
   {
+    emoji: '🕷️',
+    title: 'Half Batman, Half Spider-Man',
+    text: "I'm half Batman and half Spider-Man, cause I got no super powers and I'm broke.",
+  },
+  {
     emoji: '🎤',
     title: 'Beginner Beatboxer',
     text: 'Learning to make beats with just a mic and my mouth.',

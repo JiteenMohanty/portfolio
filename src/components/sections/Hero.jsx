@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import {
   ArrowRight, Download, Server, Code2, Database, Sparkles, Workflow, Boxes,
 } from 'lucide-react'
-import { GridBackdrop, Aurora } from '@/components/common/Backgrounds'
+import { HalftoneBackdrop, Aurora, CornerWeb } from '@/components/common/Backgrounds'
 import { SocialLinks } from '@/components/common/SocialLinks'
 import { profile } from '@/data/profile'
 import { staggerContainer, childFadeUp } from '@/animations/variants'
@@ -14,6 +14,27 @@ const nodes = [
   { label: 'MongoDB', Icon: Database, x: 73, y: 86, delay: 0.3 },
   { label: 'REST API', Icon: Workflow, x: 12, y: 76, delay: 0.9 },
 ]
+
+// A little spider on a thread, swinging under the top edge.
+function SpiderDangle({ className = '' }) {
+  return (
+    <div className={`pointer-events-none origin-top animate-swing ${className}`} aria-hidden>
+      <div className="mx-auto h-24 w-px bg-ink/30 sm:h-32" />
+      <svg viewBox="0 0 24 22" className="-mt-0.5 h-5 w-5 text-ink" aria-hidden>
+        <g stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" fill="none">
+          <path d="M9 9 C5 8 4 5 3 3" />
+          <path d="M8.5 12 C4 12 2 10 1 8" />
+          <path d="M9 15 C5 16 3 18 2 20" />
+          <path d="M15 9 C19 8 20 5 21 3" />
+          <path d="M15.5 12 C20 12 22 10 23 8" />
+          <path d="M15 15 C19 16 21 18 22 20" />
+        </g>
+        <circle cx="12" cy="6" r="2.4" fill="currentColor" />
+        <ellipse cx="12" cy="13.5" rx="3.6" ry="5" fill="currentColor" />
+      </svg>
+    </div>
+  )
+}
 
 function HeroGraphic({ className = '' }) {
   return (
@@ -44,13 +65,18 @@ function HeroGraphic({ className = '' }) {
       <div className="absolute left-1/2 top-1/2 h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-border animate-spin-slow" />
 
       {/* center node */}
-      <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-3xl bg-gradient-to-br from-brand to-accent text-white shadow-glow">
+      <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-3xl bg-gradient-to-br from-brand to-pop text-white shadow-glow">
         <div className="text-center">
           <Boxes className="mx-auto h-7 w-7" />
           <span className="mt-1 block text-[10px] font-semibold uppercase tracking-wider">
             build
           </span>
         </div>
+      </div>
+
+      {/* THWIP! sticker */}
+      <div className="absolute left-[60%] top-[30%] -rotate-6 rounded-lg border-2 border-[#18102c] bg-amber-300 px-2.5 py-0.5 font-comic text-base tracking-wider text-[#18102c] shadow-[3px_3px_0_0_#18102c]">
+        THWIP!
       </div>
 
       {/* tech chips */}
@@ -76,8 +102,14 @@ export function Hero() {
       id="top"
       className="relative flex min-h-[100svh] items-center overflow-hidden pb-16 pt-28 sm:pt-32"
     >
-      <GridBackdrop />
+      <HalftoneBackdrop />
       <Aurora />
+
+      {/* corner web + dangling spider */}
+      <div className="absolute right-0 top-0 -scale-x-100 text-ink/20" aria-hidden>
+        <CornerWeb />
+      </div>
+      <SpiderDangle className="absolute right-[16%] top-0 hidden md:block" />
 
       <div className="container-px relative grid items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
         <motion.div variants={staggerContainer(0.12)} initial="hidden" animate="show">
@@ -88,19 +120,19 @@ export function Hero() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
               </span>
               {profile.availabilityNote}
-              <span className="text-faint">· 🇮🇳 India</span>
             </motion.div>
           )}
 
-          <motion.p variants={childFadeUp} className="text-base font-medium text-brand">
+          {/* comic caption box */}
+          <motion.p variants={childFadeUp} className="eyebrow flex !text-[17px]">
             {profile.hero.greeting}
           </motion.p>
 
           <motion.h1
             variants={childFadeUp}
-            className="mt-2 text-balance text-4xl font-bold leading-[1.05] sm:text-5xl lg:text-6xl"
+            className="glitch mt-5 text-balance font-comic text-5xl font-normal uppercase leading-[0.95] tracking-wide sm:text-6xl lg:text-7xl"
           >
-            I build <span className="gradient-text">products</span> that solve real-world problems.
+            Your <span className="gradient-text">friendly neighborhood</span> full‑stack engineer.
           </motion.h1>
 
           <motion.p
@@ -112,7 +144,7 @@ export function Hero() {
 
           <motion.div variants={childFadeUp} className="mt-8 flex flex-wrap items-center gap-3">
             <a href="#projects" className="btn-primary">
-              View Projects
+              View Missions
               <ArrowRight className="h-4 w-4" />
             </a>
             <a href={profile.resumeUrl} download className="btn-ghost">

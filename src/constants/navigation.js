@@ -1,9 +1,10 @@
+// Spidey-flavored labels; hrefs/ids stay conventional for scroll-spy & SEO.
 export const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Journey', href: '#journey' },
+  { label: 'Origin Story', href: '#about' },
+  { label: 'Day Job', href: '#experience' },
+  { label: 'Missions', href: '#projects' },
+  { label: 'Powers', href: '#skills' },
+  { label: 'Canon Events', href: '#journey' },
   { label: 'Contact', href: '#contact' },
 ]
 

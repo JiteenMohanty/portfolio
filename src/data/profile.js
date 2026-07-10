@@ -20,10 +20,10 @@ export const profile = {
 
   // Hero copy
   hero: {
-    greeting: "Hi, I'm Jiteen.",
-    headline: 'I build products that solve real-world problems.',
+    greeting: 'Meanwhile, in India…',
+    headline: 'Your friendly neighborhood full-stack engineer.',
     subheadline:
-      'Full Stack Engineer specializing in scalable backend systems, workflow automation, AI-powered solutions, and end-to-end product development.',
+      "Hi, I'm Jiteen — I build scalable backend systems, workflow automation, and AI-powered products, end-to-end. No radioactive spider required.",
   },
 
   // One-line brand statement used across the site
@@ -57,11 +57,11 @@ export const profile = {
   ],
 
   roles: [
+    'Friendly Neighborhood Engineer',
     'Full Stack Engineer',
     'Product Builder',
     'Backend-first Engineer',
     'AI Enthusiast',
-    'Curious Problem Solver',
   ],
 }
 

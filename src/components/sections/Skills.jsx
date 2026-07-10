@@ -30,7 +30,7 @@ function SkillBadge({ skill, index = 0, size = 'md' }) {
         role="img"
         aria-label={skill.level ? `${skill.name} — ${skill.level}` : skill.name}
         className={cn(
-          'relative grid animate-wobble place-items-center rounded-2xl border border-white/10 bg-[#11141c] shadow-soft transition-transform duration-300 will-change-transform hover:animate-none hover:scale-110 focus-visible:animate-none focus-visible:scale-110',
+          'relative grid animate-wobble place-items-center rounded-2xl border border-white/10 bg-[#150e28] shadow-soft transition-transform duration-300 will-change-transform hover:animate-none hover:scale-110 focus-visible:animate-none focus-visible:scale-110',
           dims,
         )}
         style={{ animationDelay: `${delay}s`, animationDuration: `${duration}s` }}
@@ -67,8 +67,8 @@ export function Skills() {
     <section id="skills" className="section">
       <div className="container-px">
         <SectionHeading
-          eyebrow="Skills"
-          title="A backend-first toolkit, with range."
+          eyebrow="Powers"
+          title="A backend-first power set, with range."
           description="Deep where it counts — Java, Spring Boot and data — and comfortable across the stack, mobile, and AI."
         />
 

@@ -25,11 +25,13 @@ export default {
           DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
           strong: 'rgb(var(--accent-strong) / <alpha-value>)',
         },
+        pop: 'rgb(var(--pop) / <alpha-value>)',
       },
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'Segoe UI', 'sans-serif'],
         display: ['Sora', 'Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'monospace'],
+        comic: ['Bangers', 'Impact', 'fantasy'],
       },
       fontSize: {
         '2xs': ['0.6875rem', { lineHeight: '1rem' }],
@@ -65,6 +67,10 @@ export default {
           '0%, 100%': { transform: 'translateY(0) rotate(-2deg)' },
           '50%': { transform: 'translateY(-9px) rotate(2deg)' },
         },
+        swing: {
+          '0%, 100%': { transform: 'rotate(-7deg)' },
+          '50%': { transform: 'rotate(7deg)' },
+        },
         'spin-slow': {
           to: { transform: 'rotate(360deg)' },
         },
@@ -89,6 +95,7 @@ export default {
         float: 'float 6s ease-in-out infinite',
         'float-slow': 'float-slow 9s ease-in-out infinite',
         wobble: 'wobble 4s ease-in-out infinite',
+        swing: 'swing 4.5s ease-in-out infinite',
         'spin-slow': 'spin-slow 24s linear infinite',
         blink: 'blink 1.1s step-end infinite',
         shimmer: 'shimmer 2.2s infinite',

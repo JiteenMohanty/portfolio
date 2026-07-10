@@ -60,7 +60,7 @@ export function ResumeSection() {
           <div className="relative grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-2">
             <div>
               <SectionHeading
-                eyebrow="Resume"
+                eyebrow="The Dossier"
                 title="The one-page version."
                 description="Prefer the traditional format? View it inline or grab the PDF — everything on this site, condensed."
               />
