@@ -8,12 +8,33 @@ import { profile } from '@/data/profile'
 import { staggerContainer, childFadeUp } from '@/animations/variants'
 
 const nodes = [
-  { label: 'Spring Boot', Icon: Server, x: 17, y: 15, delay: 0 },
-  { label: 'React', Icon: Code2, x: 82, y: 11, delay: 0.6 },
-  { label: 'OpenAI', Icon: Sparkles, x: 90, y: 52, delay: 1.1 },
-  { label: 'MongoDB', Icon: Database, x: 73, y: 86, delay: 0.3 },
-  { label: 'REST API', Icon: Workflow, x: 12, y: 76, delay: 0.9 },
+  { label: 'Spring Boot', Icon: Server, x: 17, y: 15, delay: 0, rot: -4 },
+  { label: 'React', Icon: Code2, x: 82, y: 11, delay: 0.6, rot: 3 },
+  { label: 'OpenAI', Icon: Sparkles, x: 90, y: 52, delay: 1.1, rot: -3 },
+  { label: 'MongoDB', Icon: Database, x: 73, y: 86, delay: 0.3, rot: 4 },
+  { label: 'REST API', Icon: Workflow, x: 12, y: 76, delay: 0.9, rot: -2 },
 ]
+
+// Extra unlabeled spokes so the web has a full frame, not just five threads.
+const frameAnchors = [
+  { x: 50, y: 2 },
+  { x: 98, y: 30 },
+  { x: 98, y: 78 },
+  { x: 50, y: 98 },
+  { x: 2, y: 78 },
+  { x: 2, y: 30 },
+]
+
+// Concentric "capture spiral" rings, each an irregular polygon (not a
+// perfect circle) so it reads as hand-spun silk rather than a target.
+function webRing(radius, wobble) {
+  const points = Array.from({ length: 16 }, (_, i) => {
+    const a = (i / 16) * Math.PI * 2
+    const r = radius + Math.sin(i * 2.3) * wobble
+    return `${50 + r * Math.cos(a)},${50 + r * Math.sin(a)}`
+  })
+  return `M ${points.join(' L ')} Z`
+}
 
 // A little spider on a thread, swinging under the top edge.
 function SpiderDangle({ className = '' }) {
@@ -37,34 +58,29 @@ function SpiderDangle({ className = '' }) {
 }
 
 function HeroGraphic({ className = '' }) {
+  const spokeTargets = [...nodes, ...frameAnchors]
+
   return (
     <div className={`relative mx-auto aspect-square w-full max-w-[460px] ${className}`}>
-      {/* connecting lines */}
+      {/* the web itself — radial spokes + sagging capture rings */}
       <svg
         viewBox="0 0 100 100"
         preserveAspectRatio="none"
         className="absolute inset-0 h-full w-full"
         aria-hidden
       >
-        {nodes.map((n) => (
-          <line
-            key={n.label}
-            x1="50"
-            y1="50"
-            x2={n.x}
-            y2={n.y}
-            stroke="rgb(var(--brand))"
-            strokeWidth="0.4"
-            strokeOpacity="0.35"
-            strokeDasharray="1.5 2"
-          />
-        ))}
+        <g stroke="rgb(var(--brand))" strokeWidth="0.35" strokeOpacity="0.4" fill="none">
+          {spokeTargets.map((n, i) => (
+            <line key={i} x1="50" y1="50" x2={n.x} y2={n.y} />
+          ))}
+          <path d={webRing(14, 1)} />
+          <path d={webRing(26, 1.4)} />
+          <path d={webRing(38, 1.8)} strokeOpacity="0.28" />
+          <path d={webRing(48, 2)} strokeOpacity="0.16" />
+        </g>
       </svg>
 
-      {/* dashed orbit ring */}
-      <div className="absolute left-1/2 top-1/2 h-[78%] w-[78%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-border animate-spin-slow" />
-
-      {/* center node */}
+      {/* center node — the hub the web is spun from */}
       <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-3xl bg-gradient-to-br from-brand to-pop text-white shadow-glow">
         <div className="text-center">
           <Boxes className="mx-auto h-7 w-7" />
@@ -79,16 +95,23 @@ function HeroGraphic({ className = '' }) {
         THWIP!
       </div>
 
-      {/* tech chips */}
+      {/* tech chips — caught in the web, each wrapped by a few strands */}
       {nodes.map((n) => (
         <div
           key={n.label}
           className="absolute -translate-x-1/2 -translate-y-1/2 animate-float"
           style={{ left: `${n.x}%`, top: `${n.y}%`, animationDelay: `${n.delay}s` }}
         >
-          <div className="flex items-center gap-1.5 rounded-xl border border-border bg-surface/90 px-3 py-2 text-xs font-semibold text-ink shadow-soft backdrop-blur">
-            <n.Icon className="h-3.5 w-3.5 text-brand" />
-            {n.label}
+          <div className="relative" style={{ transform: `rotate(${n.rot}deg)` }}>
+            {/* silk wrapped over the top-left corner */}
+            <svg viewBox="0 0 40 24" className="absolute -left-2 -top-2.5 h-5 w-8 text-ink/30" aria-hidden>
+              <path d="M2 20 C6 10 14 4 22 2" stroke="currentColor" strokeWidth="1" fill="none" />
+              <path d="M6 22 C10 13 17 7 24 5" stroke="currentColor" strokeWidth="1" fill="none" />
+            </svg>
+            <div className="flex items-center gap-1.5 rounded-xl border border-border bg-surface/90 px-3 py-2 text-xs font-semibold text-ink shadow-soft backdrop-blur">
+              <n.Icon className="h-3.5 w-3.5 text-brand" />
+              {n.label}
+            </div>
           </div>
         </div>
       ))}

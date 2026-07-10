@@ -2,6 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import { ArrowUp, Heart } from 'lucide-react'
 import { LogoMark } from '@/components/common/Logo'
 import { SocialLinks } from '@/components/common/SocialLinks'
+import { SpiderPanel } from '@/components/common/SpiderPanel'
 import { navLinks } from '@/constants/navigation'
 import { profile } from '@/data/profile'
 
@@ -77,10 +78,20 @@ export function Footer() {
               </ul>
             </div>
             <div className="col-span-2 sm:col-span-1">
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
-                Psst…
-              </h3>
-              <p className="mt-4 text-sm text-muted">
+              <div className="flex items-start justify-between gap-3">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-faint">
+                  Psst…
+                </h3>
+                <SpiderPanel
+                  src="/images/spidey/facepalms.png"
+                  alt="Spider-Man facepalming at an error on screen"
+                  accent="pop"
+                  rotate={4}
+                  size="xs"
+                  className="hidden !w-16 shrink-0 sm:block"
+                />
+              </div>
+              <p className="mt-4 max-w-[16rem] text-sm text-muted">
                 Try typing{' '}
                 <code className="rounded-md border border-border bg-elevated px-1.5 py-0.5 font-mono text-xs text-brand">
                   whois jiteen

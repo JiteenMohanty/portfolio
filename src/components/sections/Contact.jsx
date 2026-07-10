@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Mail, Copy, Check, MapPin } from 'lucide-react'
 import { Reveal } from '@/components/common/Reveal'
 import { SocialLinks } from '@/components/common/SocialLinks'
-import { Aurora } from '@/components/common/Backgrounds'
+import { Aurora, SectionBackdrop } from '@/components/common/Backgrounds'
 import { profile } from '@/data/profile'
 
 export function Contact() {
@@ -19,8 +19,9 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="section">
-      <div className="container-px">
+    <section id="contact" className="section relative overflow-hidden">
+      <SectionBackdrop tint="brand" corner="br" />
+      <div className="container-px relative">
         <Reveal className="card relative overflow-hidden">
           <Aurora className="opacity-60" />
           <div className="relative px-6 py-16 text-center sm:px-12 sm:py-20">

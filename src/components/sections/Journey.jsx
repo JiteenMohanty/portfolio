@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/common/SectionHeading'
+import { SectionBackdrop } from '@/components/common/Backgrounds'
 import { Icon, kindIcon } from '@/components/common/Icon'
 import { journey } from '@/data/timeline'
 import { viewportOnce } from '@/animations/variants'
@@ -46,8 +47,9 @@ function Node({ item, align }) {
 
 export function Journey() {
   return (
-    <section id="journey" className="section">
-      <div className="container-px">
+    <section id="journey" className="section relative overflow-hidden">
+      <SectionBackdrop tint="accent" corner="tl" />
+      <div className="container-px relative">
         <SectionHeading
           align="center"
           eyebrow="Canon Events"

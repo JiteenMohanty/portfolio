@@ -53,4 +53,33 @@ export function CornerWeb({ className, size = 220 }) {
   )
 }
 
+const tintBg = { brand: 'bg-brand/10', accent: 'bg-accent/10', pop: 'bg-pop/10' }
+const cornerPos = {
+  tr: 'right-0 top-0',
+  tl: 'left-0 top-0 -scale-x-100',
+  br: 'right-0 bottom-0 -scale-y-100',
+  bl: 'left-0 bottom-0 -scale-x-100 -scale-y-100',
+}
+const blobPos = {
+  tr: 'right-[-8%] top-[-18%]',
+  tl: 'left-[-8%] top-[-18%]',
+  br: 'right-[-8%] bottom-[-18%]',
+  bl: 'left-[-8%] bottom-[-18%]',
+}
+
+// Static (no JS animation) per-section texture: halftone dots, one soft
+// color blob, and a faint corner web. Cheap enough to repeat down the page —
+// this is what turns "bland background" into "still obviously the same comic."
+export function SectionBackdrop({ tint = 'brand', corner = 'tr', className }) {
+  return (
+    <div aria-hidden className={cn('pointer-events-none absolute inset-0 -z-10 overflow-hidden', className)}>
+      <div className="absolute inset-0 bg-halftone opacity-60 mask-fade-b" />
+      <div className={cn('absolute h-[26rem] w-[26rem] rounded-full blur-[110px]', blobPos[corner], tintBg[tint])} />
+      <div className={cn('absolute text-ink/[0.05]', cornerPos[corner])}>
+        <CornerWeb size={240} />
+      </div>
+    </div>
+  )
+}
+
 export default HalftoneBackdrop

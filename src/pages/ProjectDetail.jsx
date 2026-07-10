@@ -12,6 +12,7 @@ import { Reveal } from '@/components/common/Reveal'
 import { GridBackdrop } from '@/components/common/Backgrounds'
 import { ProjectGallery } from '@/components/projects/ProjectGallery'
 import { TeamPhoto } from '@/components/projects/TeamPhoto'
+import { SpiderPanel } from '@/components/common/SpiderPanel'
 import { ArchitectureDiagram } from '@/components/projects/ArchitectureDiagram'
 import { getAccent } from '@/utils/accents'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
@@ -215,6 +216,15 @@ export default function ProjectDetail() {
 
         {/* Challenges */}
         <Block eyebrow="Challenges" title="The hard parts">
+          <SpiderPanel
+            src="/images/spidey/hands.png"
+            alt="Spider-Man with his head in his hands at a stack overflow error"
+            caption="Every project has one of these."
+            accent={project.accent === 'amber' ? 'pop' : 'brand'}
+            rotate={-2}
+            size="sm"
+            className="float-right ml-6 mb-4 hidden sm:block"
+          />
           <div className="space-y-4">
             {project.challenges.map((c, i) => (
               <div key={c.title} className="card flex gap-4 p-6">

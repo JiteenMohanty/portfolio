@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowLeft, Home } from 'lucide-react'
 import { useDocumentTitle } from '@/hooks/useDocumentTitle'
 import { HalftoneBackdrop, Aurora } from '@/components/common/Backgrounds'
+import { SpiderPanel } from '@/components/common/SpiderPanel'
 
 export default function NotFound() {
   useDocumentTitle('404 — Wrong dimension · Jiteen Mohanty')
@@ -11,6 +12,16 @@ export default function NotFound() {
       <HalftoneBackdrop />
       <Aurora />
       <div className="relative text-center">
+        <div className="mb-6 flex justify-center">
+          <SpiderPanel
+            src="/images/spidey/frustrated.png"
+            alt="Spider-Man throwing his hands up in alarm at an error"
+            caption="Not this universe."
+            accent="pop"
+            rotate={-3}
+            size="sm"
+          />
+        </div>
         <p className="font-mono text-sm text-brand">
           <span className="text-accent">jiteen@portfolio</span>:~$ cd /that-page
         </p>

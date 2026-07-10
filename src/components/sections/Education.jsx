@@ -2,6 +2,8 @@ import { motion } from 'framer-motion'
 import { MapPin } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Reveal } from '@/components/common/Reveal'
+import { SectionBackdrop } from '@/components/common/Backgrounds'
+import { SpiderPanel } from '@/components/common/SpiderPanel'
 import { Icon } from '@/components/common/Icon'
 import { education } from '@/data/education'
 import { staggerContainer, childFadeUp, viewportOnce } from '@/animations/variants'
@@ -10,13 +12,26 @@ export function Education() {
   const [primary, ...rest] = education
 
   return (
-    <section id="education" className="section">
-      <div className="container-px">
-        <SectionHeading
-          eyebrow="Training Arc"
-          title="Every hero trains first."
-          description="Computer Science, and the discipline of doing the work well."
-        />
+    <section id="education" className="section relative overflow-hidden">
+      <SectionBackdrop tint="brand" corner="tr" />
+      <div className="container-px relative">
+        <div className="flex items-start justify-between gap-8">
+          <SectionHeading
+            eyebrow="Training Arc"
+            title="Every hero trains first."
+            description="Computer Science, and the discipline of doing the work well."
+          />
+          <Reveal delay={0.15} className="hidden shrink-0 lg:block">
+            <SpiderPanel
+              src="/images/spidey/reading.png"
+              alt="Spider-Man scratching his head, reading documentation with a coffee"
+              caption="Still reading the docs."
+              accent="brand"
+              rotate={3}
+              size="sm"
+            />
+          </Reveal>
+        </div>
 
         <div className="mt-12 space-y-5">
           {/* Highlighted degree */}

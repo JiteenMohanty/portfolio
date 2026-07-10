@@ -1,6 +1,7 @@
 import { Eye, Download, FileText } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Reveal } from '@/components/common/Reveal'
+import { SectionBackdrop } from '@/components/common/Backgrounds'
 import { profile } from '@/data/profile'
 
 function ResumePaper() {
@@ -53,8 +54,9 @@ function ResumePaper() {
 
 export function ResumeSection() {
   return (
-    <section id="resume" className="section">
-      <div className="container-px">
+    <section id="resume" className="section relative overflow-hidden">
+      <SectionBackdrop tint="accent" corner="bl" />
+      <div className="container-px relative">
         <div className="card relative overflow-hidden">
           <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand/10 blur-3xl" />
           <div className="relative grid items-center gap-10 p-8 sm:p-12 lg:grid-cols-2">

@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Reveal } from '@/components/common/Reveal'
+import { SectionBackdrop } from '@/components/common/Backgrounds'
+import { SpiderPanel } from '@/components/common/SpiderPanel'
 import { Icon } from '@/components/common/Icon'
 import { SkillGlyph } from '@/components/common/SkillIcon'
 import { skillCategories, primarySkills, skillMarquee, levelMeta } from '@/data/skills'
@@ -64,13 +66,26 @@ function SkillBadge({ skill, index = 0, size = 'md' }) {
 
 export function Skills() {
   return (
-    <section id="skills" className="section">
-      <div className="container-px">
-        <SectionHeading
-          eyebrow="Powers"
-          title="A backend-first power set, with range."
-          description="Deep where it counts — Java, Spring Boot and data — and comfortable across the stack, mobile, and AI."
-        />
+    <section id="skills" className="section relative overflow-hidden">
+      <SectionBackdrop tint="pop" corner="bl" />
+      <div className="container-px relative">
+        <div className="flex items-start justify-between gap-8">
+          <SectionHeading
+            eyebrow="Powers"
+            title="A backend-first power set, with range."
+            description="Deep where it counts — Java, Spring Boot and data — and comfortable across the stack, mobile, and AI."
+          />
+          <Reveal delay={0.15} className="hidden shrink-0 lg:block">
+            <SpiderPanel
+              src="/images/spidey/spidersense.png"
+              alt="Spider-Man's spider-sense tingling — CRITICAL BUG FOUND on screen"
+              caption="Spider-sense: tingling."
+              accent="pop"
+              rotate={-3}
+              size="sm"
+            />
+          </Reveal>
+        </div>
 
         {/* Core skills */}
         <Reveal className="mt-12 flex flex-wrap justify-center gap-6 sm:justify-start">

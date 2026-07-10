@@ -1,17 +1,44 @@
 import { motion } from 'framer-motion'
 import { SectionHeading } from '@/components/common/SectionHeading'
+import { Reveal } from '@/components/common/Reveal'
+import { SectionBackdrop } from '@/components/common/Backgrounds'
+import { SpiderPanel } from '@/components/common/SpiderPanel'
 import { funFacts } from '@/data/funFacts'
 import { staggerContainer, childFadeUp, viewportOnce } from '@/animations/variants'
 
 export function FunFacts() {
   return (
-    <section id="fun" className="section">
-      <div className="container-px">
-        <SectionHeading
-          eyebrow="Beyond the Mask"
-          title="When the mask comes off."
-          description="A few things that keep me curious, creative, and caffeinated."
-        />
+    <section id="fun" className="section relative overflow-hidden">
+      <SectionBackdrop tint="pop" corner="br" />
+      <div className="container-px relative">
+        <div className="flex items-start justify-between gap-8">
+          <SectionHeading
+            eyebrow="Beyond the Mask"
+            title="When the mask comes off."
+            description="A few things that keep me curious, creative, and caffeinated."
+          />
+          {/* a little corkboard of stickers */}
+          <Reveal delay={0.15} className="relative hidden shrink-0 lg:block">
+            <div className="flex items-end">
+              <SpiderPanel
+                src="/images/spidey/sleeping2.png"
+                alt="Spider-Man dozing in his chair, arms crossed"
+                accent="pop"
+                rotate={-6}
+                size="sm"
+                className="-mr-8"
+              />
+              <SpiderPanel
+                src="/images/spidey/sleeping.png"
+                alt="Spider-Man asleep face-down on the desk"
+                caption="Still awake. Mostly."
+                accent="brand"
+                rotate={4}
+                size="sm"
+              />
+            </div>
+          </Reveal>
+        </div>
 
         <motion.div
           variants={staggerContainer(0.08)}

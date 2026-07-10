@@ -10,6 +10,84 @@ import { useTerminal } from '@/components/terminal/Terminal'
 import { profile } from '@/data/profile'
 import { cn } from '@/utils/cn'
 
+// A "Dynamic Island" nav: collapsed to just the current section until
+// hovered (or focused), then liquidly expands to show every link. Clicking
+// a different link sends the active pill wobbling over to it.
+function DynamicIsland({ navLinks, activeId, onHome, handleNav }) {
+  const [open, setOpen] = useState(false)
+  const activeLink = navLinks.find((l) => l.href.slice(1) === activeId) ?? navLinks[0]
+
+  return (
+    <motion.div
+      layout
+      tabIndex={0}
+      aria-label={`Section navigation — currently on ${activeLink.label}. Focus or hover to see all sections.`}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
+      onFocus={() => setOpen(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) setOpen(false)
+      }}
+      transition={{ type: 'spring', stiffness: 280, damping: 26 }}
+      className="relative hidden items-center rounded-full border border-white/10 bg-[#0e0920]/95 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.5)] backdrop-blur-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-base md:flex"
+    >
+      <AnimatePresence mode="popLayout" initial={false}>
+        {!open ? (
+          <motion.div
+            key="collapsed"
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="flex items-center gap-2 px-4 py-2.5"
+          >
+            <span className="relative flex h-1.5 w-1.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-70" />
+              <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+            </span>
+            <span className="text-sm font-medium text-white">{activeLink.label}</span>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="expanded"
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            className="flex items-center gap-0.5 p-1.5"
+          >
+            {navLinks.map((l) => {
+              const active = onHome && activeId === l.href.slice(1)
+              return (
+                <a
+                  key={l.href}
+                  href={onHome ? l.href : '/' + l.href}
+                  onClick={(e) => handleNav(e, l.href)}
+                  className={cn(
+                    'relative z-10 whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
+                    active ? 'text-white' : 'text-slate-400 hover:text-white',
+                  )}
+                >
+                  {l.label}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-pill"
+                      className="absolute inset-0 -z-10 rounded-full bg-white/15"
+                      transition={{ type: 'spring', stiffness: 480, damping: 14 }}
+                    />
+                  )}
+                </a>
+              )
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
@@ -57,31 +135,12 @@ export function Navbar() {
       <nav className="container-px flex h-16 items-center justify-between gap-4">
         <Logo />
 
-        <div className="hidden items-center gap-1 md:flex">
-          {navLinks.map((l) => {
-            const active = onHome && activeId === l.href.slice(1)
-            return (
-              <a
-                key={l.href}
-                href={onHome ? l.href : '/' + l.href}
-                onClick={(e) => handleNav(e, l.href)}
-                className={cn(
-                  'relative rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                  active ? 'text-ink' : 'text-muted hover:text-ink',
-                )}
-              >
-                {l.label}
-                {active && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-x-2 -bottom-0.5 h-0.5 rounded-full bg-brand"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  />
-                )}
-              </a>
-            )
-          })}
-        </div>
+        <DynamicIsland
+          navLinks={navLinks}
+          activeId={activeId}
+          onHome={onHome}
+          handleNav={handleNav}
+        />
 
         <div className="flex items-center gap-2">
           <button

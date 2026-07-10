@@ -1,6 +1,8 @@
 import { Building2, MapPin, ArrowRight, TerminalSquare } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Reveal } from '@/components/common/Reveal'
+import { SectionBackdrop } from '@/components/common/Backgrounds'
+import { SpiderPanel } from '@/components/common/SpiderPanel'
 import { TechPill } from '@/components/common/TechPill'
 import { experience } from '@/data/experience'
 
@@ -57,13 +59,26 @@ function TerminalLog({ job }) {
 
 export function Experience() {
   return (
-    <section id="experience" className="section">
-      <div className="container-px">
-        <SectionHeading
-          eyebrow="The Day Job"
-          title="Shipping enterprise systems into production."
-          description="Where I learned to make backends fast, search smart, and documents process themselves."
-        />
+    <section id="experience" className="section relative overflow-hidden">
+      <SectionBackdrop tint="brand" corner="tl" />
+      <div className="container-px relative">
+        <div className="flex items-start justify-between gap-8">
+          <SectionHeading
+            eyebrow="The Day Job"
+            title="Shipping enterprise systems into production."
+            description="Where I learned to make backends fast, search smart, and documents process themselves."
+          />
+          <Reveal delay={0.15} className="hidden shrink-0 lg:block">
+            <SpiderPanel
+              src="/images/spidey/legs_stretched.png"
+              alt="Spider-Man leaned back, feet up on the desk, coding one-handed"
+              caption="Just another day."
+              accent="brand"
+              rotate={-3}
+              size="sm"
+            />
+          </Reveal>
+        </div>
 
         <div className="mt-14 space-y-8">
           {experience.map((job) => (
