@@ -1,10 +1,9 @@
 export const experience = [
   {
     company: 'Hansa Solutions',
-    location: 'Hyderabad, India',
+    location: 'Hyderabad, India 🇮🇳',
     period: 'Feb 2024 – May 2026',
-    summary:
-      'Owned backend services and data solutions powering insurance policy administration, customer management, and business-process automation — growing from trainee to associate while shipping into production.',
+    summary: 'Backend & data systems for insurance-grade platforms — trainee to associate, shipping since 2024.',
     // Role progression within the company
     roles: [
       { title: 'Trainee Software Developer', period: 'Feb 2024' },
@@ -15,27 +14,27 @@ export const experience = [
       {
         icon: 'Server',
         title: 'Backend Service Development',
-        desc: 'Designed and maintained enterprise backend services and RESTful APIs for insurance policy administration, customer management, and workflow automation — using layered architecture, dependency injection, and reusable service components.',
+        desc: 'REST APIs for policy admin, customer mgmt & workflow automation',
       },
       {
         icon: 'Search',
         title: 'Advanced Search Engine',
-        desc: 'Built a dynamic multi-criteria search supporting partial and composite queries across customer, policy, and transaction datasets, with optimized retrieval strategies that improved search performance and UX.',
+        desc: 'Multi-criteria search across customer, policy & transaction data',
       },
       {
         icon: 'FileText',
         title: 'AI Document Processing',
-        desc: 'Engineered automated document-ingestion workflows that integrate external AI/ML services to extract structured data from inbound emails and documents into standardized JSON for downstream systems.',
+        desc: 'AI extracts structured data from inbound docs & emails',
       },
       {
         icon: 'Gauge',
         title: 'Database Optimization',
-        desc: 'Cut response times ~35% across SQL Server and Oracle through indexing strategies, execution-plan analysis, query optimization, and parallel query execution.',
+        desc: 'Faster queries via indexing & execution-plan tuning',
       },
       {
         icon: 'LifeBuoy',
         title: 'Production Support',
-        desc: 'Performed root-cause analysis across application and database layers, and collaborated with stakeholders on change requests, estimation, and Agile delivery in production environments.',
+        desc: 'Root-cause analysis & Agile delivery in production',
       },
     ],
     metrics: [

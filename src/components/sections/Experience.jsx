@@ -1,11 +1,59 @@
-import { motion } from 'framer-motion'
-import { Building2, MapPin, ArrowRight } from 'lucide-react'
+import { Building2, MapPin, ArrowRight, TerminalSquare } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Reveal } from '@/components/common/Reveal'
-import { Icon } from '@/components/common/Icon'
 import { TechPill } from '@/components/common/TechPill'
 import { experience } from '@/data/experience'
-import { staggerContainer, childFadeUp, viewportOnce } from '@/animations/variants'
+
+// Presented like a CLI status log, not a wall of prose — the format itself
+// is meant to read as "this person thinks in systems."
+function TerminalLog({ job }) {
+  const slug = job.company.toLowerCase().replace(/\s+/g, '-')
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#0b0e14] shadow-card">
+      <div className="flex items-center gap-2 border-b border-white/10 bg-white/5 px-4 py-2.5">
+        <span className="flex gap-1.5">
+          <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
+          <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
+          <span className="h-3 w-3 rounded-full bg-[#28c840]" />
+        </span>
+        <span className="ml-1 flex items-center gap-1.5 text-xs text-slate-400">
+          <TerminalSquare className="h-3.5 w-3.5" />
+          {slug}.log
+        </span>
+      </div>
+
+      <div className="px-5 py-5 font-mono text-[13px] leading-relaxed sm:px-6 sm:py-6">
+        <div className="flex gap-2">
+          <span className="shrink-0 text-emerald-400">$</span>
+          <span className="text-slate-500">whoami</span>
+        </div>
+        <p className="mt-1.5 pl-4 text-slate-100">{job.summary}</p>
+
+        <div className="mt-5 flex gap-2">
+          <span className="shrink-0 text-emerald-400">$</span>
+          <span className="text-slate-500">ship --highlights</span>
+        </div>
+        <div className="mt-2.5 space-y-2.5 pl-4">
+          {job.highlights.map((h) => (
+            <div key={h.title} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
+              <span className="flex shrink-0 items-baseline gap-2 sm:w-[14rem]">
+                <span className="text-emerald-400">✓</span>
+                <span className="font-semibold text-slate-100">{h.title}</span>
+              </span>
+              <span className="text-slate-500">{h.desc}</span>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-5 flex items-center gap-2">
+          <span className="text-emerald-400">$</span>
+          <span className="inline-block h-4 w-[7px] animate-blink bg-slate-400" aria-hidden />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export function Experience() {
   return (
@@ -60,12 +108,8 @@ export function Experience() {
                   ))}
                 </div>
 
-                <p className="mt-6 max-w-3xl text-pretty leading-relaxed text-muted">
-                  {job.summary}
-                </p>
-
-                {/* Metrics */}
-                <div className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">
+                {/* Metrics — the numbers do the talking */}
+                <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
                   {job.metrics.map((m) => (
                     <div
                       key={m.label}
@@ -77,30 +121,10 @@ export function Experience() {
                   ))}
                 </div>
 
-                {/* Highlights */}
-                <motion.div
-                  variants={staggerContainer(0.07)}
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={viewportOnce}
-                  className="mt-8 grid gap-4 sm:grid-cols-2"
-                >
-                  {job.highlights.map((h) => (
-                    <motion.div
-                      key={h.title}
-                      variants={childFadeUp}
-                      className="group flex gap-4 rounded-2xl border border-transparent p-3 transition-colors hover:border-border hover:bg-elevated/40"
-                    >
-                      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-accent/10 text-accent-strong dark:text-accent">
-                        <Icon name={h.icon} className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <h4 className="font-semibold text-ink">{h.title}</h4>
-                        <p className="mt-1 text-sm leading-relaxed text-muted">{h.desc}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </motion.div>
+                {/* Terminal-style log of what actually shipped */}
+                <div className="mt-8">
+                  <TerminalLog job={job} />
+                </div>
 
                 {/* Stack */}
                 <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">

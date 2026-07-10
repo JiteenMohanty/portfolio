@@ -90,7 +90,7 @@ export const projects = [
     role: 'Solo — Architecture to AI',
     accent: 'indigo',
     featured: true,
-    status: { label: 'Currently in development', tone: 'progress' },
+    status: { label: 'Build complete · Not yet deployed', tone: 'complete' },
 
     summary:
       'An AI-powered insurance-claims platform built on independently deployable Spring Boot microservices, with OpenAI document analysis and event-driven workflows that keep humans in the loop for approvals.',
@@ -156,7 +156,7 @@ export const projects = [
       { value: '2', label: 'Databases, chosen by fit' },
     ],
 
-    links: { live: null, github: null, note: 'In active development' },
+    links: { live: null, github: null, note: 'Complete — deployment pending' },
     gallery: [
       { src: '/projects/ai-claims/screenshot-dashboard.png', alt: 'Claims dashboard — live stats, status breakdown chart, and recent AI activity' },
       { src: '/projects/ai-claims/screenshot-claims.png', alt: 'Claims list — policy number, claimant, type, AI review status, and amount' },

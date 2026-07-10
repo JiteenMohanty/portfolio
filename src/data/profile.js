@@ -4,7 +4,7 @@ export const profile = {
   firstName: 'Jiteen',
   title: 'Full Stack Engineer',
   altTitle: 'Software Engineer · Product Builder · AI Enthusiast',
-  location: 'India',
+  location: '🇮🇳 India',
   available: true,
   availabilityNote: 'Open to product & backend-heavy roles',
 
@@ -30,25 +30,29 @@ export const profile = {
   brandStatement:
     'I build products that transform complex processes into intuitive experiences.',
 
-  // About section narrative
-  about: [
-    "I'm a backend-first Full Stack Engineer who likes living where messy real-world processes meet clean software. For the last 2+ years I've designed and shipped enterprise backend services, REST APIs, and workflow automation that quietly run the unglamorous parts of a business.",
-    'From enterprise insurance systems to AI-powered platforms and a society-management product I built solo, I enjoy turning fuzzy ideas into systems people actually love using. I care as much about the experience on top as the architecture underneath.',
-    'I enjoy understanding both technical systems and the people using them — that mix of empathy and engineering is what makes a product feel obvious instead of complicated.',
+  // About section — kept short on purpose; nobody reads a wall of text.
+  aboutBio:
+    "Backend-first engineer who ships the unglamorous parts that make products actually work — APIs, data, and the systems behind them. I've built enterprise insurance platforms, an AI claims processor, and a society-management app end-to-end, solo.",
+
+  aboutStats: [
+    { value: '2+', label: 'Years shipping to production' },
+    { value: '3', label: 'Platforms built end-to-end' },
+    { value: 'Solo', label: '& team delivery' },
+    { value: '🇮🇳', label: 'Based in India' },
   ],
 
   traits: [
     {
       label: 'Curious',
-      desc: 'I dig until I understand the system and the people inside it.',
+      desc: 'Digs until the system makes sense.',
     },
     {
       label: 'Practical',
-      desc: 'I optimize for what ships and holds up in production.',
+      desc: 'Ships what holds up in production.',
     },
     {
       label: 'Builder',
-      desc: 'Ideas only matter once they exist and someone is using them.',
+      desc: "Ideas don't count until they exist.",
     },
   ],
 

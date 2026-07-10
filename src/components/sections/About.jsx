@@ -13,61 +13,71 @@ export function About() {
       <div className="container-px">
         <SectionHeading
           eyebrow="About"
-          title="I turn complex processes into software people love to use."
+          title="I turn problems into APIs, APIs into products."
           description="Backend-first, product-minded, and curious about the humans on the other side of the screen."
         />
 
-        <div className="mt-14 grid gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-          {/* Narrative */}
-          <Reveal className="space-y-5">
-            {profile.about.map((para, i) => (
-              <p
-                key={i}
-                className={`text-pretty leading-relaxed ${
-                  i === 0 ? 'text-lg text-ink' : 'text-muted'
-                }`}
+        {/* One short bio line — not an essay */}
+        <Reveal className="mt-10 max-w-2xl">
+          <p className="text-pretty text-lg leading-relaxed text-ink">{profile.aboutBio}</p>
+        </Reveal>
+
+        {/* Quick facts */}
+        <motion.div
+          variants={staggerContainer(0.08)}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4"
+        >
+          {profile.aboutStats.map((s) => (
+            <motion.div
+              key={s.label}
+              variants={childFadeUp}
+              className="rounded-2xl border border-border bg-elevated/50 p-4"
+            >
+              <div className="text-2xl font-bold text-brand">{s.value}</div>
+              <div className="mt-1 text-xs leading-snug text-muted">{s.label}</div>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {/* Traits — compact chips, not paragraphs */}
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="show"
+          viewport={viewportOnce}
+          className="mt-8 flex flex-wrap gap-3"
+        >
+          {profile.traits.map((t) => {
+            const Icon = traitIcons[t.label] ?? Sparkles
+            return (
+              <motion.div
+                key={t.label}
+                variants={childFadeUp}
+                className="card card-hover flex items-center gap-3 px-5 py-4"
               >
-                {para}
-              </p>
-            ))}
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-ink">{t.label}</h3>
+                  <p className="text-xs text-muted">{t.desc}</p>
+                </div>
+              </motion.div>
+            )
+          })}
+        </motion.div>
 
-            <div className="flex flex-wrap gap-2 pt-2">
-              {profile.roles.map((r) => (
-                <span key={r} className="chip">
-                  {r}
-                </span>
-              ))}
-            </div>
-          </Reveal>
-
-          {/* Traits */}
-          <motion.div
-            variants={staggerContainer(0.1)}
-            initial="hidden"
-            whileInView="show"
-            viewport={viewportOnce}
-            className="space-y-4"
-          >
-            {profile.traits.map((t) => {
-              const Icon = traitIcons[t.label] ?? Sparkles
-              return (
-                <motion.div
-                  key={t.label}
-                  variants={childFadeUp}
-                  className="card card-hover flex gap-4 p-5"
-                >
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-ink">{t.label}</h3>
-                    <p className="mt-1 text-sm leading-relaxed text-muted">{t.desc}</p>
-                  </div>
-                </motion.div>
-              )
-            })}
-          </motion.div>
-        </div>
+        {/* Roles */}
+        <Reveal className="mt-8 flex flex-wrap gap-2">
+          {profile.roles.map((r) => (
+            <span key={r} className="chip">
+              {r}
+            </span>
+          ))}
+        </Reveal>
       </div>
     </section>
   )

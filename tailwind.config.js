@@ -61,6 +61,10 @@ export default {
           '0%, 100%': { transform: 'translateY(0) translateX(0)' },
           '50%': { transform: 'translateY(-18px) translateX(8px)' },
         },
+        wobble: {
+          '0%, 100%': { transform: 'translateY(0) rotate(-2deg)' },
+          '50%': { transform: 'translateY(-9px) rotate(2deg)' },
+        },
         'spin-slow': {
           to: { transform: 'rotate(360deg)' },
         },
@@ -84,6 +88,7 @@ export default {
         'fade-up': 'fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both',
         float: 'float 6s ease-in-out infinite',
         'float-slow': 'float-slow 9s ease-in-out infinite',
+        wobble: 'wobble 4s ease-in-out infinite',
         'spin-slow': 'spin-slow 24s linear infinite',
         blink: 'blink 1.1s step-end infinite',
         shimmer: 'shimmer 2.2s infinite',

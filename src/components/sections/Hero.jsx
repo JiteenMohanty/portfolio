@@ -88,6 +88,7 @@ export function Hero() {
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
               </span>
               {profile.availabilityNote}
+              <span className="text-faint">· 🇮🇳 India</span>
             </motion.div>
           )}
 
