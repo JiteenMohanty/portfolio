@@ -3,6 +3,7 @@ import { ArrowUp, Heart } from 'lucide-react'
 import { LogoMark } from '@/components/common/Logo'
 import { SocialLinks } from '@/components/common/SocialLinks'
 import { SpiderPanel } from '@/components/common/SpiderPanel'
+import { VisitorCounter } from '@/components/common/VisitorCounter'
 import { navLinks } from '@/constants/navigation'
 import { profile } from '@/data/profile'
 
@@ -102,19 +103,22 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-6 sm:flex-row">
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-6">
           <p className="flex items-center gap-1.5 text-xs text-faint">
             © {year} Jiteen Mohanty · Built with
             <Heart className="h-3.5 w-3.5 text-brand" /> and great responsibility — React,
             Tailwind & Framer Motion
           </p>
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
-          >
-            Swing to top
-            <ArrowUp className="h-3.5 w-3.5" />
-          </button>
+          <div className="flex items-center gap-4">
+            <VisitorCounter />
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-muted transition-colors hover:text-ink"
+            >
+              Swing to top
+              <ArrowUp className="h-3.5 w-3.5" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>
