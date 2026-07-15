@@ -14,6 +14,7 @@ export const sectionIds = [
   'experience',
   'projects',
   'skills',
+  'ai-stats',
   'education',
   'journey',
   'contact',
