@@ -5,6 +5,11 @@ import { Footer } from '@/components/layout/Footer'
 import { ScrollManager } from '@/components/layout/ScrollManager'
 import { CrawlingSpider } from '@/components/common/CrawlingSpider'
 import Home from '@/pages/Home'
+import Origin from '@/pages/Origin'
+import Missions from '@/pages/Missions'
+import Powers from '@/pages/Powers'
+import Canon from '@/pages/Canon'
+import ContactPage from '@/pages/ContactPage'
 import ProjectDetail from '@/pages/ProjectDetail'
 import NotFound from '@/pages/NotFound'
 
@@ -26,6 +31,11 @@ export default function App() {
       <main id="main">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/origin" element={<Origin />} />
+          <Route path="/missions" element={<Missions />} />
+          <Route path="/powers" element={<Powers />} />
+          <Route path="/canon" element={<Canon />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

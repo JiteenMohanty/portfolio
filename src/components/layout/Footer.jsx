@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { ArrowUp, Heart } from 'lucide-react'
 import { LogoMark } from '@/components/common/Logo'
 import { SocialLinks } from '@/components/common/SocialLinks'
@@ -8,19 +8,7 @@ import { navLinks } from '@/constants/navigation'
 import { profile } from '@/data/profile'
 
 export function Footer() {
-  const navigate = useNavigate()
-  const location = useLocation()
   const year = new Date().getFullYear()
-
-  const go = (e, href) => {
-    e.preventDefault()
-    const id = href.slice(1)
-    if (location.pathname === '/') {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      navigate('/' + href)
-    }
-  }
 
   return (
     <footer className="relative mt-10 border-t border-border bg-surface/40">
@@ -47,14 +35,13 @@ export function Footer() {
               </h3>
               <ul className="mt-4 space-y-2.5">
                 {navLinks.map((l) => (
-                  <li key={l.href}>
-                    <a
-                      href={'/' + l.href}
-                      onClick={(e) => go(e, l.href)}
+                  <li key={l.to}>
+                    <Link
+                      to={l.to}
                       className="text-sm text-muted transition-colors hover:text-ink"
                     >
                       {l.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>

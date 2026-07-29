@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
   ArrowRight, Download, Server, Code2, Database, Sparkles, Workflow, Boxes,
@@ -166,14 +167,14 @@ export function Hero() {
           </motion.p>
 
           <motion.div variants={childFadeUp} className="mt-8 flex flex-wrap items-center gap-3">
-            <a href="#projects" className="btn-primary">
-              View Missions
+            <a href="#portals" className="btn-primary">
+              Enter the Spider-Verse
               <ArrowRight className="h-4 w-4" />
             </a>
-            <a href={profile.resumeUrl} download className="btn-ghost">
-              <Download className="h-4 w-4" />
-              Download Resume
-            </a>
+            <Link to="/missions" className="btn-ghost">
+              <Boxes className="h-4 w-4" />
+              View Missions
+            </Link>
           </motion.div>
 
           <motion.div variants={childFadeUp} className="mt-8 flex items-center gap-4">
@@ -195,8 +196,8 @@ export function Hero() {
 
       {/* scroll cue */}
       <a
-        href="#about"
-        aria-label="Scroll to about"
+        href="#portals"
+        aria-label="Scroll to the dimension portals"
         className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-faint transition-colors hover:text-muted md:flex"
       >
         <span className="text-2xs font-medium uppercase tracking-widest">Scroll</span>

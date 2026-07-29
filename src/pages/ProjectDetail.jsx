@@ -48,8 +48,8 @@ export default function ProjectDetail() {
       <div className="container-px flex min-h-[70vh] flex-col items-center justify-center text-center">
         <p className="text-sm font-semibold text-brand">404</p>
         <h1 className="mt-2 text-2xl font-bold">Project not found</h1>
-        <Link to="/#projects" className="btn-primary mt-6">
-          <ArrowLeft className="h-4 w-4" /> Back to projects
+        <Link to="/missions" className="btn-primary mt-6">
+          <ArrowLeft className="h-4 w-4" /> Back to Missions
         </Link>
       </div>
     )
@@ -67,10 +67,10 @@ export default function ProjectDetail() {
         <GridBackdrop className="opacity-40" />
         <div className="container-px relative">
           <Link
-            to="/#projects"
+            to="/missions"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted transition-colors hover:text-ink"
           >
-            <ArrowLeft className="h-4 w-4" /> All projects
+            <ArrowLeft className="h-4 w-4" /> All missions
           </Link>
 
           <div className="mx-auto mt-8 max-w-5xl">

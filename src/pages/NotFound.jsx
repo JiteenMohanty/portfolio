@@ -36,7 +36,7 @@ export default function NotFound() {
           <Link to="/" className="btn-primary">
             <Home className="h-4 w-4" /> Swing back home
           </Link>
-          <Link to="/#projects" className="btn-ghost">
+          <Link to="/missions" className="btn-ghost">
             <ArrowLeft className="h-4 w-4" /> See missions
           </Link>
         </div>

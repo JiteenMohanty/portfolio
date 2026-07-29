@@ -4,39 +4,30 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Download, Terminal as TerminalIcon, X } from 'lucide-react'
 import { LogoMark } from '@/components/common/Logo'
 import { ThemeToggle } from '@/components/common/ThemeToggle'
-import { navLinks, sectionIds } from '@/constants/navigation'
-import { useScrollSpy } from '@/hooks/useScrollSpy'
+import { navLinks } from '@/constants/navigation'
 import { useTerminal } from '@/components/terminal/Terminal'
 import { profile } from '@/data/profile'
 import { cn } from '@/utils/cn'
 
 // The entire navbar IS the island — no header strip behind it. Collapsed,
-// it's just a logo + current section. Hover, tap, or focus it and it
-// liquidly grows to reveal every link plus the terminal/theme/resume
-// controls, all still inside the one dark capsule. Always solid dark —
-// no glass/blur, on purpose.
+// it's just a logo + the current dimension. Hover, tap, or focus it and it
+// liquidly grows to reveal every route plus the terminal/theme/resume
+// controls, all still inside the one dark capsule.
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const rootRef = useRef(null)
   const location = useLocation()
   const navigate = useNavigate()
-  const onHome = location.pathname === '/'
-  const activeId = useScrollSpy(sectionIds)
+  const path = location.pathname
   const { openTerminal } = useTerminal()
 
-  const activeLink = navLinks.find((l) => l.href.slice(1) === activeId)
-  const collapsedLabel = onHome && activeLink ? activeLink.label : 'Menu'
+  const activeLink = navLinks.find((l) => l.to === path)
+  const collapsedLabel = activeLink ? activeLink.label : 'Menu'
 
-  const handleNav = (e, href) => {
+  const handleNav = (e, to) => {
     e.preventDefault()
-    const id = href.slice(1)
     setOpen(false)
-    if (onHome) {
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-      window.history.replaceState(null, '', href)
-    } else {
-      navigate('/' + href)
-    }
+    navigate(to)
   }
 
   // Click (or tap) anywhere outside collapses it — the primary close
@@ -110,12 +101,12 @@ export function Navbar() {
                 <span className="mx-1 h-5 w-px bg-white/10" aria-hidden />
 
                 {navLinks.map((l) => {
-                  const active = onHome && activeId === l.href.slice(1)
+                  const active = path === l.to
                   return (
                     <a
-                      key={l.href}
-                      href={onHome ? l.href : '/' + l.href}
-                      onClick={(e) => handleNav(e, l.href)}
+                      key={l.to}
+                      href={l.to}
+                      onClick={(e) => handleNav(e, l.to)}
                       className={cn(
                         'relative z-10 whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors',
                         active ? 'text-white' : 'text-slate-400 hover:text-white',
@@ -180,12 +171,12 @@ export function Navbar() {
 
                 <div className="mt-4 flex flex-col gap-0.5 border-t border-white/10 pt-3">
                   {navLinks.map((l) => {
-                    const active = onHome && activeId === l.href.slice(1)
+                    const active = path === l.to
                     return (
                       <a
-                        key={l.href}
-                        href={onHome ? l.href : '/' + l.href}
-                        onClick={(e) => handleNav(e, l.href)}
+                        key={l.to}
+                        href={l.to}
+                        onClick={(e) => handleNav(e, l.to)}
                         className={cn(
                           'rounded-xl px-3 py-2.5 text-[15px] font-medium transition-colors',
                           active ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white',
