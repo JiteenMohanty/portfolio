@@ -82,87 +82,83 @@ export const projects = [
   },
 
   {
-    slug: 'ai-claims-platform',
-    name: 'AI-Powered Claims Processing Platform',
-    tagline: 'Microservices + AI that turn manual claim verification into an automated workflow.',
+    slug: 'sniper',
+    name: 'Sniper',
+    tagline: 'An agentic AI platform that runs real penetration tests — planning, executing, and judging its own security assessment end-to-end.',
     type: 'Personal Product',
-    period: 'Jan 2026 – Apr 2026',
-    role: 'Solo — Architecture to AI',
+    period: '2026',
+    role: 'Solo — Architecture to Agent',
     accent: 'indigo',
     featured: true,
-    status: { label: 'Build complete · Not yet deployed', tone: 'complete' },
+    status: { label: 'AI agent · Autonomous pentesting', tone: 'progress' },
 
     summary:
-      'An AI-powered insurance-claims platform built on independently deployable Spring Boot microservices, with OpenAI document analysis and event-driven workflows that keep humans in the loop for approvals.',
+      'A network penetration-testing platform where an LLM-driven agent — not a human — plans and drives the assessment, orchestrating ~23 real security tools, attempting bounded exploitation, and validating its own report before the job counts as done.',
 
     overview:
-      'A personal product designed and developed independently: an AI-powered insurance-claims platform on a modular microservice backend. It ingests claim documents, extracts structured data, runs assessment and fraud checks, and drives claims through an automated, role-aware workflow.',
+      "Sniper is a pentest platform where an agent runs the engagement. Point it at a target and it orchestrates ~23 real security tools (nmap, ZAP, Nuclei, Nikto, sslyze and more), reasons over what they find, attempts bounded proof-of-concept exploitation, correlates individual findings into multi-step attack chains, and writes a report — all without a human choosing which tool to run next. An independent 'judge' pass then reviews that report for completeness before the engagement is allowed to count as complete, so the system checks its own work.",
 
     problem:
-      'Insurance claims demand extensive manual document verification — adjusters read PDFs, cross-check policies, and flag fraud by hand. It is slow, inconsistent, and hard to scale.',
+      'Real penetration testing is expert-gated and slow — a human has to choose each tool, interpret its output, chain low-severity findings into a real attack path, and write the report. The tools are automatable; the reasoning between them never was, so most targets simply never get tested.',
 
     solution:
-      'AI-powered document assessment plus workflow automation. Documents are ingested and parsed, claims are scored for risk, and each claim flows through a status-driven lifecycle — with humans kept in the loop for approvals, not replaced by the model.',
+      "Put an LLM agent in the operator seat, with guardrails. A planner picks and orders the tooling, ~20+ scanners run as isolated containers, an agentic pipeline reasons over the findings and attempts bounded exploitation, and a separate judge phase validates the report before sign-off. Multi-key rotation keeps a rate-limited API key from taking a scan down, and every phase, tool run, and LLM call is fully traced — so the agent's behavior is auditable, not a black box.",
 
     responsibilities: [
-      'Microservice architecture & system design',
-      'Spring Boot services — controllers, services, repos, DTOs',
-      'JWT auth & role-based access control',
-      'OpenAI document-analysis integration',
-      'Event-driven messaging with RabbitMQ',
-      'Data modeling across PostgreSQL & MongoDB',
+      'Agentic orchestration with LangGraph & LangChain',
+      'FastAPI backend, async SQLAlchemy, Postgres & Redis',
+      '~23 security tools as isolated per-scan containers',
+      'Multi-provider LLM layer with auto key-rotation & failover',
+      'Independent LLM judge for report validation',
+      'Full-pipeline tracing via SigNoz (OpenTelemetry + ClickHouse)',
     ],
 
-    stack: ['Spring Boot', 'React', 'OpenAI', 'RabbitMQ', 'PostgreSQL', 'MongoDB', 'Spring Security', 'JWT'],
+    stack: ['Python', 'FastAPI', 'LangGraph', 'LangChain', 'PostgreSQL', 'Redis', 'React', 'TypeScript', 'Docker', 'SigNoz'],
 
     features: [
-      { icon: 'KeyRound', title: 'Authentication & RBAC', desc: 'Centralized JWT auth with roles for Policyholders, Adjusters, Investigators, and Admins.' },
-      { icon: 'FolderKanban', title: 'Claims Management', desc: 'Submit, track, and manage claims across their full lifecycle.' },
-      { icon: 'Sparkles', title: 'AI Verification', desc: 'AI-assisted document assessment and fraud-signal analysis.' },
-      { icon: 'FileSearch', title: 'Document Analysis', desc: 'Automated extraction of structured data from claim documents.' },
-      { icon: 'Workflow', title: 'Workflow Automation', desc: 'Status-driven progression from submission to settlement.' },
-      { icon: 'BellRing', title: 'Event-Driven Notifications', desc: 'Real-time stakeholder updates over RabbitMQ messaging.' },
+      { icon: 'Crosshair', title: 'Agent-Driven Planning', desc: 'An LLM planner selects and orders the tools to run based on target type and chosen depth — no human picks the next step.' },
+      { icon: 'Radar', title: '~23 Tools Orchestrated', desc: 'nmap, ZAP, Nuclei, Nikto, sslyze, Katana, Feroxbuster and more, each an isolated, disposable container per scan.' },
+      { icon: 'Bug', title: 'Bounded Exploitation', desc: 'Crawling, vulnerability discovery, and proof-of-concept exploitation within configurable intrusiveness limits.' },
+      { icon: 'Link2', title: 'Attack-Chain Correlation', desc: 'A reasoning phase links individual findings into full multi-step attack chains, not just a flat list of issues.' },
+      { icon: 'Gavel', title: 'Self-Judging Reports', desc: 'An independent LLM judge reviews the assembled report for completeness and quality before an engagement is marked complete.' },
+      { icon: 'Activity', title: 'Full Observability', desc: 'Every phase, tool run, and LLM call is traced through SigNoz — the agent is auditable, not a black box.' },
     ],
 
     architecture: {
       summary:
-        'Independently deployable Spring Boot microservices communicate over REST and RabbitMQ events. A React client talks to the services, auth is centralized behind JWT, and AI document processing runs as its own isolated service.',
-      style: 'microservices',
-      services: [
-        { name: 'auth-service', icon: 'KeyRound', desc: 'Spring Security + JWT, role-based access control', tech: 'PostgreSQL' },
-        { name: 'claim-service', icon: 'FolderKanban', desc: 'Claim lifecycle, assessment & status tracking', tech: 'PostgreSQL' },
-        { name: 'ai-service', icon: 'Sparkles', desc: 'OpenAI document analysis & data extraction', tech: 'MongoDB' },
-        { name: 'notification-service', icon: 'BellRing', desc: 'Event-driven stakeholder notifications', tech: 'RabbitMQ' },
+        'A FastAPI backend drives a LangGraph agent through plan → scan → reason → validate → report. Security tools run as isolated Docker containers per scan; a multi-provider LLM layer with automatic key-rotation feeds the agent, and the whole pipeline is traced through a self-hosted SigNoz stack.',
+      style: 'layered',
+      layers: [
+        { name: 'Clients', icon: 'Monitor', items: ['React + TypeScript UI', 'Node/Express BFF'] },
+        { name: 'Agent Core', icon: 'Bot', items: ['FastAPI', 'LangGraph pipeline', 'LLM key-rotation'] },
+        { name: 'Tooling', icon: 'Boxes', items: ['~23 scanners', 'Isolated per-scan containers'] },
+        { name: 'Data & Ops', icon: 'Database', items: ['PostgreSQL', 'Redis', 'SigNoz tracing'] },
       ],
-      client: { name: 'React Client', icon: 'Monitor' },
-      bus: { name: 'RabbitMQ event bus', icon: 'Radio' },
     },
 
     challenges: [
       {
-        title: 'Designing for independent services',
-        desc: 'Splitting claims, auth, notifications, and AI into services that stay decoupled — and deciding what travels over synchronous REST versus asynchronous RabbitMQ events.',
+        title: 'Keeping an autonomous agent bounded',
+        desc: 'Letting an LLM drive real exploitation tooling while guaranteeing it stays within the chosen intrusiveness level — safe-active by default, with brute-force and higher-friction checks off unless explicitly permitted.',
       },
       {
-        title: 'Trustworthy AI in the loop',
-        desc: 'Using OpenAI to extract and assess document data while keeping outputs structured, validated, and auditable. AI accelerates the adjuster — it never silently decides.',
+        title: 'Surviving LLMs against a live workload',
+        desc: 'A single rate-limited API key can not be allowed to kill a running scan — automatic multi-provider key rotation and failover keep the agent moving, and full tracing makes every decision auditable.',
       },
     ],
 
     results: [
-      { value: '4+', label: 'Independent microservices' },
-      { value: '4', label: 'RBAC roles supported' },
-      { value: 'AI', label: 'Document verification automated' },
-      { value: '2', label: 'Databases, chosen by fit' },
+      { value: '~23', label: 'Security tools orchestrated' },
+      { value: '7', label: 'Report export formats' },
+      { value: 'Judge', label: 'Validates its own reports' },
+      { value: '100%', label: 'Traced — every phase & LLM call' },
     ],
 
-    links: { live: null, github: null, note: 'Complete — deployment pending' },
+    links: { live: null, github: null, note: 'Private — personal product' },
     gallery: [
-      { src: '/projects/ai-claims/screenshot-dashboard.png', alt: 'Claims dashboard — live stats, status breakdown chart, and recent AI activity' },
-      { src: '/projects/ai-claims/screenshot-claims.png', alt: 'Claims list — policy number, claimant, type, AI review status, and amount' },
-      { src: '/projects/ai-claims/screenshot-claim-detail.png', alt: 'Claim detail — AI analysis panel with risk score, summary, and recommended action' },
-      { src: '/projects/ai-claims/screenshot-documents.png', alt: 'Document upload — attach supporting files to an existing claim' },
-      { src: '/projects/ai-claims/screenshot-login.png', alt: 'Login screen — branded entry point for the AI Claims Processing Platform' },
+      { src: '/projects/sniper/new-scan.png', alt: 'New Security Scan — target address, scan depth (Quick / Standard / Deep), and assessment mode selection' },
+      { src: '/projects/sniper/tool-matrix.png', alt: 'Scanner Tool Matrix — 23 security tools with per-tool container images and timeouts, plus safety controls' },
+      { src: '/projects/sniper/api-keys.png', alt: 'API Key Management — multi-key buckets with rotation, priority, and per-key health for LLM failover' },
     ],
   },
 

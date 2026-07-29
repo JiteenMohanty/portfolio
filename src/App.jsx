@@ -3,6 +3,7 @@ import { TerminalProvider } from '@/components/terminal/Terminal'
 import { Navbar } from '@/components/layout/Navbar'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollManager } from '@/components/layout/ScrollManager'
+import { CrawlingSpider } from '@/components/common/CrawlingSpider'
 import Home from '@/pages/Home'
 import ProjectDetail from '@/pages/ProjectDetail'
 import NotFound from '@/pages/NotFound'
@@ -20,6 +21,7 @@ export default function App() {
       </a>
 
       <Navbar />
+      <CrawlingSpider />
 
       <main id="main">
         <Routes>

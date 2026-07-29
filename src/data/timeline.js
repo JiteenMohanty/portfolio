@@ -50,8 +50,8 @@ export const journey = [
   },
   {
     year: '2026',
-    title: 'Built AI Claims Platform',
-    detail: 'Microservices + AI claims processing, designed end-to-end',
+    title: 'Built Sniper',
+    detail: 'An agentic AI platform that runs real penetration tests, end-to-end',
     kind: 'project',
   },
   {

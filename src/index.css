@@ -222,6 +222,22 @@
     background-size: 12px 12px, 12px 12px;
     background-position: 0 0, 6px 6px;
   }
+
+  /* Crawling-spider leg scuttle — only animates while it's actually moving.
+     Alternating legs twitch out of phase so it reads as a scurry. */
+  @keyframes leg-scuttle {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(9deg); }
+  }
+  .spider-crawl .leg {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: leg-scuttle 0.22s ease-in-out infinite;
+  }
+  .spider-crawl .leg-l2, .spider-crawl .leg-l4,
+  .spider-crawl .leg-r1, .spider-crawl .leg-r3 {
+    animation-delay: 0.11s;
+  }
 }
 
 @layer utilities {
