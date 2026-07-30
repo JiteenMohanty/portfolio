@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { TerminalProvider } from '@/components/terminal/Terminal'
-import { Navbar } from '@/components/layout/Navbar'
+import { Sidebar } from '@/components/layout/Sidebar'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollManager } from '@/components/layout/ScrollManager'
 import { CrawlingSpider } from '@/components/common/CrawlingSpider'
@@ -25,23 +25,27 @@ export default function App() {
         Skip to content
       </a>
 
-      <Navbar />
+      <Sidebar />
       <CrawlingSpider />
 
-      <main id="main">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/origin" element={<Origin />} />
-          <Route path="/missions" element={<Missions />} />
-          <Route path="/powers" element={<Powers />} />
-          <Route path="/canon" element={<Canon />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/projects/:slug" element={<ProjectDetail />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
+      {/* Offset content by the fixed left pane on desktop; the mobile top
+          bar is cleared by each page's own top padding. */}
+      <div className="lg:pl-64">
+        <main id="main">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/origin" element={<Origin />} />
+            <Route path="/missions" element={<Missions />} />
+            <Route path="/powers" element={<Powers />} />
+            <Route path="/canon" element={<Canon />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
 
-      <Footer />
+        <Footer />
+      </div>
     </TerminalProvider>
   )
 }

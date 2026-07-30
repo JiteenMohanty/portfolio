@@ -7,7 +7,7 @@ import {
   Monitor, Radio, GraduationCap, Compass, Layers, Layout, School, Briefcase,
   Rocket, Trophy, Telescope, Code2, Bot, Star, CalendarCheck, Scale, ThumbsUp,
   Crosshair, Bug, Network, Gavel, Activity, KeySquare, Boxes, Target, Radar,
-  Link2, FileCheck2,
+  Link2, FileCheck2, Home,
 } from 'lucide-react'
 
 const registry = {
@@ -17,7 +17,7 @@ const registry = {
   Monitor, Radio, GraduationCap, Compass, Layers, Layout, School, Briefcase,
   Rocket, Trophy, Telescope, Code2, Bot, Star, CalendarCheck, Scale, ThumbsUp,
   Crosshair, Bug, Network, Gavel, Activity, KeySquare, Boxes, Target, Radar,
-  Link2, FileCheck2,
+  Link2, FileCheck2, Home,
 }
 
 // kind -> icon name for the journey timeline.
