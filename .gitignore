@@ -35,3 +35,7 @@ Thumbs.db
 
 # Misc scratch
 _resume_extract.txt
+
+# Raw 3D source for the MCU hero (~143MB: .blend, .fbx, full-res textures).
+# The shipped asset is the exported public/models/hero.glb, which IS committed.
+homecoming suit/

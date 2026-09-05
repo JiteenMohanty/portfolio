@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Archivo+Black&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:oklch(0.965 0.008 250);color:#131a2e;font-family:Archivo,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:#2c3fc0;text-decoration:none}
+a:hover{color:#cf2131}
+button{font:inherit;background:none;border:none}
+::selection{background:#cf2131;color:#fff}
+@keyframes panelIn{from{opacity:0;transform:translateY(16px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes veilIn{from{opacity:0}to{opacity:1}}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(900px 700px at 12% 8%, rgba(207,33,49,.11), transparent 62%), radial-gradient(1000px 800px at 88% 92%, rgba(44,63,192,.11), transparent 64%), radial-gradient(700px 520px at 50% 50%, rgba(255,255,255,.85), transparent 70%)"></div>
+<div style="position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;background:repeating-linear-gradient(0deg, rgba(19,26,46,.055) 0 1px, transparent 1px 46px), repeating-linear-gradient(90deg, rgba(19,26,46,.055) 0 1px, transparent 1px 46px);mask-image:radial-gradient(120% 100% at 50% 50%, #000 30%, transparent 88%)"></div>
+
+<div ref="{{ gridRef }}" style="position:relative;z-index:1;height:100vh;overflow:hidden;display:grid;grid-template-columns:minmax(180px,264px) minmax(380px,1fr) minmax(180px,264px);grid-template-rows:auto minmax(0,1fr) auto;gap:14px;padding:16px">
+
+<header data-area="1 / 2 / 2 / 3" data-mo="0" style="grid-area:1 / 2 / 2 / 3;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;text-align:center;padding:6px 8px 0">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#cf2131">Friendly neighbourhood portfolio</div>
+<h1 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:clamp(30px,3.4vw,46px);line-height:.98;letter-spacing:-.02em;color:#131a2e">YOUR NAME</h1>
+<p style="margin:0;font-size:14px;color:rgba(19,26,46,.62);max-width:44ch;text-wrap:pretty">Full-stack developer. Ships fast, lands quiet. Currently swinging between React, Node and things that shouldn't be in production yet.</p>
+</header>
+
+<button type="button" onClick="{{ openAbout }}" data-area="1 / 1 / 2 / 2" data-mo="2" style="position:relative;overflow:hidden;min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px;text-align:left;padding:17px 18px 15px;grid-area:1 / 1 / 2 / 2;border-radius:16px;border:1px solid rgba(19,26,46,.10);background:linear-gradient(155deg,rgba(255,255,255,.74),rgba(255,255,255,.40));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 20px 44px -28px rgba(16,22,45,.55);cursor:pointer;color:#131a2e;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s" style-hover="transform:translateY(-3px);border-color:rgba(207,33,49,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 28px 56px -26px rgba(16,22,45,.5),0 0 0 1px rgba(207,33,49,.12)">
+<span style="position:absolute;inset:0;pointer-events:none;opacity:.85;background:repeating-conic-gradient(from -8deg at 8% -6%, rgba(19,26,46,.06) 0deg .5deg, transparent .5deg 13deg), repeating-radial-gradient(circle at 8% -6%, transparent 0 34px, rgba(19,26,46,.05) 34px 35px)"></span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45)">01 / origin</span>
+<h2 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:19px;line-height:1.05;letter-spacing:-.01em">About</h2>
+<p style="margin:0;font-size:13px;line-height:1.5;color:rgba(19,26,46,.66);text-wrap:pretty">Five years of shipping. No radioactive spiders involved.</p>
+<span style="margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#cf2131">OPEN →</span>
+</button>
+
+<button type="button" onClick="{{ openProjects }}" data-area="1 / 3 / 2 / 4" data-mo="3" style="position:relative;overflow:hidden;min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px;text-align:left;padding:17px 18px 15px;grid-area:1 / 3 / 2 / 4;border-radius:16px;border:1px solid rgba(19,26,46,.10);background:linear-gradient(155deg,rgba(255,255,255,.74),rgba(255,255,255,.40));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 20px 44px -28px rgba(16,22,45,.55);cursor:pointer;color:#131a2e;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s" style-hover="transform:translateY(-3px);border-color:rgba(207,33,49,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 28px 56px -26px rgba(16,22,45,.5),0 0 0 1px rgba(207,33,49,.12)">
+<span style="position:absolute;inset:0;pointer-events:none;opacity:.85;background:repeating-conic-gradient(from -8deg at 92% -6%, rgba(19,26,46,.06) 0deg .5deg, transparent .5deg 13deg), repeating-radial-gradient(circle at 92% -6%, transparent 0 34px, rgba(19,26,46,.05) 34px 35px)"></span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45)">02 / case files</span>
+<h2 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:19px;line-height:1.05;letter-spacing:-.01em">Projects</h2>
+<p style="margin:0;font-size:13px;line-height:1.5;color:rgba(19,26,46,.66);text-wrap:pretty">Three things I built that didn't fall out of the sky.</p>
+<span style="margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#cf2131">OPEN →</span>
+</button>
+
+<button type="button" onClick="{{ openTech }}" data-area="2 / 1 / 3 / 2" data-mo="4" style="position:relative;overflow:hidden;min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:11px;text-align:left;padding:17px 18px 15px;grid-area:2 / 1 / 3 / 2;border-radius:16px;border:1px solid rgba(19,26,46,.10);background:linear-gradient(155deg,rgba(255,255,255,.74),rgba(255,255,255,.40));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 20px 44px -28px rgba(16,22,45,.55);cursor:pointer;color:#131a2e;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s" style-hover="transform:translateY(-3px);border-color:rgba(207,33,49,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 28px 56px -26px rgba(16,22,45,.5),0 0 0 1px rgba(207,33,49,.12)">
+<span style="position:absolute;inset:0;pointer-events:none;opacity:.85;background:repeating-conic-gradient(from -8deg at 8% -6%, rgba(19,26,46,.06) 0deg .5deg, transparent .5deg 13deg), repeating-radial-gradient(circle at 8% -6%, transparent 0 34px, rgba(19,26,46,.05) 34px 35px)"></span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45)">03 / web-shooters</span>
+<h2 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:19px;line-height:1.05;letter-spacing:-.01em">Tech stack</h2>
+<div style="display:flex;flex-wrap:wrap;gap:6px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:4px 8px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">TypeScript</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:4px 8px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">React</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:4px 8px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">Node</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:4px 8px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">Postgres</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;padding:4px 8px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.5)">+11 more</span>
+</div>
+<span style="margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#cf2131">OPEN →</span>
+</button>
+
+<div ref="{{ stageRef }}" onDragOver="{{ onDragOver }}" onDragLeave="{{ onDragLeave }}" onDrop="{{ onDrop }}" data-area="2 / 2 / 3 / 3" data-mo="1" style="grid-area:2 / 2 / 3 / 3;position:relative;min-height:0;overflow:hidden">
+<div ref="{{ mountRef }}" style="position:absolute;inset:0"></div>
+
+<sc-if value="{{ showOverlay }}" hint-placeholder-val="{{ true }}">
+<div style="position:absolute;inset:0;display:grid;place-items:center;padding:22px;pointer-events:none">
+<div style="display:flex;flex-direction:column;align-items:center;gap:12px;max-width:38ch;text-align:center">
+<div style="width:58px;height:58px;border-radius:16px;border:1px dashed rgba(19,26,46,.26);display:grid;place-items:center;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.14em;color:rgba(19,26,46,.4);background:rgba(255,255,255,.4)">3D</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#cf2131">{{ statusLabel }}</div>
+<p style="margin:0;font-size:13px;line-height:1.6;color:rgba(19,26,46,.64);text-wrap:pretty">{{ statusMsg }}</p>
+<div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.1em;color:rgba(19,26,46,.34)">GLB · GLTF · OBJ+MTL · FBX</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ dragging }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;inset:6px;pointer-events:none;border-radius:18px;border:2px dashed rgba(207,33,49,.5);background:rgba(207,33,49,.045)"></div>
+</sc-if>
+
+<sc-if value="{{ hasWarn }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:center;pointer-events:none">
+<div style="max-width:42ch;padding:9px 14px;border-radius:12px;border:1px solid rgba(207,33,49,.4);background:rgba(255,255,255,.9);box-shadow:0 10px 24px -16px rgba(16,22,45,.5);font-size:12px;line-height:1.5;color:#a4141f;text-align:center;text-wrap:pretty">{{ warnMsg }}</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isReady }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;bottom:0;pointer-events:none;font-family:'JetBrains Mono',monospace;font-size:9.5px;line-height:1.5;letter-spacing:.1em;text-transform:uppercase;color:rgba(19,26,46,.5);text-wrap:pretty">{{ modelName }}</div>
+</sc-if>
+</div>
+
+<button type="button" onClick="{{ openExperience }}" data-area="2 / 3 / 3 / 4" data-mo="5" style="position:relative;overflow:hidden;min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px;text-align:left;padding:17px 18px 15px;grid-area:2 / 3 / 3 / 4;border-radius:16px;border:1px solid rgba(19,26,46,.10);background:linear-gradient(155deg,rgba(255,255,255,.74),rgba(255,255,255,.40));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 20px 44px -28px rgba(16,22,45,.55);cursor:pointer;color:#131a2e;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s" style-hover="transform:translateY(-3px);border-color:rgba(207,33,49,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 28px 56px -26px rgba(16,22,45,.5),0 0 0 1px rgba(207,33,49,.12)">
+<span style="position:absolute;inset:0;pointer-events:none;opacity:.85;background:repeating-conic-gradient(from -8deg at 92% -6%, rgba(19,26,46,.06) 0deg .5deg, transparent .5deg 13deg), repeating-radial-gradient(circle at 92% -6%, transparent 0 34px, rgba(19,26,46,.05) 34px 35px)"></span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45)">04 / patrol log</span>
+<h2 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:19px;line-height:1.05;letter-spacing:-.01em">Experience</h2>
+<p style="margin:0;font-size:13px;line-height:1.5;color:rgba(19,26,46,.66);text-wrap:pretty">Senior Frontend Engineer at Horizon Labs — 2023 to now.</p>
+<span style="margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#cf2131">OPEN →</span>
+</button>
+
+<button type="button" onClick="{{ openEducation }}" data-area="3 / 1 / 4 / 2" data-mo="6" style="position:relative;overflow:hidden;min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px;text-align:left;padding:17px 18px 15px;grid-area:3 / 1 / 4 / 2;border-radius:16px;border:1px solid rgba(19,26,46,.10);background:linear-gradient(155deg,rgba(255,255,255,.74),rgba(255,255,255,.40));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 20px 44px -28px rgba(16,22,45,.55);cursor:pointer;color:#131a2e;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s" style-hover="transform:translateY(-3px);border-color:rgba(207,33,49,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 28px 56px -26px rgba(16,22,45,.5),0 0 0 1px rgba(207,33,49,.12)">
+<span style="position:absolute;inset:0;pointer-events:none;opacity:.85;background:repeating-conic-gradient(from -8deg at 8% 106%, rgba(19,26,46,.06) 0deg .5deg, transparent .5deg 13deg), repeating-radial-gradient(circle at 8% 106%, transparent 0 34px, rgba(19,26,46,.05) 34px 35px)"></span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45)">05 / training arc</span>
+<h2 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:19px;line-height:1.05;letter-spacing:-.01em">Education</h2>
+<p style="margin:0;font-size:13px;line-height:1.5;color:rgba(19,26,46,.66);text-wrap:pretty">B.Tech, Computer Science — State University, 2020.</p>
+<span style="margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#cf2131">OPEN →</span>
+</button>
+
+<div data-area="3 / 2 / 4 / 3" data-mo="8" style="grid-area:3 / 2 / 4 / 3;min-height:0;display:flex;flex-direction:column;align-items:center;gap:11px;padding:2px 8px 4px">
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:center">
+<a href="#" download="download" style="display:inline-flex;align-items:center;gap:9px;padding:11px 20px;border-radius:999px;background:#cf2131;color:#fff;font-weight:600;font-size:13.5px;letter-spacing:.01em;white-space:nowrap;box-shadow:0 14px 30px -14px rgba(207,33,49,.75);transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s" style-hover="transform:translateY(-2px);box-shadow:0 20px 38px -14px rgba(207,33,49,.8);color:#fff">Download résumé <span style="font-family:'JetBrains Mono',monospace;font-size:10px;opacity:.75">PDF · 180KB</span></a>
+<button type="button" onClick="{{ openContact }}" style="padding:11px 18px;border-radius:999px;border:1px solid rgba(44,63,192,.3);color:#2c3fc0;font-weight:600;font-size:13.5px;white-space:nowrap;cursor:pointer;background:rgba(44,63,192,.05);transition:border-color .2s,background .2s" style-hover="border-color:rgba(207,33,49,.45);background:rgba(207,33,49,.06);color:#cf2131">Get in touch</button>
+</div><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(19,26,46,.38)">Hover the mask · no scrolling required</div>
+
+</div>
+
+<button type="button" onClick="{{ openContact }}" data-area="3 / 3 / 4 / 4" data-mo="7" style="position:relative;overflow:hidden;min-height:0;display:flex;flex-direction:column;align-items:flex-start;gap:9px;text-align:left;padding:17px 18px 15px;grid-area:3 / 3 / 4 / 4;border-radius:16px;border:1px solid rgba(19,26,46,.10);background:linear-gradient(155deg,rgba(255,255,255,.74),rgba(255,255,255,.40));backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);box-shadow:inset 0 1px 0 rgba(255,255,255,.85),0 20px 44px -28px rgba(16,22,45,.55);cursor:pointer;color:#131a2e;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s,border-color .22s" style-hover="transform:translateY(-3px);border-color:rgba(207,33,49,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 28px 56px -26px rgba(16,22,45,.5),0 0 0 1px rgba(207,33,49,.12)">
+<span style="position:absolute;inset:0;pointer-events:none;opacity:.85;background:repeating-conic-gradient(from -8deg at 92% 106%, rgba(19,26,46,.06) 0deg .5deg, transparent .5deg 13deg), repeating-radial-gradient(circle at 92% 106%, transparent 0 34px, rgba(19,26,46,.05) 34px 35px)"></span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45)">06 / signal</span>
+<h2 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:19px;line-height:1.05;letter-spacing:-.01em">Contact</h2>
+<p style="margin:0;font-size:13px;line-height:1.5;color:rgba(19,26,46,.66);text-wrap:pretty">you@yourdomain.com — replies faster than a police scanner.</p>
+<span style="margin-top:4px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#cf2131">OPEN →</span>
+</button>
+
+</div>
+
+<sc-if value="{{ isOpen }}" hint-placeholder-val="{{ false }}">
+<div style="position:fixed;inset:0;z-index:40;display:grid;place-items:center;padding:28px">
+<div onClick="{{ close }}" style="position:absolute;inset:0;background:rgba(238,240,246,.6);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);animation:veilIn .22s ease"></div>
+<div style="position:relative;width:min(740px,100%);max-height:84vh;overflow:auto;padding:32px 34px 34px;border-radius:20px;border:1px solid rgba(19,26,46,.12);background:linear-gradient(155deg,rgba(255,255,255,.88),rgba(255,255,255,.64));backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);box-shadow:inset 0 1px 0 rgba(255,255,255,.92),0 44px 96px -44px rgba(16,22,45,.6);animation:panelIn .3s cubic-bezier(.2,.8,.2,1)">
+<span style="position:absolute;inset:0;pointer-events:none;border-radius:20px;opacity:.8;background:repeating-conic-gradient(from -6deg at 96% -4%, rgba(19,26,46,.05) 0deg .5deg, transparent .5deg 11deg), repeating-radial-gradient(circle at 96% -4%, transparent 0 46px, rgba(19,26,46,.04) 46px 47px)"></span>
+<button type="button" onClick="{{ close }}" aria-label="Close" style="position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:999px;border:1px solid rgba(19,26,46,.12);color:rgba(19,26,46,.6);cursor:pointer;font-size:16px;line-height:1;display:grid;place-items:center;background:rgba(255,255,255,.6);transition:color .2s,border-color .2s" style-hover="color:#cf2131;border-color:rgba(207,33,49,.4)">✕</button>
+
+<sc-if value="{{ showAbout }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#cf2131;margin-bottom:10px">01 / origin story</div>
+<h2 style="margin:0 0 16px;font-family:'Archivo Black',sans-serif;font-size:34px;line-height:1;letter-spacing:-.025em">About</h2>
+<p style="margin:0 0 12px;font-size:15px;line-height:1.65;color:rgba(19,26,46,.78);max-width:60ch;text-wrap:pretty">I build web things that hold up under load and look good doing it. Five years of shipping — mostly TypeScript and React on the front, Node and Postgres behind it, and whatever glue the problem actually needs.</p>
+<p style="margin:0 0 22px;font-size:15px;line-height:1.65;color:rgba(19,26,46,.78);max-width:60ch;text-wrap:pretty">No radioactive spiders involved. Just a stubborn habit of reading the source, a soft spot for interfaces that respond in under 100ms, and an allergy to shipping something I wouldn't use myself.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px">
+<div style="padding:13px 15px;border-radius:12px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.5)"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.42);margin-bottom:5px">Based</div><div style="font-size:14px;font-weight:600">Your City, IN</div></div>
+<div style="padding:13px 15px;border-radius:12px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.5)"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.42);margin-bottom:5px">Focus</div><div style="font-size:14px;font-weight:600">Interfaces &amp; systems</div></div>
+<div style="padding:13px 15px;border-radius:12px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.5)"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.42);margin-bottom:5px">Currently</div><div style="font-size:14px;font-weight:600">Horizon Labs</div></div>
+<div style="padding:13px 15px;border-radius:12px;border:1px solid rgba(207,33,49,.22);background:rgba(207,33,49,.05)"><div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(207,33,49,.7);margin-bottom:5px">Open to</div><div style="font-size:14px;font-weight:600;color:#cf2131">Freelance &amp; full-time</div></div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showProjects }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#cf2131;margin-bottom:10px">02 / case files</div>
+<h2 style="margin:0 0 18px;font-family:'Archivo Black',sans-serif;font-size:34px;line-height:1;letter-spacing:-.025em">Projects</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+<a href="#" style="display:block;padding:17px 18px;border-radius:14px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);transition:border-color .2s,transform .2s" style-hover="border-color:rgba(207,33,49,.4);transform:translateX(3px)">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px"><h3 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:17px;color:#131a2e">Web-Slinger</h3><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(19,26,46,.4)">2025</span></div>
+<p style="margin:0 0 9px;font-size:14px;line-height:1.55;color:rgba(19,26,46,.7);text-wrap:pretty">Real-time delivery routing dashboard. Cut dispatcher decision time by 40% and gave ops a map they stopped fighting.</p>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#2c3fc0">React · WebSockets · Mapbox · Redis</div>
+</a>
+<a href="#" style="display:block;padding:17px 18px;border-radius:14px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);transition:border-color .2s,transform .2s" style-hover="border-color:rgba(207,33,49,.4);transform:translateX(3px)">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px"><h3 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:17px;color:#131a2e">Spider-Sense</h3><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(19,26,46,.4)">2024</span></div>
+<p style="margin:0 0 9px;font-size:14px;line-height:1.55;color:rgba(19,26,46,.7);text-wrap:pretty">Anomaly detection for API traffic. Flags the weirdness before your pager does — median 90 seconds ahead of alerting.</p>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#2c3fc0">Python · FastAPI · ClickHouse</div>
+</a>
+<a href="#" style="display:block;padding:17px 18px;border-radius:14px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);transition:border-color .2s,transform .2s" style-hover="border-color:rgba(207,33,49,.4);transform:translateX(3px)">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:6px"><h3 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:17px;color:#131a2e">Daily Bugle</h3><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(19,26,46,.4)">2023</span></div>
+<p style="margin:0 0 9px;font-size:14px;line-height:1.55;color:rgba(19,26,46,.7);text-wrap:pretty">Static site generator for small newsroom teams. 200ms builds, zero config, no opinions about your CMS.</p>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#2c3fc0">Rust · WASM · Markdown</div>
+</a>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showTech }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#cf2131;margin-bottom:10px">03 / web-shooters</div>
+<h2 style="margin:0 0 18px;font-family:'Archivo Black',sans-serif;font-size:34px;line-height:1;letter-spacing:-.025em">Tech stack</h2>
+<div style="display:flex;flex-direction:column;gap:18px">
+<div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45);margin-bottom:9px">Front of house</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">TypeScript</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">React</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">Next.js</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">Svelte</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(44,63,192,.22);color:#2c3fc0;background:rgba(44,63,192,.06)">Canvas / WebGL</span>
+</div>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45);margin-bottom:9px">Back of house</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">Node</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">Python</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">PostgreSQL</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">Redis</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">GraphQL</span>
+</div>
+</div>
+<div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45);margin-bottom:9px">Keeping it airborne</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">Docker</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">AWS</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">Terraform</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72);background:rgba(255,255,255,.5)">Playwright</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(207,33,49,.28);color:#cf2131;background:rgba(207,33,49,.05)">Rust — learning</span>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showExperience }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#cf2131;margin-bottom:10px">04 / patrol log</div>
+<h2 style="margin:0 0 18px;font-family:'Archivo Black',sans-serif;font-size:34px;line-height:1;letter-spacing:-.025em">Experience</h2>
+<div style="display:flex;flex-direction:column;gap:16px">
+<div style="padding-left:16px;border-left:2px solid rgba(207,33,49,.55)">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:#cf2131;margin-bottom:4px">2023 → NOW</div>
+<h3 style="margin:0 0 3px;font-family:'Archivo Black',sans-serif;font-size:17px">Senior Frontend Engineer</h3>
+<div style="font-size:13px;color:#2c3fc0;margin-bottom:7px">Horizon Labs</div>
+<p style="margin:0;font-size:14px;line-height:1.55;color:rgba(19,26,46,.7);text-wrap:pretty">Own the design system and the dashboard shell used by 40k daily users. Took first-paint from 3.1s to 0.9s and stopped the redesign from eating itself.</p>
+</div>
+<div style="padding-left:16px;border-left:2px solid rgba(19,26,46,.16)">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(19,26,46,.45);margin-bottom:4px">2021 → 2023</div>
+<h3 style="margin:0 0 3px;font-family:'Archivo Black',sans-serif;font-size:17px">Frontend Engineer</h3>
+<div style="font-size:13px;color:#2c3fc0;margin-bottom:7px">Meridian</div>
+<p style="margin:0;font-size:14px;line-height:1.55;color:rgba(19,26,46,.7);text-wrap:pretty">Built the checkout flow three times until it converted. Shipped an internal charting library that outlived the product it was for.</p>
+</div>
+<div style="padding-left:16px;border-left:2px solid rgba(19,26,46,.16)">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(19,26,46,.45);margin-bottom:4px">2020 → 2021</div>
+<h3 style="margin:0 0 3px;font-family:'Archivo Black',sans-serif;font-size:17px">Junior Developer</h3>
+<div style="font-size:13px;color:#2c3fc0;margin-bottom:7px">Ostrich Digital</div>
+<p style="margin:0;font-size:14px;line-height:1.55;color:rgba(19,26,46,.7);text-wrap:pretty">Agency work. Twenty-odd client sites, one very patient art director, and the year I learned what "responsive" actually costs.</p>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showEducation }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#cf2131;margin-bottom:10px">05 / training arc</div>
+<h2 style="margin:0 0 18px;font-family:'Archivo Black',sans-serif;font-size:34px;line-height:1;letter-spacing:-.025em">Education</h2>
+<div style="padding:18px 19px;border-radius:14px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);margin-bottom:18px">
+<div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:5px"><h3 style="margin:0;font-family:'Archivo Black',sans-serif;font-size:17px">B.Tech, Computer Science</h3><span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:rgba(19,26,46,.42)">2016 → 2020</span></div>
+<div style="font-size:13.5px;color:#2c3fc0;margin-bottom:8px">State University</div>
+<p style="margin:0;font-size:14px;line-height:1.55;color:rgba(19,26,46,.7);text-wrap:pretty">Graduated with distinction. Final-year project on real-time graph rendering in the browser, which is roughly how this mask exists.</p>
+</div>
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.45);margin-bottom:9px">Coursework worth mentioning</div>
+<div style="display:flex;flex-wrap:wrap;gap:7px">
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72)">Computer Graphics</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72)">Distributed Systems</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72)">HCI</span>
+<span style="font-family:'JetBrains Mono',monospace;font-size:12px;padding:6px 11px;border-radius:999px;border:1px solid rgba(19,26,46,.14);color:rgba(19,26,46,.72)">Compilers</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{ showContact }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative">
+<div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#cf2131;margin-bottom:10px">06 / signal</div>
+<h2 style="margin:0 0 14px;font-family:'Archivo Black',sans-serif;font-size:34px;line-height:1;letter-spacing:-.025em">Contact</h2>
+<p style="margin:0 0 20px;font-size:15px;line-height:1.65;color:rgba(19,26,46,.75);max-width:56ch;text-wrap:pretty">Point the searchlight anywhere below. I answer email fastest, usually within a day — sooner if the subject line is interesting.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:11px;margin-bottom:20px">
+<a href="mailto:you@yourdomain.com" style="display:flex;flex-direction:column;gap:4px;padding:15px 16px;border-radius:13px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);transition:border-color .2s" style-hover="border-color:rgba(207,33,49,.42)"><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.42)">Email</span><span style="font-size:14px;font-weight:600">you@yourdomain.com</span></a>
+<a href="#" style="display:flex;flex-direction:column;gap:4px;padding:15px 16px;border-radius:13px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);transition:border-color .2s" style-hover="border-color:rgba(207,33,49,.42)"><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.42)">GitHub</span><span style="font-size:14px;font-weight:600">@yourhandle</span></a>
+<a href="#" style="display:flex;flex-direction:column;gap:4px;padding:15px 16px;border-radius:13px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);transition:border-color .2s" style-hover="border-color:rgba(207,33,49,.42)"><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.42)">LinkedIn</span><span style="font-size:14px;font-weight:600">/in/yourhandle</span></a>
+<a href="#" style="display:flex;flex-direction:column;gap:4px;padding:15px 16px;border-radius:13px;border:1px solid rgba(19,26,46,.10);background:rgba(255,255,255,.55);transition:border-color .2s" style-hover="border-color:rgba(207,33,49,.42)"><span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(19,26,46,.42)">Elsewhere</span><span style="font-size:14px;font-weight:600">@yourhandle</span></a>
+</div>
+<div style="display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;border:1px solid rgba(207,33,49,.25);background:rgba(207,33,49,.05);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.05em;color:#cf2131">● AVAILABLE FOR WORK — Q4 2026</div>
+</div>
+</sc-if>
+
+</div>
+</div>
+</sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;framing&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Full figure&quot;,&quot;Bust&quot;,&quot;Head&quot;],&quot;default&quot;:&quot;Full figure&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero object&quot;},&quot;modelFill&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:70,&quot;max&quot;:86,&quot;step&quot;:1,&quot;default&quot;:82,&quot;unit&quot;:&quot;%&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Hero object&quot;},&quot;showCase&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero object&quot;},&quot;showStand&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero object&quot;},&quot;parallax&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero object&quot;},&quot;exposure&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;min&quot;:0.6,&quot;max&quot;:1.6,&quot;step&quot;:0.05,&quot;default&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Lighting&quot;}}">
+const THREE_V = '0.160.0';
+const CDN = 'https://esm.sh/three@' + THREE_V;
+
+class Component extends DCLogic {
+  state = { open: null, status: 'boot', msg: '', drag: false, name: '', warn: '' };
+
+  stageRef = (el) => { this.stage = el; };
+  mountRef = (el) => {
+    this.mount = el;
+    // the canvas host must track the stage exactly; a stray drag-resize here silently
+    // offsets and stretches the whole render, so pin it on every mount
+    if (el) el.style.cssText = 'position:absolute;top:0;left:0;right:0;bottom:0;width:auto;height:auto';
+  };
+  gridRef = (el) => { this.grid = el; };
+
+  open = (k) => () => { this.setState({ open: k }); };
+  openAbout = this.open('about');
+  openProjects = this.open('projects');
+  openTech = this.open('tech');
+  openExperience = this.open('experience');
+  openEducation = this.open('education');
+  openContact = this.open('contact');
+  close = () => this.setState({ open: null });
+  onKey = (e) => { if (e.key === 'Escape') this.close(); };
+
+  // ---------- lifecycle ----------
+
+  componentDidMount() {
+    this.ptr = { x: 0, y: 0, tx: 0, ty: 0 };
+    this._tick = 0;
+    this.applyResponsive();
+    window.addEventListener('resize', this.onWinResize);
+    document.addEventListener('keydown', this.onKey);
+    this.boot();
+  }
+
+  componentDidUpdate(prev) {
+    if (!this.renderer) return;
+    if (prev.exposure !== this.props.exposure) {
+      this.renderer.toneMappingExposure = this.num('exposure', 1);
+    }
+    if (prev.showStand !== this.props.showStand && this.stand) {
+      this.stand.visible = this.props.showStand !== false;
+    }
+    if (prev.modelFill !== this.props.modelFill || prev.framing !== this.props.framing || prev.showCase !== this.props.showCase) this.frame();
+  }
+
+  componentWillUnmount() {
+    this.dead = true;
+    cancelAnimationFrame(this.raf);
+    if (this.ro) this.ro.disconnect();
+    window.removeEventListener('resize', this.onWinResize);
+    document.removeEventListener('keydown', this.onKey);
+    if (this.stage) this.stage.removeEventListener('pointermove', this.onPointer);
+    this.revoke();
+    if (this.renderer) { this.renderer.dispose(); this.renderer.forceContextLoss(); }
+  }
+
+  num(k, d) { const v = this.props[k]; return v == null || isNaN(+v) ? d : +v; }
+
+  onWinResize = () => { this.applyResponsive(); this.resize(); };
+
+  applyResponsive() {
+    const narrow = window.innerWidth < 820;
+    if (narrow === this._narrow) return;
+    this._narrow = narrow;
+    const g = this.grid; if (!g) return;
+    g.style.gridTemplateColumns = narrow ? '1fr' : 'minmax(180px,264px) minmax(380px,1fr) minmax(180px,264px)';
+    g.style.gridTemplateRows = narrow ? 'auto' : 'auto minmax(0,1fr) auto';
+    g.style.height = narrow ? 'auto' : '100vh';
+    g.style.minHeight = narrow ? '100vh' : '';
+    g.style.overflow = narrow ? 'visible' : 'hidden';
+    Array.prototype.forEach.call(g.children, (el) => {
+      el.style.gridArea = narrow ? 'auto' : (el.dataset.area || 'auto');
+      el.style.order = narrow ? (el.dataset.mo || '0') : '';
+    });
+    if (this.stage) this.stage.style.height = narrow ? '54vh' : '';
+  }
+
+  // ---------- three.js studio ----------
+
+  async boot() {
+    try {
+      const [T, gltf, room, objl, mtll, fbxl] = await Promise.all([
+        import(CDN),
+        import(CDN + '/examples/jsm/loaders/GLTFLoader.js'),
+        import(CDN + '/examples/jsm/environments/RoomEnvironment.js'),
+        import(CDN + '/examples/jsm/loaders/OBJLoader.js'),
+        import(CDN + '/examples/jsm/loaders/MTLLoader.js'),
+        import(CDN + '/examples/jsm/loaders/FBXLoader.js')
+      ]);
+      if (this.dead) return;
+      this.T = T;
+      this.L = {
+        GLTFLoader: gltf.GLTFLoader,
+        OBJLoader: objl.OBJLoader,
+        MTLLoader: mtll.MTLLoader,
+        FBXLoader: fbxl.FBXLoader
+      };
+      this.initScene(room.RoomEnvironment);
+      this.raf = requestAnimationFrame(this.loop);
+      await this.restoreOrProbe();
+    } catch (err) {
+      this.fail('Renderer unavailable', String(err && err.message || err));
+    }
+  }
+
+  initScene(RoomEnvironment) {
+    const T = this.T;
+    const renderer = new T.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.outputColorSpace = T.SRGBColorSpace;
+    renderer.toneMapping = T.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = this.num('exposure', 1);
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = T.PCFSoftShadowMap;
+    renderer.domElement.style.cssText = 'display:block;width:100%;height:100%';
+    this.mount.appendChild(renderer.domElement);
+    this.renderer = renderer;
+
+    const scene = new T.Scene();
+    this.scene = scene;
+
+    // neutral studio IBL — drives realistic material response without a visible backdrop
+    const pmrem = new T.PMREMGenerator(renderer);
+    this.envRT = pmrem.fromScene(new RoomEnvironment(), 0.04);
+    scene.environment = this.envRT.texture;
+    pmrem.dispose();
+
+    this.camera = new T.PerspectiveCamera(30, 1, 0.01, 100);
+
+    this.root = new T.Group();
+    this.tilt = new T.Group();
+    this.root.add(this.tilt);
+    scene.add(this.root);
+
+    // key / fill / rim — soft product lighting, no colour drama
+    const key = new T.DirectionalLight(0xfff5ea, 2.5);
+    key.position.set(1.5, 2.4, 1.9);
+    key.castShadow = true;
+    key.shadow.mapSize.set(2048, 2048);
+    key.shadow.radius = 5;
+    key.shadow.bias = -0.0008;
+    key.shadow.normalBias = 0.02;
+    const sc = key.shadow.camera;
+    sc.near = 0.3; sc.far = 12; sc.left = -1.6; sc.right = 1.6; sc.top = 1.6; sc.bottom = -1.6;
+    scene.add(key);
+
+    const fill = new T.DirectionalLight(0xe2ecff, 0.6);
+    fill.position.set(-2.1, 0.9, 1.4);
+    scene.add(fill);
+
+    const rim = new T.DirectionalLight(0xffffff, 0.85);
+    rim.position.set(-0.7, 1.3, -2.2);
+    scene.add(rim);
+
+    scene.add(new T.HemisphereLight(0xffffff, 0x93a0b5, 0.3));
+
+    // shadow catcher + painted contact blob for grounding
+    const catcher = new T.Mesh(
+      new T.PlaneGeometry(8, 8),
+      new T.ShadowMaterial({ color: 0x131a2e, opacity: 0.2 })
+    );
+    catcher.rotation.x = -Math.PI / 2;
+    catcher.receiveShadow = true;
+    this.root.add(catcher);
+
+    const blob = new T.Mesh(
+      new T.PlaneGeometry(1, 1),
+      new T.MeshBasicMaterial({ map: this.blobTexture(), transparent: true, opacity: 0.42, depthWrite: false })
+    );
+    blob.rotation.x = -Math.PI / 2;
+    blob.position.y = 0.0015;
+    this.root.add(blob);
+    this.blob = blob;
+
+    // display stand — deliberately quiet infrastructure
+    const stand = new T.Group();
+    const matte = new T.MeshStandardMaterial({ color: 0x161c2b, roughness: 0.62, metalness: 0.18, envMapIntensity: 0.5 });
+    const plate = new T.Mesh(new T.CylinderGeometry(0.2, 0.225, 0.022, 72), matte);
+    plate.position.y = 0.011;
+    const neck = new T.Mesh(new T.CylinderGeometry(0.085, 0.105, 0.05, 48), matte);
+    neck.position.y = 0.047;
+    plate.castShadow = neck.castShadow = true;
+    plate.receiveShadow = neck.receiveShadow = true;
+    stand.add(plate); stand.add(neck);
+    stand.visible = this.props.showStand !== false;
+    this.root.add(stand);
+    this.stand = stand;
+    this.standTop = 0.07;
+    this.caseMargin = 0.05;
+    this.buildCase();
+
+    this.stage.addEventListener('pointermove', this.onPointer);
+    this.stage.addEventListener('pointerleave', this.onPointerOut);
+    if (window.ResizeObserver) {
+      this.ro = new ResizeObserver(() => this.resize());
+      this.ro.observe(this.stage);
+      this.ro.observe(this.mount);
+    }
+    this.resize();
+  }
+
+  blobTexture() {
+    const c = document.createElement('canvas');
+    c.width = c.height = 256;
+    const g = c.getContext('2d');
+    const rg = g.createRadialGradient(128, 128, 0, 128, 128, 128);
+    rg.addColorStop(0, 'rgba(19,26,46,0.55)');
+    rg.addColorStop(0.45, 'rgba(19,26,46,0.22)');
+    rg.addColorStop(1, 'rgba(19,26,46,0)');
+    g.fillStyle = rg;
+    g.fillRect(0, 0, 256, 256);
+    const t = new this.T.CanvasTexture(c);
+    t.colorSpace = this.T.SRGBColorSpace;
+    return t;
+  }
+
+  onPointer = (e) => {
+    if (this.props.parallax === false) return;
+    const r = this.stage.getBoundingClientRect();
+    this.ptr.tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+    this.ptr.ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+  };
+  onPointerOut = () => { this.ptr.tx = 0; this.ptr.ty = 0; };
+
+  // size from the CANVAS's own box, so buffer aspect always matches displayed aspect
+  resize() {
+    if (!this.renderer || !this.mount) return;
+    const b = this.mount.getBoundingClientRect();
+    const w = Math.round(b.width), h = Math.round(b.height);
+    if (!w || !h) return;
+    if (w === this.vw && h === this.vh) return;
+    this.vw = w; this.vh = h;
+    this.renderer.setSize(w, h, false);
+    this.camera.aspect = w / h;
+    this.frame();
+  }
+
+  // crop presets as fractions of model height: extent, centre, relative width
+  VIEWS = {
+    'Full figure': { h: 1, cy: 0.5, w: 1 },
+    'Bust': { h: 0.36, cy: 0.82, w: 0.52 },
+    'Head': { h: 0.18, cy: 0.915, w: 0.27 }
+  };
+
+  // fit the MODEL itself to the target fraction — the case is sized around the result,
+  // never folded into the distance math (that previously shrank the figure to make room)
+  frame() {
+    if (!this.camera || !this.mSize || !this.vw) return;
+    const v = this.VIEWS[this.props.framing] || this.VIEWS['Full figure'];
+    const fillPct = Math.min(0.86, Math.max(0.7, this.num('modelFill', 82) / 100));
+    const fracV = this._narrow ? fillPct * 0.92 : fillPct;
+    const fracH = 0.82;
+    const base = this.stand && this.stand.visible ? this.standTop : 0;
+    const H = this.mSize.h;
+    const modelExtent = v.h >= 1 ? H + base : H * v.h;
+    const cy = base + H * v.cy;
+    const fovV = (this.camera.fov * Math.PI) / 180;
+    const fovH = 2 * Math.atan(Math.tan(fovV / 2) * this.camera.aspect);
+    const dV = (modelExtent / 2 / fracV) / Math.tan(fovV / 2);
+    const halfW = (Math.max(this.mSize.w, this.mSize.d) * v.w) / 2;
+    const dH = (halfW / fracH) / Math.tan(fovH / 2);
+    const d = Math.max(dV, dH) * 1.02;
+    this.camera.position.set(0, cy + modelExtent * 0.045, d);
+    this.camera.lookAt(0, cy, 0);
+    this.camera.updateProjectionMatrix();
+    // case wraps the model with a fixed proportional margin — sized visually, not by camera fit
+    const caseTop = base + H * 1.1;
+    const caseBottom = -this.standTop * 0.35;
+    this.updateCase(caseBottom, caseTop, halfW * 1.55 + this.caseMargin);
+  }
+
+  // museum vitrine: thin glass panels with physically-based transmission + fresnel-style rim glow
+  buildCase() {
+    const T = this.T;
+    const grp = new T.Group();
+    const glass = new T.MeshPhysicalMaterial({
+      color: 0xf5f8ff, metalness: 0, roughness: 0.045,
+      transmission: 1, thickness: 0.35, ior: 1.52,
+      reflectivity: 0.55, clearcoat: 1, clearcoatRoughness: 0.04,
+      envMapIntensity: 1.6, attenuationColor: 0xffffff, attenuationDistance: 2,
+      transparent: true, opacity: 1, side: T.FrontSide, depthWrite: true
+    });
+    const edge = new T.MeshStandardMaterial({ color: 0xe7ebf2, metalness: 0.75, roughness: 0.25, transparent: true, opacity: 0.6 });
+    grp.userData = { glass, edge };
+    this.caseGroup = grp;
+    this.root.add(grp);
+  }
+
+  updateCase(yBottom, yTop, halfW) {
+    if (!this.caseGroup) return;
+    const T = this.T;
+    const grp = this.caseGroup;
+    while (grp.children.length) grp.remove(grp.children[0]);
+    if (this.props.showCase !== true) return;
+    const w = halfW * 2, d = w * 0.6, ht = yTop - yBottom;
+    const { glass, edge } = grp.userData;
+    const panel = new T.BoxGeometry(w, ht, d);
+    const box = new T.Mesh(panel, glass);
+    box.position.y = yBottom + ht / 2;
+    box.renderOrder = 5;
+    grp.add(box);
+    const rim = new T.Mesh(new T.EdgesGeometry(panel), new T.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.3 }));
+    rim.position.copy(box.position);
+    rim.renderOrder = 6;
+    grp.add(rim);
+    const foot = new T.Mesh(new T.BoxGeometry(w * 1.01, ht * 0.01, d * 1.01), edge);
+    foot.position.y = yBottom;
+    grp.add(foot);
+  }
+
+  loop = () => {
+    if (this.dead) return;
+    this.raf = requestAnimationFrame(this.loop);
+    if (!this.renderer || !this.scene) return;
+    // catches fullscreen / devtools / zoom changes that fire no observable resize
+    if (++this._tick % 20 === 0) this.resize();
+    const p = this.ptr;
+    p.x += (p.tx - p.x) * 0.055;
+    p.y += (p.ty - p.y) * 0.055;
+    if (this.tilt) {
+      this.tilt.rotation.y = p.x * 0.07;
+      this.tilt.rotation.x = p.y * 0.035;
+    }
+    this.renderer.render(this.scene, this.camera);
+  };
+
+  // ---------- asset resolution ----------
+
+  EXT = (p) => (p.split('.').pop() || '').toLowerCase();
+
+  async restoreOrProbe() {
+    try {
+      const saved = await this.idbGet('bundle');
+      if (saved && saved.files && saved.files.length) {
+        await this.loadFiles(saved.files, true);
+        return;
+      }
+    } catch (e) { /* no stored bundle */ }
+
+    for (const path of ['models/hero.glb', 'models/hero.gltf']) {
+      try {
+        const res = await fetch(path, { cache: 'no-store' });
+        if (!res.ok) continue;
+        const blob = await res.blob();
+        await this.loadFiles([{ path: path.split('/').pop(), blob }], true);
+        return;
+      } catch (e) { /* not present */ }
+    }
+    this.setState({
+      status: 'empty',
+      msg: 'Drop the HOMECOMING+SUIT folder here — or just the model file. Textures and .mtl resolve automatically, and it is remembered on reload.'
+    });
+  }
+
+  onDragOver = (e) => { e.preventDefault(); if (!this.state.drag) this.setState({ drag: true }); };
+  onDragLeave = (e) => { e.preventDefault(); this.setState({ drag: false }); };
+  onDrop = async (e) => {
+    e.preventDefault();
+    this.setState({ drag: false });
+    if (!this.T) return;
+    this.setState({ status: 'loading', msg: 'Reading dropped files…' });
+    try {
+      const files = await this.collect(e.dataTransfer);
+      if (!files.length) return this.fail('Nothing readable', 'No files came through in that drop.');
+      await this.loadFiles(files, false);
+    } catch (err) {
+      this.fail('Load failed', String(err && err.message || err));
+    }
+  };
+
+  // walk DataTransfer, recursing into dropped directories
+  async collect(dt) {
+    const out = [];
+    const entries = Array.from(dt.items || [])
+      .map((i) => (i.webkitGetAsEntry ? i.webkitGetAsEntry() : null))
+      .filter(Boolean);
+    if (entries.length) {
+      const walk = async (entry, prefix) => {
+        if (entry.isFile) {
+          const f = await new Promise((res, rej) => entry.file(res, rej));
+          out.push({ path: prefix + entry.name, blob: f });
+        } else if (entry.isDirectory) {
+          const rd = entry.createReader();
+          const kids = [];
+          for (;;) {
+            const batch = await new Promise((res, rej) => rd.readEntries(res, rej));
+            if (!batch.length) break;
+            kids.push.apply(kids, batch);
+          }
+          for (const k of kids) await walk(k, prefix + entry.name + '/');
+        }
+      };
+      for (const en of entries) await walk(en, '');
+    } else {
+      for (const f of Array.from(dt.files || [])) out.push({ path: f.name, blob: f });
+    }
+    return out;
+  }
+
+  pickEntry(files) {
+    const by = (re) => files.filter((f) => re.test(f.path));
+    // GLB/GLTF > OBJ+MTL > FBX: the FBX here references textures by absolute Windows
+    // paths, whereas the OBJ's sibling MTL names them relatively and actually binds
+    for (const re of [/\.glb$/i, /\.gltf$/i, /\.obj$/i, /\.fbx$/i]) {
+      const hits = by(re).sort((a, b) => b.blob.size - a.blob.size);
+      if (hits.length) return hits[0];
+    }
+    return null;
+  }
+
+  revoke() {
+    if (this.urls) this.urls.forEach((u) => URL.revokeObjectURL(u));
+    this.urls = null;
+  }
+
+  async loadFiles(files, quiet) {
+    const entry = this.pickEntry(files);
+    if (!entry) {
+      const blend = files.some((f) => /\.blend1?$/i.test(f.path));
+      return this.fail(
+        blend ? 'Blender file only' : 'No usable model',
+        blend
+          ? 'A .blend cannot be opened in a browser and I cannot run Blender here. In Blender: File → Export → glTF 2.0 (.glb), then drop the .glb in. The .obj or .fbx from that folder also works.'
+          : 'That drop had no .glb, .gltf, .obj or .fbx in it.'
+      );
+    }
+    if (!quiet) this.setState({ status: 'loading', msg: 'Loading ' + entry.path.split('/').pop() + '…' });
+
+    this.revoke();
+    const urls = [];
+    const map = new Map();
+    for (const f of files) {
+      if (/\.blend1?$/i.test(f.path)) continue;
+      const u = URL.createObjectURL(f.blob);
+      urls.push(u);
+      map.set(f.path.toLowerCase(), u);
+      map.set(f.path.split('/').pop().toLowerCase(), u);
+    }
+    this.urls = urls;
+    this.bundle = files;
+    this.fileMap = map;
+    this.texCache = new Map();
+
+    const mgr = new this.T.LoadingManager();
+    // rewrite every relative asset reference (textures, .mtl, .bin) onto its blob
+    mgr.setURLModifier((url) => {
+      if (/^(blob:|data:|https?:)/i.test(url)) return url;
+      const clean = decodeURIComponent(url).split('?')[0].replace(/\\/g, '/');
+      return map.get(clean.toLowerCase()) || map.get(clean.split('/').pop().toLowerCase()) || url;
+    });
+
+    const url = map.get(entry.path.toLowerCase());
+    const ext = this.EXT(entry.path);
+    let obj;
+
+    if (ext === 'glb' || ext === 'gltf') {
+      const g = await new this.L.GLTFLoader(mgr).loadAsync(url);
+      obj = g.scene;
+    } else if (ext === 'fbx') {
+      obj = await new this.L.FBXLoader(mgr).loadAsync(url);
+    } else {
+      const loader = new this.L.OBJLoader(mgr);
+      const mtl = files
+        .filter((f) => /\.mtl$/i.test(f.path))
+        .sort((a, b) => b.blob.size - a.blob.size)[0];
+      if (mtl) {
+        try {
+          const mats = await new this.L.MTLLoader(mgr).loadAsync(map.get(mtl.path.toLowerCase()));
+          mats.preload();
+          loader.setMaterials(mats);
+        } catch (e) { /* fall through to untextured */ }
+      }
+      obj = await loader.loadAsync(url);
+    }
+
+    await this.install(obj, entry.path.split('/').pop());
+    if (!quiet) {
+      try { await this.idbSet('bundle', { files, entry: entry.path }); } catch (e) { /* over quota — session only */ }
+    }
+  }
+
+  // keep the asset's own colours and maps, but drop texture references that resolved to
+  // nothing, and move legacy Phong onto PBR so the studio IBL actually lights the surface
+  studioMaterial(m, g) {
+    if (!m) return m;
+    const T = this.T;
+    const dead = (t) => {
+      if (!t) return false;
+      const im = t.image || (t.source && t.source.data);
+      return !im || !(im.width || im.videoWidth);
+    };
+    let lostMap = false;
+    ['map', 'normalMap', 'specularMap', 'emissiveMap', 'bumpMap', 'aoMap', 'roughnessMap', 'alphaMap'].forEach((k) => {
+      if (m[k] && dead(m[k])) {
+        if (k === 'map') lostMap = true;
+        m[k] = null;
+        this.diag.deadTex++;
+      }
+    });
+    ['map', 'emissiveMap'].forEach((k) => { if (m[k]) m[k].colorSpace = T.SRGBColorSpace; });
+
+    let out = m;
+    if (m.isMeshPhongMaterial || m.isMeshLambertMaterial) {
+      out = new T.MeshStandardMaterial({
+        name: m.name,
+        color: m.color ? m.color.clone() : new T.Color(0xffffff),
+        map: m.map || null,
+        normalMap: m.normalMap || null,
+        aoMap: m.aoMap || null,
+        alphaMap: m.alphaMap || null,
+        transparent: m.transparent,
+        opacity: m.opacity,
+        roughness: 0.55,
+        metalness: 0.06
+      });
+      m.dispose();
+    }
+    // FBX/OBJ exports routinely arrive invisible: bogus transparency, inverted normals,
+    // or vertex colours declared with no colour attribute present
+    if (out.opacity == null || out.opacity < 0.05) { out.opacity = 1; this.diag.opacity++; }
+    if (out.transparent && !out.alphaMap && out.opacity >= 0.99) out.transparent = false;
+    if (out.vertexColors && !(g && g.attributes.color)) { out.vertexColors = false; this.diag.vcol++; }
+    out.side = T.DoubleSide;
+    out.shadowSide = T.FrontSide;
+    if ('envMapIntensity' in out) out.envMapIntensity = 0.7;
+    out.needsUpdate = true;
+    return out;
+  }
+
+  // union of mesh boxes, discarding extreme outliers (stray planes, gizmos, backdrops)
+  // so one rogue object can't hijack the scale and shrink the model to nothing
+  solidBox(obj) {
+    const T = this.T;
+    const boxes = [];
+    obj.traverse((n) => {
+      if (!n.isMesh || !n.geometry) return;
+      const b = new T.Box3().setFromObject(n);
+      if (!b.isEmpty() && isFinite(b.min.x) && isFinite(b.max.x)) boxes.push(b);
+    });
+    if (!boxes.length) return new T.Box3().setFromObject(obj);
+    const out = new T.Box3();
+    boxes.forEach((b) => out.union(b));
+    this.dropped = 0;
+    return out;
+  }
+
+  // locate one UDIM tile of one map kind for a given material, preferring the shallowest
+  // matching path so the root textures/ set wins over variant subfolders
+  findTile(matName, kind, tile) {
+    if (!this.bundle) return null;
+    const suffix = '_' + kind.toLowerCase() + '.' + tile + '.png';
+    const cands = this.bundle.filter((f) => f.path.toLowerCase().endsWith(suffix));
+    if (!cands.length) return null;
+    const tok = String(matName || '').toLowerCase().replace(/[^a-z0-9]+/g, '').slice(0, 16);
+    return cands
+      .map((f) => {
+        const p = f.path.toLowerCase();
+        const stem = p.replace(/[^a-z0-9]+/g, '');
+        let s = -(p.split('/').length);
+        if (tok && stem.indexOf(tok) >= 0) s += 10;
+        return { f, s };
+      })
+      .sort((a, b) => b.s - a.s)[0].f;
+  }
+
+  // decode a tile to a sensibly sized texture — the source maps are 4K, far more than a
+  // hero this size needs, and ten tiles of them at full res would exhaust GPU memory
+  async tileTexture(matName, kind, tile, size, srgb) {
+    const file = this.findTile(matName, kind, tile);
+    if (!file) return null;
+    const key = file.path + '@' + size;
+    if (this.texCache.has(key)) return this.texCache.get(key);
+    const T = this.T;
+    const bmp = await createImageBitmap(file.blob, {
+      resizeWidth: size, resizeHeight: size, resizeQuality: 'high'
+    });
+    const cv = document.createElement('canvas');
+    cv.width = cv.height = size;
+    cv.getContext('2d').drawImage(bmp, 0, 0);
+    if (bmp.close) bmp.close();
+    const tex = new T.CanvasTexture(cv);
+    tex.colorSpace = srgb ? T.SRGBColorSpace : T.NoColorSpace;
+    tex.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
+    tex.needsUpdate = true;
+    this.texCache.set(key, tex);
+    return tex;
+  }
+
+  // The author UV-mapped the body across UDIM tiles, which three.js cannot sample from a
+  // single map. Split the geometry per tile, rebase each tile's UVs into 0..1, and bind
+  // that tile's own BaseColor/Normal/Roughness — the asset's real textures, not a stand-in.
+  async udimize(mesh) {
+    const T = this.T;
+    const src = mesh.geometry.index ? mesh.geometry.toNonIndexed() : mesh.geometry;
+    const uv = src.attributes.uv;
+    if (!uv) return false;
+    const tris = uv.count / 3;
+    const bucket = new Map();
+    for (let t = 0; t < tris; t++) {
+      let su = 0, sv = 0;
+      for (let k = 0; k < 3; k++) { su += uv.getX(t * 3 + k); sv += uv.getY(t * 3 + k); }
+      const tu = Math.max(0, Math.floor(su / 3));
+      const tv = Math.max(0, Math.floor(sv / 3));
+      const id = 1001 + tu + tv * 10;
+      if (!bucket.has(id)) bucket.set(id, { tu, tv, tris: [] });
+      bucket.get(id).tris.push(t);
+    }
+    if (bucket.size < 2) return false;
+
+    const order = [];
+    const groups = [];
+    let start = 0;
+    Array.from(bucket.entries()).sort((a, b) => a[0] - b[0]).forEach(([id, info], gi) => {
+      info.tris.forEach((t) => order.push(t));
+      groups.push({ start, count: info.tris.length * 3, mi: gi, tile: id, tu: info.tu, tv: info.tv });
+      start += info.tris.length * 3;
+    });
+
+    const out = new T.BufferGeometry();
+    Object.keys(src.attributes).forEach((name) => {
+      const a = src.attributes[name];
+      const it = a.itemSize;
+      const arr = new Float32Array(order.length * 3 * it);
+      let w = 0;
+      order.forEach((t) => {
+        for (let k = 0; k < 3; k++) {
+          const si = (t * 3 + k) * it;
+          for (let c = 0; c < it; c++) arr[w++] = a.array[si + c];
+        }
+      });
+      out.setAttribute(name, new T.BufferAttribute(arr, it));
+    });
+
+    const ouv = out.attributes.uv;
+    groups.forEach((gr) => {
+      for (let i = gr.start; i < gr.start + gr.count; i++) {
+        ouv.setXY(i, ouv.getX(i) - gr.tu, ouv.getY(i) - gr.tv);
+      }
+    });
+    ouv.needsUpdate = true;
+    if (!out.attributes.normal) out.computeVertexNormals();
+    groups.forEach((gr) => out.addGroup(gr.start, gr.count, gr.mi));
+
+    const m0 = Array.isArray(mesh.material) ? mesh.material[0] : mesh.material;
+    const matName = (m0 && m0.name) || mesh.name;
+    const mats = [];
+    let bound = 0;
+    for (const gr of groups) {
+      const base = await this.tileTexture(matName, 'BaseColor', gr.tile, 1024, true);
+      const nrm = await this.tileTexture(matName, 'Normal', gr.tile, 512, false);
+      const rgh = await this.tileTexture(matName, 'Roughness', gr.tile, 512, false);
+      if (base) bound++;
+      mats.push(new T.MeshStandardMaterial({
+        name: matName + '.' + gr.tile,
+        color: 0xffffff,
+        map: base || null,
+        normalMap: nrm || null,
+        roughnessMap: rgh || null,
+        roughness: rgh ? 1 : 0.6,
+        metalness: 0.05,
+        side: T.DoubleSide,
+        shadowSide: T.FrontSide,
+        envMapIntensity: 0.7
+      }));
+    }
+    if (!bound) return false;
+
+    mesh.geometry.dispose();
+    mesh.geometry = out;
+    mesh.material = mats;
+    this.diag.udimTiles = (this.diag.udimTiles || 0) + bound;
+    return true;
+  }
+
+  async install(obj, label) {
+    const T = this.T;
+    if (this.model) {
+      this.tilt.remove(this.model);
+      this.model.traverse((n) => {
+        if (n.isMesh) {
+          n.geometry && n.geometry.dispose();
+          const ms = Array.isArray(n.material) ? n.material : [n.material];
+          ms.forEach((m) => m && m.dispose && m.dispose());
+        }
+      });
+    }
+
+    // strip authoring-scene cruft the exporter dragged along: lights, cameras, and
+    // Rigify bone-control widgets (WGT-*) — hidden in Blender, but shipped as real meshes
+    const junk = [];
+    obj.traverse((n) => {
+      if (n.isLight || n.isCamera) { junk.push(n); return; }
+      // Rigify widgets, plus the untextured helper spheres the rig parks beside the head
+      if (/^WGT[-_]/i.test(n.name || '')) { junk.push(n); return; }
+      if (/^Sphere\d*$/i.test(n.name || '')) { junk.push(n); return; }
+      if (n.isMesh && n.geometry) {
+        n.geometry.computeBoundingBox();
+        const bb = n.geometry.boundingBox;
+        const empty = !bb || !isFinite(bb.min.x) ||
+          (bb.max.x - bb.min.x === 0 && bb.max.y - bb.min.y === 0 && bb.max.z - bb.min.z === 0);
+        if (empty) junk.push(n);
+      }
+    });
+    junk.forEach((n) => n.parent && n.parent.remove(n));
+    this.stripped = junk.length;
+
+    // this is a static display piece, so the armature is dead weight — bake every
+    // SkinnedMesh into a plain Mesh in its rest pose, which also immunises the model
+    // against a broken/absent FBX bind pose collapsing the geometry to nothing
+    const skinned = [];
+    obj.traverse((n) => { if (n.isSkinnedMesh) skinned.push(n); });
+    skinned.forEach((sm) => {
+      const plain = new T.Mesh(sm.geometry, sm.material);
+      plain.name = sm.name;
+      plain.position.copy(sm.position);
+      plain.quaternion.copy(sm.quaternion);
+      plain.scale.copy(sm.scale);
+      if (sm.parent) {
+        sm.parent.add(plain);
+        sm.parent.remove(sm);
+      }
+    });
+    this.baked = skinned.length;
+
+    let meshes = 0, tris = 0;
+    const list = [];
+    this.diag = { opacity: 0, vcol: 0, noNormal: 0, deadTex: 0, collapsed: 0 };
+    obj.traverse((n) => {
+      if (!n.isMesh) return;
+      meshes++;
+      list.push(n);
+      n.castShadow = true;
+      n.receiveShadow = true;
+      n.frustumCulled = false;
+      const g = n.geometry;
+      if (g) {
+        if (!g.attributes.normal) { g.computeVertexNormals(); this.diag.noNormal++; }
+        const idx = g.index ? g.index.count : (g.attributes.position ? g.attributes.position.count : 0);
+        tris += idx / 3;
+      }
+      const ms = Array.isArray(n.material) ? n.material : [n.material];
+      const fixed = ms.map((m) => this.studioMaterial(m, g));
+      // A multi-material mesh whose geometry declares no groups issues ZERO draw calls in
+      // three.js and silently vanishes — common in FBX exports. Collapse it to one material.
+      const grouped = !!(g && g.groups && g.groups.length);
+      if (ms.length > 1 && !grouped) {
+        n.material = fixed[0];
+        this.diag.collapsed++;
+      } else {
+        n.material = Array.isArray(n.material) ? fixed : fixed[0];
+      }
+    });
+    this.meshList = list;
+
+    // retarget any mesh whose UVs run past the 0..1 square onto its UDIM tile set
+    const udimTargets = [];
+    obj.traverse((n) => {
+      if (!n.isMesh || !n.geometry || !n.geometry.attributes.uv) return;
+      const uv = n.geometry.attributes.uv;
+      let maxU = 0, maxV = 0;
+      for (let i = 0; i < uv.count; i++) {
+        const u = uv.getX(i), v = uv.getY(i);
+        if (u > maxU) maxU = u;
+        if (v > maxV) maxV = v;
+      }
+      if (maxU > 1.001 || maxV > 1.001) udimTargets.push(n);
+    });
+    for (const n of udimTargets) {
+      try { await this.udimize(n); } catch (e) { console.warn('UDIM retarget failed on', n.name, e); }
+    }
+
+    // normalise to unit height, centre on X/Z, rest the base on the stand
+    obj.updateWorldMatrix(true, true);
+    let box = this.solidBox(obj);
+    let size = box.getSize(new T.Vector3());
+    const s = 1 / Math.max(size.y, 1e-6);
+    obj.scale.multiplyScalar(s);
+    obj.updateWorldMatrix(true, true);
+    box = this.solidBox(obj);
+    size = box.getSize(new T.Vector3());
+    const c = box.getCenter(new T.Vector3());
+    obj.position.x -= c.x;
+    obj.position.z -= c.z;
+    obj.position.y -= box.min.y;
+
+    this.mSize = { w: size.x, h: size.y, d: size.z };
+    this.tilt.position.y = this.stand && this.stand.visible ? this.standTop : 0;
+    this.tilt.add(obj);
+    this.model = obj;
+    window.__hero = { scene: this.scene, camera: this.camera, model: obj, size: this.mSize, diag: this.diag, dropped: this.dropped, meshes: this.meshList };
+
+    const foot = Math.max(size.x, size.z);
+    this.blob.scale.set(foot * 2.6, foot * 2.6, 1);
+
+    this.frame();
+
+    let textured = 0;
+    obj.traverse((n) => {
+      if (!n.isMesh) return;
+      const ms = Array.isArray(n.material) ? n.material : [n.material];
+      if (ms.some((m) => m && m.map)) textured++;
+    });
+
+    this.setState({
+      status: 'ready',
+      msg: '',
+      warn: textured ? '' : 'No textures bound — drop the whole model folder so its textures/ directory comes with it.',
+      name: label + ' · ' + meshes + ' mesh' + (meshes === 1 ? '' : 'es') + ' · ' + Math.round(tris / 1000) + 'k tris'
+        + (this.diag.udimTiles ? ' · ' + this.diag.udimTiles + ' UDIM tiles' : '')
+    });
+  }
+
+  fail(label, msg) {
+    this.setState({ status: 'error', msg: msg, name: label });
+  }
+
+  // ---------- persistence ----------
+
+  db() {
+    if (!this._db) {
+      this._db = new Promise((res, rej) => {
+        const r = indexedDB.open('portfolio-hero-model', 1);
+        r.onupgradeneeded = () => r.result.createObjectStore('bundles');
+        r.onsuccess = () => res(r.result);
+        r.onerror = () => rej(r.error);
+      });
+    }
+    return this._db;
+  }
+  async idbGet(k) {
+    const d = await this.db();
+    return new Promise((res, rej) => {
+      const tx = d.transaction('bundles', 'readonly');
+      const q = tx.objectStore('bundles').get(k);
+      q.onsuccess = () => res(q.result);
+      q.onerror = () => rej(q.error);
+    });
+  }
+  async idbSet(k, v) {
+    const d = await this.db();
+    return new Promise((res, rej) => {
+      const tx = d.transaction('bundles', 'readwrite');
+      tx.objectStore('bundles').put(v, k);
+      tx.oncomplete = () => res();
+      tx.onerror = () => rej(tx.error);
+    });
+  }
+
+  // ---------- render ----------
+
+  renderVals() {
+    const o = this.state.open;
+    const st = this.state.status;
+    const LABEL = {
+      boot: 'Starting renderer',
+      loading: 'Loading model',
+      empty: 'Awaiting model',
+      error: this.state.name || 'Problem',
+      ready: ''
+    };
+    return {
+      stageRef: this.stageRef, mountRef: this.mountRef, gridRef: this.gridRef,
+      onDragOver: this.onDragOver, onDragLeave: this.onDragLeave, onDrop: this.onDrop,
+      close: this.close,
+      openAbout: this.openAbout, openProjects: this.openProjects, openTech: this.openTech,
+      openExperience: this.openExperience, openEducation: this.openEducation, openContact: this.openContact,
+      showOverlay: st !== 'ready',
+      isReady: st === 'ready',
+      dragging: this.state.drag,
+      statusLabel: LABEL[st] || '',
+      statusMsg: this.state.msg,
+      modelName: this.state.name,
+      warnMsg: this.state.warn,
+      hasWarn: !!this.state.warn,
+      isOpen: !!o,
+      showAbout: o === 'about', showProjects: o === 'projects', showTech: o === 'tech',
+      showExperience: o === 'experience', showEducation: o === 'education', showContact: o === 'contact'
+    };
+  }
+}
+
+</script>
+</body>
+</html>

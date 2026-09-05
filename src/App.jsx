@@ -1,9 +1,12 @@
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { TerminalProvider } from '@/components/terminal/Terminal'
 import { Sidebar } from '@/components/layout/Sidebar'
 import { Footer } from '@/components/layout/Footer'
 import { ScrollManager } from '@/components/layout/ScrollManager'
 import { CrawlingSpider } from '@/components/common/CrawlingSpider'
+import { useUniverse } from '@/universe/UniverseContext'
+import { UniverseToggle } from '@/universe/UniverseToggle'
 import Home from '@/pages/Home'
 import Origin from '@/pages/Origin'
 import Missions from '@/pages/Missions'
@@ -13,7 +16,25 @@ import ContactPage from '@/pages/ContactPage'
 import ProjectDetail from '@/pages/ProjectDetail'
 import NotFound from '@/pages/NotFound'
 
+// Loaded on demand so three.js never lands in the bundle Miles visitors download.
+const McuPortfolio = lazy(() => import('@/mcu/McuPortfolio'))
+
 export default function App() {
+  const { universe } = useUniverse()
+
+  // The MCU universe is a self-contained single-screen composition — it renders
+  // instead of the Miles shell (sidebar, routes, footer), not inside it.
+  if (universe === 'mcu') {
+    return (
+      <>
+        <Suspense fallback={<div style={{ minHeight: '100vh' }} />}>
+          <McuPortfolio />
+        </Suspense>
+        <UniverseToggle />
+      </>
+    )
+  }
+
   return (
     <TerminalProvider>
       <ScrollManager />
@@ -46,6 +67,8 @@ export default function App() {
 
         <Footer />
       </div>
+
+      <UniverseToggle />
     </TerminalProvider>
   )
 }

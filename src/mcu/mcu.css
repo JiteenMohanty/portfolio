@@ -1,0 +1,796 @@
+/* ------------------------------------------------------------------ */
+/*  MCU universe — single-screen hero grid with 3D showpiece.
+    Everything is scoped under .mcu-root so it cannot leak into the
+    Miles Morales design, which has its own theming.                    */
+/* ------------------------------------------------------------------ */
+
+html.mcu-active,
+html.mcu-active body {
+  background: oklch(0.965 0.008 250);
+}
+
+.mcu-root {
+  --ink: #131a2e;
+  --red: #cf2131;
+  --blue: #2c3fc0;
+  --card-border: rgba(19, 26, 46, 0.1);
+
+  position: relative;
+  min-height: 100vh;
+  background: oklch(0.965 0.008 250);
+  color: var(--ink);
+  font-family: Archivo, ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.mcu-root ::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+/* ---------- fixed background layers ---------- */
+
+.mcu-wash,
+.mcu-grid-lines {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mcu-wash {
+  background:
+    radial-gradient(900px 700px at 12% 8%, rgba(207, 33, 49, 0.11), transparent 62%),
+    radial-gradient(1000px 800px at 88% 92%, rgba(44, 63, 192, 0.11), transparent 64%),
+    radial-gradient(700px 520px at 50% 50%, rgba(255, 255, 255, 0.85), transparent 70%);
+}
+
+.mcu-grid-lines {
+  opacity: 0.5;
+  background:
+    repeating-linear-gradient(0deg, rgba(19, 26, 46, 0.055) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(90deg, rgba(19, 26, 46, 0.055) 0 1px, transparent 1px 46px);
+  -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 30%, transparent 88%);
+  mask-image: radial-gradient(120% 100% at 50% 50%, #000 30%, transparent 88%);
+}
+
+/* ---------- root grid ---------- */
+
+.mcu-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(180px, 264px) minmax(380px, 1fr) minmax(180px, 264px);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 14px;
+  padding: 16px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mcu-grid > * {
+  min-height: 0;
+}
+
+.mcu-area-hero      { grid-area: 1 / 2 / 2 / 3; }
+.mcu-area-about     { grid-area: 1 / 1 / 2 / 2; }
+.mcu-area-projects  { grid-area: 1 / 3 / 2 / 4; }
+.mcu-area-tech      { grid-area: 2 / 1 / 3 / 2; }
+.mcu-area-stage     { grid-area: 2 / 2 / 3 / 3; }
+.mcu-area-experience{ grid-area: 2 / 3 / 3 / 4; }
+.mcu-area-education { grid-area: 3 / 1 / 4 / 2; }
+.mcu-area-cta       { grid-area: 3 / 2 / 4 / 3; }
+.mcu-area-contact   { grid-area: 3 / 3 / 4 / 4; }
+
+/* ---------- hero title block ---------- */
+
+.mcu-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  text-align: center;
+  padding: 6px 8px 0;
+}
+
+.mcu-hero-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0;
+}
+
+.mcu-hero h1 {
+  font-family: 'Archivo Black', Archivo, sans-serif;
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.mcu-hero-tagline {
+  font-size: 14px;
+  color: rgba(19, 26, 46, 0.62);
+  max-width: 44ch;
+  text-wrap: pretty;
+  margin: 0;
+}
+
+/* ---------- cards ---------- */
+
+.mcu-card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 9px;
+  text-align: left;
+  cursor: pointer;
+  color: var(--ink);
+  font: inherit;
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.74), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+  padding: 17px 18px 15px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.85),
+    0 20px 44px -28px rgba(16, 22, 45, 0.55);
+  transition:
+    transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1),
+    box-shadow 0.22s,
+    border-color 0.22s;
+}
+
+.mcu-card--tech { gap: 11px; }
+
+.mcu-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(207, 33, 49, 0.4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 28px 56px -26px rgba(16, 22, 45, 0.5),
+    0 0 0 1px rgba(207, 33, 49, 0.12);
+}
+
+.mcu-halftone {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.85;
+  background:
+    repeating-conic-gradient(
+      from -8deg at var(--origin),
+      rgba(19, 26, 46, 0.06) 0deg 0.5deg,
+      transparent 0.5deg 13deg
+    ),
+    repeating-radial-gradient(
+      circle at var(--origin),
+      transparent 0 34px,
+      rgba(19, 26, 46, 0.05) 34px 35px
+    );
+}
+
+.mcu-card > *:not(.mcu-halftone) { position: relative; }
+
+.mcu-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(19, 26, 46, 0.45);
+  margin: 0;
+}
+
+.mcu-card-title {
+  font-family: 'Archivo Black', Archivo, sans-serif;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.mcu-card-body {
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(19, 26, 46, 0.66);
+  text-wrap: pretty;
+  margin: 0;
+}
+
+.mcu-card-cta {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--red);
+  margin-top: 4px;
+}
+
+/* chips inside the tech card */
+
+.mcu-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.mcu-chip {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(44, 63, 192, 0.22);
+  color: var(--blue);
+  background: rgba(44, 63, 192, 0.06);
+}
+
+.mcu-chip--muted {
+  border: 1px solid rgba(19, 26, 46, 0.14);
+  color: rgba(19, 26, 46, 0.5);
+  background: transparent;
+}
+
+/* ---------- CTA row ---------- */
+
+.mcu-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 11px;
+  padding: 2px 8px 4px;
+}
+
+.mcu-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.mcu-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: var(--red);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 14px 30px -14px rgba(207, 33, 49, 0.75);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.mcu-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 38px -14px rgba(207, 33, 49, 0.8);
+}
+
+.mcu-btn-primary span {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  opacity: 0.75;
+}
+
+.mcu-btn-secondary {
+  padding: 11px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(44, 63, 192, 0.3);
+  color: var(--blue);
+  background: rgba(44, 63, 192, 0.05);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s, color 0.2s;
+}
+
+.mcu-btn-secondary:hover {
+  border-color: rgba(207, 33, 49, 0.45);
+  background: rgba(207, 33, 49, 0.06);
+  color: var(--red);
+}
+
+.mcu-caption {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(19, 26, 46, 0.38);
+  margin: 0;
+}
+
+/* ---------- 3D stage ---------- */
+
+.mcu-stage {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.mcu-stage-mount {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+}
+
+.mcu-stage-mount canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.mcu-status {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 22px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.mcu-status-tile {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  border: 1px dashed rgba(19, 26, 46, 0.26);
+  background: rgba(255, 255, 255, 0.4);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  color: rgba(19, 26, 46, 0.4);
+}
+
+.mcu-status-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0;
+}
+
+.mcu-status-msg {
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(19, 26, 46, 0.64);
+  max-width: 38ch;
+  margin: 0;
+}
+
+.mcu-readout {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: rgba(19, 26, 46, 0.3);
+}
+
+/* ---------- modal ---------- */
+
+.mcu-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+}
+
+.mcu-veil {
+  position: absolute;
+  inset: 0;
+  background: rgba(238, 240, 246, 0.6);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  animation: mcuVeilIn 0.22s ease;
+  border: none;
+  cursor: default;
+}
+
+.mcu-panel {
+  position: relative;
+  width: min(740px, 100%);
+  max-height: 84vh;
+  overflow: auto;
+  padding: 32px 34px 34px;
+  border-radius: 20px;
+  border: 1px solid rgba(19, 26, 46, 0.12);
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64));
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.92),
+    0 44px 96px -44px rgba(16, 22, 45, 0.6);
+  animation: mcuPanelIn 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.mcu-panel-halftone {
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  pointer-events: none;
+  opacity: 0.8;
+  background:
+    repeating-conic-gradient(
+      from -8deg at 96% -4%,
+      rgba(19, 26, 46, 0.06) 0deg 0.5deg,
+      transparent 0.5deg 11deg
+    ),
+    repeating-radial-gradient(
+      circle at 96% -4%,
+      transparent 0 46px,
+      rgba(19, 26, 46, 0.05) 46px 47px
+    );
+}
+
+/* Lift content above the halftone overlay without disturbing the close
+   button, which must stay pinned to the panel's top-right corner. */
+.mcu-panel > *:not(.mcu-panel-halftone):not(.mcu-close) { position: relative; }
+
+.mcu-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(19, 26, 46, 0.12);
+  color: rgba(19, 26, 46, 0.6);
+  background: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.mcu-close:hover {
+  color: var(--red);
+  border-color: rgba(207, 33, 49, 0.4);
+}
+
+.mcu-modal-eyebrow {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin: 0 0 6px;
+}
+
+.mcu-modal-title {
+  font-family: 'Archivo Black', Archivo, sans-serif;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin: 0 0 18px;
+}
+
+.mcu-modal p.mcu-para {
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(19, 26, 46, 0.78);
+  max-width: 60ch;
+  margin: 0 0 14px;
+}
+
+.mcu-group-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(19, 26, 46, 0.45);
+  margin: 0 0 9px;
+}
+
+/* about stats */
+
+.mcu-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.mcu-stat {
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(19, 26, 46, 0.1);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.mcu-stat-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(19, 26, 46, 0.42);
+  margin: 0 0 4px;
+}
+
+.mcu-stat-value {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mcu-stat--accent {
+  border: 1px solid rgba(207, 33, 49, 0.22);
+  background: rgba(207, 33, 49, 0.05);
+}
+
+.mcu-stat--accent .mcu-stat-label { color: rgba(207, 33, 49, 0.7); }
+.mcu-stat--accent .mcu-stat-value { color: var(--red); }
+
+/* project rows */
+
+.mcu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mcu-row {
+  display: block;
+  padding: 17px 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(19, 26, 46, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.mcu-row:hover {
+  border-color: rgba(207, 33, 49, 0.4);
+  transform: translateX(3px);
+}
+
+.mcu-row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.mcu-row-title {
+  font-family: 'Archivo Black', Archivo, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  margin: 0;
+}
+
+.mcu-row-year {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10px;
+  color: rgba(19, 26, 46, 0.4);
+}
+
+.mcu-row-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(19, 26, 46, 0.7);
+  margin: 6px 0 0;
+}
+
+.mcu-row-stack {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  color: var(--blue);
+  margin: 8px 0 0;
+}
+
+/* tech groups */
+
+.mcu-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mcu-chip-row--modal { gap: 7px; }
+
+.mcu-chip--modal {
+  font-size: 12px;
+  padding: 6px 11px;
+}
+
+.mcu-chip--neutral {
+  border: 1px solid rgba(19, 26, 46, 0.14);
+  color: rgba(19, 26, 46, 0.72);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.mcu-chip--red {
+  border: 1px solid rgba(207, 33, 49, 0.28);
+  color: var(--red);
+  background: rgba(207, 33, 49, 0.05);
+}
+
+/* experience */
+
+.mcu-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mcu-role {
+  padding-left: 16px;
+  border-left: 2px solid rgba(19, 26, 46, 0.16);
+}
+
+.mcu-role--current { border-left-color: rgba(207, 33, 49, 0.55); }
+
+.mcu-role-dates {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 10.5px;
+  color: rgba(19, 26, 46, 0.45);
+  margin: 0;
+}
+
+.mcu-role--current .mcu-role-dates { color: var(--red); }
+
+.mcu-role-title {
+  font-family: 'Archivo Black', Archivo, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  margin: 4px 0 0;
+}
+
+.mcu-role-company {
+  font-size: 13px;
+  color: var(--blue);
+  margin: 2px 0 0;
+}
+
+.mcu-role-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(19, 26, 46, 0.7);
+  margin: 6px 0 0;
+}
+
+/* education */
+
+.mcu-edu-card {
+  padding: 18px 19px;
+  border-radius: 14px;
+  border: 1px solid rgba(19, 26, 46, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  margin-bottom: 18px;
+}
+
+.mcu-edu-school {
+  font-size: 13.5px;
+  color: var(--blue);
+  margin: 3px 0 0;
+}
+
+/* contact */
+
+.mcu-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 11px;
+  margin-bottom: 20px;
+}
+
+.mcu-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 15px 16px;
+  border-radius: 13px;
+  border: 1px solid rgba(19, 26, 46, 0.1);
+  background: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s;
+}
+
+.mcu-tile:hover { border-color: rgba(207, 33, 49, 0.42); }
+
+.mcu-tile-label {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(19, 26, 46, 0.42);
+}
+
+.mcu-tile-value {
+  font-size: 14px;
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.mcu-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 15px;
+  border-radius: 999px;
+  border: 1px solid rgba(207, 33, 49, 0.25);
+  background: rgba(207, 33, 49, 0.05);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  color: var(--red);
+}
+
+/* ---------- keyframes ---------- */
+
+@keyframes mcuPanelIn {
+  from { opacity: 0; transform: translateY(16px) scale(0.985); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes mcuVeilIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ---------- responsive: single breakpoint ---------- */
+
+@media (max-width: 819px) {
+  .mcu-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+  }
+
+  .mcu-grid > * { grid-area: auto !important; }
+
+  .mcu-area-hero       { order: 0; }
+  .mcu-area-stage      { order: 1; height: 54vh; }
+  .mcu-area-about      { order: 2; }
+  .mcu-area-projects   { order: 3; }
+  .mcu-area-tech       { order: 4; }
+  .mcu-area-experience { order: 5; }
+  .mcu-area-education  { order: 6; }
+  .mcu-area-contact    { order: 7; }
+  .mcu-area-cta        { order: 8; }
+
+  .mcu-modal { padding: 16px; }
+  .mcu-panel { padding: 26px 22px 28px; }
+  .mcu-modal-title { font-size: 28px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mcu-card,
+  .mcu-row,
+  .mcu-btn-primary,
+  .mcu-panel,
+  .mcu-veil {
+    transition: none;
+    animation: none;
+  }
+}

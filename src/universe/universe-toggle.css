@@ -1,0 +1,78 @@
+/* Universe switch — deliberately neutral so it sits comfortably on both the
+   Miles (dark, comic) and MCU (light, glass) designs. */
+
+.universe-toggle {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid rgba(19, 26, 46, 0.14);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  box-shadow: 0 12px 28px -16px rgba(16, 22, 45, 0.6);
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+.universe-toggle button {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(19, 26, 46, 0.55);
+  font: inherit;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.universe-toggle button:hover {
+  color: rgba(19, 26, 46, 0.85);
+}
+
+.universe-toggle button.is-active {
+  background: #cf2131;
+  color: #fff;
+}
+
+/* On the Miles universe the page behind is dark, so lift the shell. */
+html.dark:not(.mcu-active) .universe-toggle {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(20, 14, 38, 0.72);
+}
+
+html.dark:not(.mcu-active) .universe-toggle button {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+html.dark:not(.mcu-active) .universe-toggle button:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 480px) {
+  .universe-toggle {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .universe-toggle button {
+    padding: 6px 10px;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .universe-toggle button {
+    transition: none;
+  }
+}
