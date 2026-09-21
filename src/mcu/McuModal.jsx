@@ -121,7 +121,15 @@ function ExperienceBody({ data }) {
         >
           <p className="mcu-role-dates">{r.dates}</p>
           <h3 className="mcu-role-title">{r.title}</h3>
-          <p className="mcu-role-company">{r.company}</p>
+          <p className="mcu-role-company">
+            {r.href ? (
+              <a href={r.href} target="_blank" rel="noreferrer">
+                {r.company}
+              </a>
+            ) : (
+              r.company
+            )}
+          </p>
           <p className="mcu-role-desc">{r.desc}</p>
         </div>
       ))}

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import {
-  ArrowRight, Download, Server, Code2, Database, Sparkles, Workflow, Boxes,
+  ArrowRight, Download, Code2, Sparkles, Boxes,
+  TerminalSquare, Smartphone, ClipboardCheck,
 } from 'lucide-react'
 import { HalftoneBackdrop, Aurora, CornerWeb } from '@/components/common/Backgrounds'
 import { SocialLinks } from '@/components/common/SocialLinks'
@@ -9,11 +10,11 @@ import { profile } from '@/data/profile'
 import { staggerContainer, childFadeUp } from '@/animations/variants'
 
 const nodes = [
-  { label: 'Spring Boot', Icon: Server, x: 17, y: 15, delay: 0, rot: -4 },
+  { label: 'Claude Code', Icon: TerminalSquare, x: 17, y: 15, delay: 0, rot: -4 },
   { label: 'React', Icon: Code2, x: 82, y: 11, delay: 0.6, rot: 3 },
-  { label: 'OpenAI', Icon: Sparkles, x: 90, y: 52, delay: 1.1, rot: -3 },
-  { label: 'MongoDB', Icon: Database, x: 73, y: 86, delay: 0.3, rot: 4 },
-  { label: 'REST API', Icon: Workflow, x: 12, y: 76, delay: 0.9, rot: -2 },
+  { label: 'AI in the loop', Icon: Sparkles, x: 90, y: 52, delay: 1.1, rot: -3 },
+  { label: 'Mobile', Icon: Smartphone, x: 73, y: 86, delay: 0.3, rot: 4 },
+  { label: 'SDD', Icon: ClipboardCheck, x: 12, y: 76, delay: 0.9, rot: -2 },
 ]
 
 // Extra unlabeled spokes so the web has a full frame, not just five threads.

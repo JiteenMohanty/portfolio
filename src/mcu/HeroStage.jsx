@@ -6,8 +6,9 @@ import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment
 
 /**
  * The centre-stage WebGL showpiece: a lit studio render of the Spider-Man suit
- * standing on a minimal pedestal. Static composition — no auto-rotation, only a
- * restrained pointer parallax.
+ * standing on a minimal pedestal. It turns slowly on its pedestal like a display
+ * piece; pressing and holding on the figure pauses the spin so it can be
+ * inspected, and releasing resumes it. A restrained pointer parallax sits on top.
  *
  * Framing is computed from the model's own bounds rather than hard-coded, so the
  * figure never clips or collides with the surrounding cards at any aspect ratio.
@@ -21,6 +22,7 @@ const FRAMINGS = {
 
 const STAND_TOP = 0.07
 const NARROW = 820
+const SPIN_SPEED = 0.18 // rad/s — a slow, showpiece turntable (~35s per turn)
 
 export function HeroStage({
   modelUrl = '/models/hero.glb',
@@ -48,6 +50,15 @@ export function HeroStage({
     let disposed = false
     let raf = 0
     let frame = 0
+
+    // Turntable state: `spin` accumulates while not held; grabbing the figure
+    // (a raycast hit on the model) pauses it until the pointer is released.
+    let spin = 0
+    let holding = false
+    let lastT = null
+    let modelRoot = null
+    const raycaster = new THREE.Raycaster()
+    const ndc = new THREE.Vector2()
 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
@@ -311,6 +322,7 @@ export function HeroStage({
 
       tilt.add(root)
       tilt.updateMatrixWorld(true)
+      modelRoot = root
       modelBox = new THREE.Box3().setFromObject(root)
 
       // Contact pool scaled to the figure's footprint.
@@ -363,17 +375,47 @@ export function HeroStage({
       target.x = 0
       target.y = 0
     }
+
+    // Press-and-hold to pause the spin — but only when the press actually lands
+    // on the figure (raycast), so clicks on empty stage / pedestal do nothing.
+    function onPointerDown(e) {
+      if (!modelRoot) return
+      const rect = mount.getBoundingClientRect()
+      ndc.x = ((e.clientX - rect.left) / rect.width) * 2 - 1
+      ndc.y = -(((e.clientY - rect.top) / rect.height) * 2 - 1)
+      raycaster.setFromCamera(ndc, camera)
+      if (raycaster.intersectObject(modelRoot, true).length > 0) {
+        holding = true
+        mount.classList.add('mcu-grabbing')
+      }
+    }
+    function onPointerRelease() {
+      holding = false
+      mount.classList.remove('mcu-grabbing')
+    }
+
     mount.addEventListener('pointermove', onPointerMove)
     mount.addEventListener('pointerleave', onPointerLeave)
+    mount.addEventListener('pointerdown', onPointerDown)
+    // Release on window so letting go outside the stage still resumes the spin.
+    window.addEventListener('pointerup', onPointerRelease)
+    window.addEventListener('pointercancel', onPointerRelease)
 
     const ro = new ResizeObserver(resize)
     ro.observe(mount)
     window.addEventListener('resize', resize)
     resize()
 
-    function tick() {
+    function tick(t) {
       raf = requestAnimationFrame(tick)
       frame += 1
+
+      const now = t ?? performance.now()
+      const dt = lastT == null ? 0 : Math.min((now - lastT) / 1000, 0.05)
+      lastT = now
+
+      // Slow turntable, paused while the figure is being held.
+      if (!holding) spin += SPIN_SPEED * dt
 
       if (propsRef.current.parallax) {
         cur.x += (target.x - cur.x) * 0.055
@@ -382,7 +424,7 @@ export function HeroStage({
         cur.x += (0 - cur.x) * 0.055
         cur.y += (0 - cur.y) * 0.055
       }
-      tilt.rotation.y = cur.x * 0.07
+      tilt.rotation.y = spin + cur.x * 0.07
       tilt.rotation.x = cur.y * 0.035
 
       stand.visible = propsRef.current.showStand
@@ -410,6 +452,9 @@ export function HeroStage({
       window.removeEventListener('resize', resize)
       mount.removeEventListener('pointermove', onPointerMove)
       mount.removeEventListener('pointerleave', onPointerLeave)
+      mount.removeEventListener('pointerdown', onPointerDown)
+      window.removeEventListener('pointerup', onPointerRelease)
+      window.removeEventListener('pointercancel', onPointerRelease)
 
       scene.traverse((obj) => {
         if (obj.isMesh) {

@@ -1,3 +1,19 @@
+// The Canon Events journey (Miles universe). Non-work milestones are curated
+// here; the work milestones are projected from the single work-history source
+// in experience.js, so job titles/dates can never contradict the MCU universe.
+import { experience } from './experience'
+
+const workEvent = (company) => {
+  const job = experience.find((e) => e.company === company)
+  return {
+    year: job.timeline.year,
+    title: job.timeline.title,
+    detail: job.timeline.detail,
+    href: job.url,
+    kind: 'work',
+  }
+}
+
 // kind drives the icon + accent color on the journey timeline.
 export const journey = [
   {
@@ -30,12 +46,7 @@ export const journey = [
     detail: 'CGPA 8.1 / 10 · June 2024',
     kind: 'education',
   },
-  {
-    year: '2024',
-    title: 'Joined Hansa Solutions',
-    detail: 'Started as a Trainee Software Developer',
-    kind: 'work',
-  },
+  workEvent('Hansa Solutions'),
   {
     year: '2025',
     title: 'Built Home Hub',
@@ -43,17 +54,12 @@ export const journey = [
     kind: 'project',
   },
   {
-    year: '2025',
-    title: 'Promoted to Associate Software Developer',
-    detail: 'Owning backend services and performance work',
-    kind: 'work',
-  },
-  {
     year: '2026',
     title: 'Built Sniper',
     detail: 'An agentic AI platform that runs real penetration tests, end-to-end',
     kind: 'project',
   },
+  workEvent('Industrial IQ'),
   {
     year: 'Next',
     title: 'Building products at scale',

@@ -5,6 +5,9 @@ export const projects = [
   {
     slug: 'home-hub',
     name: 'Home Hub',
+    // Condensed copy for the MCU universe's case-files list (kept verbatim).
+    mcuDesc: 'Society and visitor management for residential communities — residents, security, and supervisors in one real-time system. Built solo.',
+    mcuStack: 'Flutter · Spring Boot · Firebase · MongoDB',
     tagline: 'Society & visitor management, reimagined for residential communities.',
     type: 'Freelance Product',
     period: '2025',
@@ -84,6 +87,8 @@ export const projects = [
   {
     slug: 'sniper',
     name: 'Sniper',
+    mcuDesc: 'An agentic AI platform that plans and runs real penetration tests across ~23 security tools, then judges its own report before the engagement counts as done.',
+    mcuStack: 'Python · FastAPI · LangGraph · PostgreSQL',
     tagline: 'An agentic AI platform that runs real penetration tests — planning, executing, and judging its own security assessment end-to-end.',
     type: 'Personal Product',
     period: '2026',
@@ -165,6 +170,8 @@ export const projects = [
   {
     slug: 'legalconnect-india',
     name: 'LegalConnectIndia',
+    mcuDesc: 'An e-marketplace connecting citizens with verified legal professionals. 1st place at HackerWar 4.0, built for Smart India Hackathon SIH1286.',
+    mcuStack: 'Node.js · Express · MongoDB',
     tagline: 'An e-marketplace connecting citizens with legal professionals — built for Smart India Hackathon problem SIH1286.',
     type: 'Hackathon Winner',
     period: '2023',

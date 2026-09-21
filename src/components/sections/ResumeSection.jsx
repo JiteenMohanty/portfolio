@@ -13,10 +13,10 @@ function ResumePaper() {
         <div className="border-b border-slate-200 pb-3">
           <h3 className="font-display text-lg font-bold leading-tight">{profile.name}</h3>
           <p className="text-[11px] font-medium text-slate-500">
-            Software Engineer · Full Stack Java Developer
+            Forward Deployed Engineer · Product Builder
           </p>
           <p className="mt-1 text-[9px] text-slate-400">
-            {profile.email} · {profile.phone}
+            {profile.email}
           </p>
         </div>
 
@@ -24,7 +24,7 @@ function ResumePaper() {
         <div className="mt-3 space-y-3">
           {[
             { h: 'Professional Summary', lines: 2 },
-            { h: 'Experience — Hansa Solutions', lines: 3 },
+            { h: 'Experience — Industrial IQ', lines: 3 },
             { h: 'Projects', lines: 2 },
             { h: 'Education — SOA University', lines: 1 },
           ].map((s) => (

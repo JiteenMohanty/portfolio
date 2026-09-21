@@ -32,21 +32,25 @@ function TerminalLog({ job }) {
         </div>
         <p className="mt-1.5 pl-4 text-slate-100">{job.summary}</p>
 
-        <div className="mt-5 flex gap-2">
-          <span className="shrink-0 text-emerald-400">$</span>
-          <span className="text-slate-500">ship --highlights</span>
-        </div>
-        <div className="mt-2.5 space-y-2.5 pl-4">
-          {job.highlights.map((h) => (
-            <div key={h.title} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
-              <span className="flex shrink-0 items-baseline gap-2 sm:w-[14rem]">
-                <span className="text-emerald-400">✓</span>
-                <span className="font-semibold text-slate-100">{h.title}</span>
-              </span>
-              <span className="text-slate-500">{h.desc}</span>
+        {job.highlights?.length > 0 && (
+          <>
+            <div className="mt-5 flex gap-2">
+              <span className="shrink-0 text-emerald-400">$</span>
+              <span className="text-slate-500">ship --highlights</span>
             </div>
-          ))}
-        </div>
+            <div className="mt-2.5 space-y-2.5 pl-4">
+              {job.highlights.map((h) => (
+                <div key={h.title} className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-3">
+                  <span className="flex shrink-0 items-baseline gap-2 sm:w-[14rem]">
+                    <span className="text-emerald-400">✓</span>
+                    <span className="font-semibold text-slate-100">{h.title}</span>
+                  </span>
+                  <span className="text-slate-500">{h.desc}</span>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
 
         <div className="mt-5 flex items-center gap-2">
           <span className="text-emerald-400">$</span>
@@ -90,11 +94,26 @@ export function Experience() {
                     <Building2 className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold">{job.company}</h3>
-                    <p className="mt-1 flex items-center gap-1.5 text-sm text-muted">
-                      <MapPin className="h-3.5 w-3.5" />
-                      {job.location}
-                    </p>
+                    <h3 className="text-xl font-bold">
+                      {job.url ? (
+                        <a
+                          href={job.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-colors hover:text-brand"
+                        >
+                          {job.company}
+                        </a>
+                      ) : (
+                        job.company
+                      )}
+                    </h3>
+                    {job.location && (
+                      <p className="mt-1 flex items-center gap-1.5 text-sm text-muted">
+                        <MapPin className="h-3.5 w-3.5" />
+                        {job.location}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <span className="inline-flex h-fit items-center rounded-full border border-border bg-surface px-3.5 py-1.5 text-sm font-medium text-muted">
@@ -124,17 +143,19 @@ export function Experience() {
                 </div>
 
                 {/* Metrics — the numbers do the talking */}
-                <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
-                  {job.metrics.map((m) => (
-                    <div
-                      key={m.label}
-                      className="rounded-2xl border border-border bg-elevated/50 p-4"
-                    >
-                      <div className="text-2xl font-bold text-brand">{m.value}</div>
-                      <div className="mt-1 text-xs leading-snug text-muted">{m.label}</div>
-                    </div>
-                  ))}
-                </div>
+                {job.metrics?.length > 0 && (
+                  <div className="mt-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+                    {job.metrics.map((m) => (
+                      <div
+                        key={m.label}
+                        className="rounded-2xl border border-border bg-elevated/50 p-4"
+                      >
+                        <div className="text-2xl font-bold text-brand">{m.value}</div>
+                        <div className="mt-1 text-xs leading-snug text-muted">{m.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
 
                 {/* Terminal-style log of what actually shipped */}
                 <div className="mt-8">
@@ -142,11 +163,13 @@ export function Experience() {
                 </div>
 
                 {/* Stack */}
-                <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
-                  {job.stack.map((s) => (
-                    <TechPill key={s}>{s}</TechPill>
-                  ))}
-                </div>
+                {job.stack?.length > 0 && (
+                  <div className="mt-8 flex flex-wrap gap-2 border-t border-border pt-6">
+                    {job.stack.map((s) => (
+                      <TechPill key={s}>{s}</TechPill>
+                    ))}
+                  </div>
+                )}
               </div>
             </Reveal>
           ))}

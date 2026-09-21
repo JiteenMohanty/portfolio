@@ -38,7 +38,20 @@ function Node({ item, align }) {
             {item.year}
           </span>
         </div>
-        <h3 className="mt-3 font-semibold text-ink">{item.title}</h3>
+        <h3 className="mt-3 font-semibold text-ink">
+          {item.href ? (
+            <a
+              href={item.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-colors hover:text-brand"
+            >
+              {item.title}
+            </a>
+          ) : (
+            item.title
+          )}
+        </h3>
         <p className="mt-1 text-sm leading-relaxed text-muted">{item.detail}</p>
       </div>
     </div>

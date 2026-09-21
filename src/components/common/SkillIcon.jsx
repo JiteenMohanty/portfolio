@@ -11,7 +11,7 @@ import {
 import { FaJava } from 'react-icons/fa'
 import {
   Workflow, Boxes, ShieldCheck, Database, Gauge, RefreshCw, Sparkles,
-  Bot, MessageCircle,
+  Bot, MessageCircle, TerminalSquare, ClipboardCheck, Smartphone, Rocket,
 } from 'lucide-react'
 
 export const skillIconRegistry = {
@@ -46,6 +46,12 @@ export const skillIconRegistry = {
   maven: { Comp: SiApachemaven, color: '#C71A36' },
   agile: { Comp: RefreshCw, color: '#34D399' },
   aidev: { Comp: Sparkles, color: '#A78BFA' },
+
+  // FDE / AI-in-the-loop toolkit
+  claudecode: { Comp: TerminalSquare, color: '#D97757' },
+  sdd: { Comp: ClipboardCheck, color: '#38BDF8' },
+  mobile: { Comp: Smartphone, color: '#34D399' },
+  delivery: { Comp: Rocket, color: '#F59E0B' },
 }
 
 export function SkillGlyph({ skillKey, className }) {

@@ -79,6 +79,14 @@ export default function McuPortfolio() {
             >
               Get in touch
             </button>
+            <a
+              className="mcu-btn-secondary"
+              href={cta.methodsUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {cta.methodsLabel} ↗
+            </a>
           </div>
           <p className="mcu-caption">{cta.caption}</p>
         </div>

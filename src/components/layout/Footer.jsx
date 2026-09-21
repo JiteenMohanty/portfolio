@@ -21,8 +21,7 @@ export function Footer() {
               <span className="text-base font-bold tracking-tight">Jiteen Mohanty</span>
             </div>
             <p className="mt-4 text-sm leading-relaxed text-muted">
-              {profile.brandStatement} Currently building products & backend systems —
-              {profile.availabilityNote.toLowerCase()}.
+              {profile.brandStatement} Currently a {profile.currentRole} at {profile.company}.
             </p>
             <SocialLinks className="mt-5" size="sm" />
           </div>
@@ -59,6 +58,9 @@ export function Footer() {
                 </li>
                 <li>
                   <a className="text-sm text-muted transition-colors hover:text-ink" href={profile.socials.email}>Email</a>
+                </li>
+                <li>
+                  <a className="text-sm text-muted transition-colors hover:text-ink" href={profile.courses.url} target="_blank" rel="noopener noreferrer">Methods — Courses</a>
                 </li>
                 <li>
                   <a className="text-sm text-muted transition-colors hover:text-ink" href={profile.resumeUrl} download>Resume</a>

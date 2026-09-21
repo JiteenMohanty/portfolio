@@ -2,20 +2,30 @@
 export const profile = {
   name: 'Jiteen Mohanty',
   firstName: 'Jiteen',
-  title: 'Full Stack Engineer',
-  altTitle: 'Software Engineer · Product Builder · AI Enthusiast',
+  title: 'Forward Deployed Engineer',
+  altTitle: 'Forward Deployed Engineer · Product Builder · AI Enthusiast',
   location: '🇮🇳 India',
   available: true,
-  availabilityNote: 'Open to product & backend-heavy roles',
+
+  // Current role / status, shown as the "live" pill across hero, contact, footer.
+  company: 'Industrial IQ',
+  currentRole: 'Forward Deployed Engineer',
+  availabilityNote: 'Forward Deployed Engineer @ Industrial IQ',
 
   email: 'jiteen.dev@gmail.com',
-  phone: '+91 93480 51139',
   resumeUrl: '/resume.pdf',
 
   socials: {
     github: 'https://github.com/JiteenMohanty',
     linkedin: 'https://www.linkedin.com/in/jiteen-mohanty-61b814133',
     email: 'mailto:jiteen.dev@gmail.com',
+  },
+
+  // Course site — "Methods for building software with AI in the loop."
+  courses: {
+    url: 'https://methods-taupe.vercel.app/',
+    label: 'Methods',
+    desc: 'Courses on building software with AI in the loop',
   },
 
   // Hero copy
@@ -32,7 +42,7 @@ export const profile = {
 
   // About section — kept short on purpose; nobody reads a wall of text.
   aboutBio:
-    "Backend-first engineer who ships the unglamorous parts that make products actually work — APIs, data, and the systems behind them. I've built enterprise insurance platforms, an AI claims processor, and a society-management app end-to-end, solo.",
+    "Backend-first engineer who ships the unglamorous parts that make products actually work — APIs, data, and the systems behind them. I've built enterprise insurance platforms, an AI claims processor, and a society-management app end-to-end, solo. Now a Forward Deployed Engineer at Industrial IQ, building AI-driven products with customers in the loop.",
 
   aboutStats: [
     { value: '2+', label: 'Years shipping to production' },

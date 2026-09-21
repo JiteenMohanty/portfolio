@@ -13,24 +13,29 @@ import { profile } from '@/data/profile'
 import { cn } from '@/utils/cn'
 
 // Width kept in sync with the lg:pl-64 offset on the page content (App.jsx).
-const navItems = [{ label: 'Hub', to: '/', icon: 'Home' }, ...navLinks]
+// Internal routes first, then the external Methods (courses) link.
+const navItems = [
+  { label: 'Hub', to: '/', icon: 'Home' },
+  ...navLinks,
+  {
+    label: profile.courses.label,
+    href: profile.courses.url,
+    icon: 'GraduationCap',
+    external: true,
+  },
+]
 
 function NavList({ path, onNavigate }) {
   return (
     <nav className="flex flex-col gap-1">
       {navItems.map((l) => {
-        const active = path === l.to
-        return (
-          <Link
-            key={l.to}
-            to={l.to}
-            onClick={onNavigate}
-            aria-current={active ? 'page' : undefined}
-            className={cn(
-              'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
-              active ? 'text-white' : 'text-slate-400 hover:text-white',
-            )}
-          >
+        const active = !l.external && path === l.to
+        const itemClass = cn(
+          'group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors',
+          active ? 'text-white' : 'text-slate-400 hover:text-white',
+        )
+        const inner = (
+          <>
             {active && (
               <motion.span
                 layoutId="sidebar-active"
@@ -47,6 +52,29 @@ function NavList({ path, onNavigate }) {
               <Icon name={l.icon} className="h-4 w-4" />
             </span>
             {l.label}
+          </>
+        )
+
+        return l.external ? (
+          <a
+            key={l.href}
+            href={l.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={onNavigate}
+            className={itemClass}
+          >
+            {inner}
+          </a>
+        ) : (
+          <Link
+            key={l.to}
+            to={l.to}
+            onClick={onNavigate}
+            aria-current={active ? 'page' : undefined}
+            className={itemClass}
+          >
+            {inner}
           </Link>
         )
       })}
