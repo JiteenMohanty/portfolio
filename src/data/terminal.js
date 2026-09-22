@@ -19,7 +19,6 @@ export const helpLines = [
   { cmd: 'music', desc: 'what is playing while I build' },
   { cmd: 'future', desc: 'where this is all going' },
   { cmd: 'social', desc: 'where to find me' },
-  { cmd: 'resume', desc: 'open my resume' },
   { cmd: 'secret', desc: '???' },
   { cmd: 'clear', desc: 'clear the screen' },
   { cmd: 'exit', desc: 'close the terminal' },

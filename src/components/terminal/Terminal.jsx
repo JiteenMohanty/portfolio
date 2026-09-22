@@ -185,11 +185,6 @@ function CommandTerminal({ open, onClose }) {
             L([`email    `, 'muted'], [profile.email, 'link', () => (window.location.href = profile.socials.email)]),
           ]
           break
-        case 'resume':
-        case 'cv':
-          out = [L([`opening resume…`, 'accent'])]
-          window.open(profile.resumeUrl, '_blank')
-          break
         case 'clear':
         case 'cls':
           setHistory([])
