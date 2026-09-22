@@ -88,12 +88,9 @@ export default function McuPortfolio() {
 
         <div className="mcu-cta mcu-area-cta">
           <div className="mcu-cta-row">
-            <a className="mcu-btn-primary" href={cta.resumeUrl} download>
-              Download résumé <span>{cta.resumeMeta}</span>
-            </a>
             <button
               type="button"
-              className="mcu-btn-secondary"
+              className="mcu-btn-primary"
               onClick={() => setOpen('contact')}
             >
               Get in touch

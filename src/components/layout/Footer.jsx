@@ -61,9 +61,6 @@ export function Footer() {
                 <li>
                   <a className="text-sm text-muted transition-colors hover:text-ink" href={profile.courses.url} target="_blank" rel="noopener noreferrer">Methods — Courses</a>
                 </li>
-                <li>
-                  <a className="text-sm text-muted transition-colors hover:text-ink" href={profile.resumeUrl} download>Resume</a>
-                </li>
               </ul>
             </div>
             <div className="col-span-2 sm:col-span-1">

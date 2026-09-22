@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Download, Terminal as TerminalIcon } from 'lucide-react'
+import { Menu, X, Terminal as TerminalIcon } from 'lucide-react'
 import { LogoMark } from '@/components/common/Logo'
 import { Icon } from '@/components/common/Icon'
 import { ThemeToggle } from '@/components/common/ThemeToggle'
@@ -86,15 +86,6 @@ function NavList({ path, onNavigate }) {
 function BottomControls({ openTerminal, onClose }) {
   return (
     <div className="mt-auto space-y-3 border-t border-white/10 pt-4">
-      <a
-        href={profile.resumeUrl}
-        download
-        onClick={onClose}
-        className="flex items-center justify-center gap-2 rounded-xl bg-brand px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-brand-strong"
-      >
-        <Download className="h-4 w-4" />
-        Resume
-      </a>
       <div className="flex items-center gap-2">
         <button
           onClick={() => {

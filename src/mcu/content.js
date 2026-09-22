@@ -72,8 +72,6 @@ export const cards = [
 ]
 
 export const cta = {
-  resumeUrl: profile.resumeUrl,
-  resumeMeta: 'PDF · 185KB',
   methodsUrl: profile.courses.url,
   methodsLabel: profile.courses.label,
   caption: 'Slowly spinning showpiece · click & hold the figure to pause',
