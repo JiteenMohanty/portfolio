@@ -31,6 +31,7 @@ export function HeroStage({
   showStand = true,
   parallax = true,
   exposure = 1,
+  dark = false,
 }) {
   const mountRef = useRef(null)
   const apiRef = useRef(null)
@@ -40,8 +41,8 @@ export function HeroStage({
 
   // Keep the latest tweakables readable from inside the render loop without
   // tearing down the whole scene when they change.
-  const propsRef = useRef({ framing, modelFill, showStand, parallax, exposure })
-  propsRef.current = { framing, modelFill, showStand, parallax, exposure }
+  const propsRef = useRef({ framing, modelFill, showStand, parallax, exposure, dark })
+  propsRef.current = { framing, modelFill, showStand, parallax, exposure, dark }
 
   useEffect(() => {
     const mount = mountRef.current
@@ -57,6 +58,7 @@ export function HeroStage({
     let holding = false
     let lastT = null
     let modelRoot = null
+    let appliedDark = null
     const raycaster = new THREE.Raycaster()
     const ndc = new THREE.Vector2()
 
@@ -106,7 +108,11 @@ export function HeroStage({
     rim.position.set(-0.7, 1.3, -2.2)
     scene.add(rim)
 
-    scene.add(new THREE.HemisphereLight(0xffffff, 0x93a0b5, 0.3))
+    const hemi = new THREE.HemisphereLight(0xffffff, 0x93a0b5, 0.3)
+    scene.add(hemi)
+
+    // Default (light-mode) rig intensities, restored when leaving dark mode.
+    const RIG = { key: key.intensity, fill: fill.intensity, rim: rim.intensity, hemi: hemi.intensity }
 
     // --- grounding: real cast shadow + painted contact pool ---
     const catcherGeo = new THREE.PlaneGeometry(8, 8)
@@ -166,7 +172,38 @@ export function HeroStage({
     tilt.position.y = STAND_TOP
     scene.add(tilt)
 
+    // --- dark-mode key light: a warm overhead source (an unseen hanging bulb)
+    // that pools light on the figure from above and casts its shadow down. No
+    // visible fixture — the effect reads purely through the lighting. ---
+    const LAMP_Y = 1.55
+    const bulbLight = new THREE.SpotLight(0xffd9a0, 0, 8, 1.05, 0.5, 1.7)
+    bulbLight.position.set(0, LAMP_Y, 0.15)
+    bulbLight.target.position.set(0, 0.5, 0)
+    bulbLight.castShadow = true
+    bulbLight.shadow.mapSize.set(1024, 1024)
+    bulbLight.shadow.bias = -0.0009
+    bulbLight.shadow.normalBias = 0.02
+    bulbLight.shadow.camera.near = 0.4
+    bulbLight.shadow.camera.far = 6
+    scene.add(bulbLight)
+    scene.add(bulbLight.target)
+
     let modelBox = null
+
+    // --- light/dark composition swap (lights + shadows only) ---
+    function applyMode(isDark) {
+      bulbLight.intensity = isDark ? 11 : 0
+      bulbLight.castShadow = isDark
+      key.castShadow = !isDark
+      key.intensity = isDark ? 0.3 : RIG.key
+      fill.intensity = isDark ? 0.12 : RIG.fill
+      rim.intensity = isDark ? 0.25 : RIG.rim
+      hemi.intensity = isDark ? 0.06 : RIG.hemi
+      if ('environmentIntensity' in scene) scene.environmentIntensity = isDark ? 0.22 : 1
+      catcherMat.opacity = isDark ? 0.4 : 0.2
+      blobMat.opacity = isDark ? 0.16 : 0.42
+      frameCamera()
+    }
 
     // --- framing math ---
     function frameCamera() {
@@ -413,6 +450,12 @@ export function HeroStage({
       const now = t ?? performance.now()
       const dt = lastT == null ? 0 : Math.min((now - lastT) / 1000, 0.05)
       lastT = now
+
+      // React to a light/dark switch (also runs once on first frame).
+      if (propsRef.current.dark !== appliedDark) {
+        appliedDark = propsRef.current.dark
+        applyMode(appliedDark)
+      }
 
       // Slow turntable, paused while the figure is being held.
       if (!holding) spin += SPIN_SPEED * dt

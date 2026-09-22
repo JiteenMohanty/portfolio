@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
-import { MapPin } from 'lucide-react'
+import { MapPin, GraduationCap, ArrowUpRight } from 'lucide-react'
 import { SectionHeading } from '@/components/common/SectionHeading'
 import { Reveal } from '@/components/common/Reveal'
 import { SectionBackdrop } from '@/components/common/Backgrounds'
 import { SpiderPanel } from '@/components/common/SpiderPanel'
 import { Icon } from '@/components/common/Icon'
 import { education } from '@/data/education'
+import { profile } from '@/data/profile'
 import { staggerContainer, childFadeUp, viewportOnce } from '@/animations/variants'
 
 export function Education() {
@@ -84,6 +85,32 @@ export function Education() {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Learning never graduated — link out to the courses/notes site */}
+          <Reveal>
+            <a
+              href={profile.courses.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card card-hover group flex items-center justify-between gap-4 p-6"
+            >
+              <div className="flex items-center gap-4">
+                <div className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand/10 text-brand">
+                  <GraduationCap className="h-5 w-5" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-ink">
+                    Still learning — and documenting it as I go.
+                  </h3>
+                  <p className="mt-1 text-sm text-muted">
+                    I write up what I learn about building software with AI in the loop over at{' '}
+                    <span className="font-medium text-brand">Methods</span>.
+                  </p>
+                </div>
+              </div>
+              <ArrowUpRight className="h-5 w-5 shrink-0 text-faint transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-brand" />
+            </a>
+          </Reveal>
         </div>
       </div>
     </section>

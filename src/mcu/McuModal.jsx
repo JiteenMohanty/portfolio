@@ -158,6 +158,15 @@ function EducationBody({ data }) {
           </span>
         ))}
       </div>
+
+      {data.learning && (
+        <p className="mcu-learning">
+          {data.learning.text}{' '}
+          <a href={data.learning.href} target="_blank" rel="noreferrer">
+            {data.learning.label}
+          </a>
+        </p>
+      )}
     </>
   )
 }

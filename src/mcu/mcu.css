@@ -10,10 +10,11 @@ html.mcu-active body {
 }
 
 .mcu-root {
+  --ink-rgb: 19, 26, 46;
   --ink: #131a2e;
   --red: #cf2131;
   --blue: #2c3fc0;
-  --card-border: rgba(19, 26, 46, 0.1);
+  --card-border: rgba(var(--ink-rgb), 0.1);
 
   position: relative;
   min-height: 100vh;
@@ -48,8 +49,8 @@ html.mcu-active body {
 .mcu-grid-lines {
   opacity: 0.5;
   background:
-    repeating-linear-gradient(0deg, rgba(19, 26, 46, 0.055) 0 1px, transparent 1px 46px),
-    repeating-linear-gradient(90deg, rgba(19, 26, 46, 0.055) 0 1px, transparent 1px 46px);
+    repeating-linear-gradient(0deg, rgba(var(--ink-rgb), 0.055) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(90deg, rgba(var(--ink-rgb), 0.055) 0 1px, transparent 1px 46px);
   -webkit-mask-image: radial-gradient(120% 100% at 50% 50%, #000 30%, transparent 88%);
   mask-image: radial-gradient(120% 100% at 50% 50%, #000 30%, transparent 88%);
 }
@@ -114,7 +115,7 @@ html.mcu-active body {
 
 .mcu-hero-tagline {
   font-size: 14px;
-  color: rgba(19, 26, 46, 0.62);
+  color: rgba(var(--ink-rgb), 0.62);
   max-width: 44ch;
   text-wrap: pretty;
   margin: 0;
@@ -167,13 +168,13 @@ html.mcu-active body {
   background:
     repeating-conic-gradient(
       from -8deg at var(--origin),
-      rgba(19, 26, 46, 0.06) 0deg 0.5deg,
+      rgba(var(--ink-rgb), 0.06) 0deg 0.5deg,
       transparent 0.5deg 13deg
     ),
     repeating-radial-gradient(
       circle at var(--origin),
       transparent 0 34px,
-      rgba(19, 26, 46, 0.05) 34px 35px
+      rgba(var(--ink-rgb), 0.05) 34px 35px
     );
 }
 
@@ -184,7 +185,7 @@ html.mcu-active body {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(19, 26, 46, 0.45);
+  color: rgba(var(--ink-rgb), 0.45);
   margin: 0;
 }
 
@@ -200,7 +201,7 @@ html.mcu-active body {
 .mcu-card-body {
   font-size: 13px;
   line-height: 1.5;
-  color: rgba(19, 26, 46, 0.66);
+  color: rgba(var(--ink-rgb), 0.66);
   text-wrap: pretty;
   margin: 0;
 }
@@ -232,8 +233,8 @@ html.mcu-active body {
 }
 
 .mcu-chip--muted {
-  border: 1px solid rgba(19, 26, 46, 0.14);
-  color: rgba(19, 26, 46, 0.5);
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  color: rgba(var(--ink-rgb), 0.5);
   background: transparent;
 }
 
@@ -307,7 +308,7 @@ html.mcu-active body {
   font-size: 9.5px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(19, 26, 46, 0.38);
+  color: rgba(var(--ink-rgb), 0.38);
   margin: 0;
 }
 
@@ -359,11 +360,11 @@ html.mcu-active body {
   display: grid;
   place-items: center;
   border-radius: 16px;
-  border: 1px dashed rgba(19, 26, 46, 0.26);
+  border: 1px dashed rgba(var(--ink-rgb), 0.26);
   background: rgba(255, 255, 255, 0.4);
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 9.5px;
-  color: rgba(19, 26, 46, 0.4);
+  color: rgba(var(--ink-rgb), 0.4);
 }
 
 .mcu-status-label {
@@ -378,7 +379,7 @@ html.mcu-active body {
 .mcu-status-msg {
   font-size: 13px;
   line-height: 1.6;
-  color: rgba(19, 26, 46, 0.64);
+  color: rgba(var(--ink-rgb), 0.64);
   max-width: 38ch;
   margin: 0;
 }
@@ -394,7 +395,7 @@ html.mcu-active body {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   line-height: 1.5;
-  color: rgba(19, 26, 46, 0.3);
+  color: rgba(var(--ink-rgb), 0.3);
 }
 
 /* ---------- modal ---------- */
@@ -426,7 +427,7 @@ html.mcu-active body {
   overflow: auto;
   padding: 32px 34px 34px;
   border-radius: 20px;
-  border: 1px solid rgba(19, 26, 46, 0.12);
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
   background: linear-gradient(155deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64));
   backdrop-filter: blur(24px) saturate(160%);
   -webkit-backdrop-filter: blur(24px) saturate(160%);
@@ -445,13 +446,13 @@ html.mcu-active body {
   background:
     repeating-conic-gradient(
       from -8deg at 96% -4%,
-      rgba(19, 26, 46, 0.06) 0deg 0.5deg,
+      rgba(var(--ink-rgb), 0.06) 0deg 0.5deg,
       transparent 0.5deg 11deg
     ),
     repeating-radial-gradient(
       circle at 96% -4%,
       transparent 0 46px,
-      rgba(19, 26, 46, 0.05) 46px 47px
+      rgba(var(--ink-rgb), 0.05) 46px 47px
     );
 }
 
@@ -466,8 +467,8 @@ html.mcu-active body {
   width: 34px;
   height: 34px;
   border-radius: 999px;
-  border: 1px solid rgba(19, 26, 46, 0.12);
-  color: rgba(19, 26, 46, 0.6);
+  border: 1px solid rgba(var(--ink-rgb), 0.12);
+  color: rgba(var(--ink-rgb), 0.6);
   background: rgba(255, 255, 255, 0.6);
   font-size: 16px;
   cursor: pointer;
@@ -500,7 +501,7 @@ html.mcu-active body {
 .mcu-modal p.mcu-para {
   font-size: 15px;
   line-height: 1.65;
-  color: rgba(19, 26, 46, 0.78);
+  color: rgba(var(--ink-rgb), 0.78);
   max-width: 60ch;
   margin: 0 0 14px;
 }
@@ -510,7 +511,7 @@ html.mcu-active body {
   font-size: 10px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(19, 26, 46, 0.45);
+  color: rgba(var(--ink-rgb), 0.45);
   margin: 0 0 9px;
 }
 
@@ -526,7 +527,7 @@ html.mcu-active body {
 .mcu-stat {
   padding: 13px 15px;
   border-radius: 12px;
-  border: 1px solid rgba(19, 26, 46, 0.1);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -535,7 +536,7 @@ html.mcu-active body {
   font-size: 9.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(19, 26, 46, 0.42);
+  color: rgba(var(--ink-rgb), 0.42);
   margin: 0 0 4px;
 }
 
@@ -565,7 +566,7 @@ html.mcu-active body {
   display: block;
   padding: 17px 18px;
   border-radius: 14px;
-  border: 1px solid rgba(19, 26, 46, 0.1);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
   background: rgba(255, 255, 255, 0.55);
   text-decoration: none;
   color: inherit;
@@ -594,13 +595,13 @@ html.mcu-active body {
 .mcu-row-year {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 10px;
-  color: rgba(19, 26, 46, 0.4);
+  color: rgba(var(--ink-rgb), 0.4);
 }
 
 .mcu-row-desc {
   font-size: 14px;
   line-height: 1.55;
-  color: rgba(19, 26, 46, 0.7);
+  color: rgba(var(--ink-rgb), 0.7);
   margin: 6px 0 0;
 }
 
@@ -627,8 +628,8 @@ html.mcu-active body {
 }
 
 .mcu-chip--neutral {
-  border: 1px solid rgba(19, 26, 46, 0.14);
-  color: rgba(19, 26, 46, 0.72);
+  border: 1px solid rgba(var(--ink-rgb), 0.14);
+  color: rgba(var(--ink-rgb), 0.72);
   background: rgba(255, 255, 255, 0.5);
 }
 
@@ -648,7 +649,7 @@ html.mcu-active body {
 
 .mcu-role {
   padding-left: 16px;
-  border-left: 2px solid rgba(19, 26, 46, 0.16);
+  border-left: 2px solid rgba(var(--ink-rgb), 0.16);
 }
 
 .mcu-role--current { border-left-color: rgba(207, 33, 49, 0.55); }
@@ -656,7 +657,7 @@ html.mcu-active body {
 .mcu-role-dates {
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 10.5px;
-  color: rgba(19, 26, 46, 0.45);
+  color: rgba(var(--ink-rgb), 0.45);
   margin: 0;
 }
 
@@ -689,7 +690,7 @@ html.mcu-active body {
 .mcu-role-desc {
   font-size: 14px;
   line-height: 1.55;
-  color: rgba(19, 26, 46, 0.7);
+  color: rgba(var(--ink-rgb), 0.7);
   margin: 6px 0 0;
 }
 
@@ -698,7 +699,7 @@ html.mcu-active body {
 .mcu-edu-card {
   padding: 18px 19px;
   border-radius: 14px;
-  border: 1px solid rgba(19, 26, 46, 0.1);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
   background: rgba(255, 255, 255, 0.55);
   margin-bottom: 18px;
 }
@@ -724,7 +725,7 @@ html.mcu-active body {
   gap: 4px;
   padding: 15px 16px;
   border-radius: 13px;
-  border: 1px solid rgba(19, 26, 46, 0.1);
+  border: 1px solid rgba(var(--ink-rgb), 0.1);
   background: rgba(255, 255, 255, 0.55);
   text-decoration: none;
   color: inherit;
@@ -738,7 +739,7 @@ html.mcu-active body {
   font-size: 9.5px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(19, 26, 46, 0.42);
+  color: rgba(var(--ink-rgb), 0.42);
 }
 
 .mcu-tile-value {
@@ -809,4 +810,125 @@ html.mcu-active body {
     transition: none;
     animation: none;
   }
+}
+
+/* ---------- education: still-learning note ---------- */
+.mcu-learning {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(var(--ink-rgb), 0.6);
+}
+.mcu-learning a {
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+.mcu-learning a:hover {
+  border-bottom-color: currentColor;
+}
+
+/* ================================================================== */
+/*  Lamp toggle (top-right) — switches the MCU composition light/dark  */
+/* ================================================================== */
+.mcu-lamp-toggle {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--card-border);
+  background: rgba(var(--ink-rgb), 0.04);
+  color: var(--ink);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform 0.2s, border-color 0.2s, background 0.2s;
+}
+.mcu-lamp-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(207, 33, 49, 0.45);
+  color: var(--red);
+}
+
+/* ================================================================== */
+/*  Dark composition — "lights off", 3D pendant does the lighting      */
+/* ================================================================== */
+html.mcu-active.dark,
+html.mcu-active.dark body {
+  background: #0a0910;
+}
+
+html.dark .mcu-root {
+  --ink-rgb: 228, 230, 244;
+  --ink: #e7e9f4;
+  --blue: #97a6ff;
+  background: #0a0910;
+}
+
+html.dark .mcu-wash {
+  background:
+    radial-gradient(900px 700px at 12% 8%, rgba(207, 33, 49, 0.16), transparent 62%),
+    radial-gradient(1000px 800px at 88% 92%, rgba(122, 138, 255, 0.16), transparent 64%),
+    radial-gradient(720px 540px at 50% 30%, rgba(255, 202, 120, 0.12), transparent 70%);
+}
+
+html.dark .mcu-grid-lines { opacity: 0.28; }
+
+/* glass panels → translucent light-on-dark */
+html.dark .mcu-card {
+  background: linear-gradient(155deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 44px -28px rgba(0, 0, 0, 0.75);
+}
+html.dark .mcu-card:hover {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 28px 56px -26px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(207, 33, 49, 0.28);
+}
+
+html.dark .mcu-panel {
+  background: linear-gradient(155deg, rgba(26, 23, 42, 0.92), rgba(16, 14, 28, 0.86));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 44px 96px -44px rgba(0, 0, 0, 0.85);
+}
+html.dark .mcu-veil { background: rgba(6, 5, 12, 0.55); }
+
+/* small inset fills */
+html.dark .mcu-status-tile,
+html.dark .mcu-stat,
+html.dark .mcu-row,
+html.dark .mcu-chip--neutral,
+html.dark .mcu-edu-card,
+html.dark .mcu-tile,
+html.dark .mcu-close {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* accent chips/tiles readable on dark */
+html.dark .mcu-chip {
+  background: rgba(151, 166, 255, 0.14);
+  border-color: rgba(151, 166, 255, 0.32);
+}
+html.dark .mcu-btn-secondary {
+  background: rgba(151, 166, 255, 0.1);
+  border-color: rgba(151, 166, 255, 0.32);
+}
+
+/* ---------- visitor count (under the CTA) ---------- */
+.mcu-visitors {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--ink-rgb), 0.4);
 }

@@ -139,6 +139,11 @@ export const education = {
   },
   secondaryLabel: 'Earlier',
   secondary: ['Class XII — CBSE · 84.4%', 'Class X — CBSE · 89.4%'],
+  learning: {
+    text: 'Still learning — and documenting it as I go.',
+    href: profile.courses.url,
+    label: 'Methods ↗',
+  },
 }
 
 export const contact = {

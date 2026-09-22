@@ -6,6 +6,7 @@ import { LogoMark } from '@/components/common/Logo'
 import { Icon } from '@/components/common/Icon'
 import { ThemeToggle } from '@/components/common/ThemeToggle'
 import { SocialLinks } from '@/components/common/SocialLinks'
+import { VisitorCounter } from '@/components/common/VisitorCounter'
 import { CornerWeb } from '@/components/common/Backgrounds'
 import { navLinks } from '@/constants/navigation'
 import { useTerminal } from '@/components/terminal/Terminal'
@@ -108,6 +109,9 @@ function BottomControls({ openTerminal, onClose }) {
         </button>
         <ThemeToggle />
         <SocialLinks className="ml-auto" size="sm" />
+      </div>
+      <div className="flex justify-center pt-1">
+        <VisitorCounter className="text-slate-500" />
       </div>
     </div>
   )

@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react'
+import { Lightbulb, LightbulbOff } from 'lucide-react'
+import { useTheme } from '@/theme/ThemeProvider'
+import { VisitorCounter } from '@/components/common/VisitorCounter'
 import { HeroStage } from './HeroStage'
 import { McuModal } from './McuModal'
 import { hero, cards, cta } from './content'
@@ -8,12 +11,18 @@ import './mcu.css'
  * MCU universe — a single-viewport (no-scroll on desktop) landing page.
  * Nine grid regions frame the central 3D showpiece; six of them are cards that
  * open a glass-morphic modal with that section's full content.
+ *
+ * Two lighting moods share the global theme: light is the studio composition;
+ * dark drops the room and hangs a 3D pendant lamp that lights the figure.
  */
 export default function McuPortfolio() {
   const [open, setOpen] = useState(null)
+  const { theme, toggleTheme } = useTheme()
+  const dark = theme === 'dark'
 
-  // The MCU design is a fixed light composition — neutralize the Miles theme's
-  // page background so it can't show through on overscroll.
+  // Neutralize the Miles theme's page background so it can't show through on
+  // overscroll. The `dark` class on <html> (set by ThemeProvider) drives the
+  // dark composition via CSS scoped to html.dark .mcu-root.
   useEffect(() => {
     document.documentElement.classList.add('mcu-active')
     return () => document.documentElement.classList.remove('mcu-active')
@@ -23,6 +32,16 @@ export default function McuPortfolio() {
     <div className="mcu-root">
       <div className="mcu-wash" aria-hidden="true" />
       <div className="mcu-grid-lines" aria-hidden="true" />
+
+      <button
+        type="button"
+        className="mcu-lamp-toggle"
+        onClick={toggleTheme}
+        aria-label={dark ? 'Switch on the lights' : 'Dim the lights'}
+        title={dark ? 'Lights on' : 'Lights off'}
+      >
+        {dark ? <Lightbulb className="h-4 w-4" /> : <LightbulbOff className="h-4 w-4" />}
+      </button>
 
       <div className="mcu-grid">
         <header className="mcu-hero mcu-area-hero">
@@ -65,7 +84,7 @@ export default function McuPortfolio() {
           </button>
         ))}
 
-        <HeroStage />
+        <HeroStage dark={dark} />
 
         <div className="mcu-cta mcu-area-cta">
           <div className="mcu-cta-row">
@@ -89,6 +108,7 @@ export default function McuPortfolio() {
             </a>
           </div>
           <p className="mcu-caption">{cta.caption}</p>
+          <VisitorCounter className="mcu-visitors" />
         </div>
       </div>
 

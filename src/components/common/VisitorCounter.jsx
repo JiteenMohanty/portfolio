@@ -25,8 +25,10 @@ export function VisitorCounter({ className }) {
 
   if (count === null) return null
 
+  // Colour comes from the caller (contexts differ: dark sidebar vs MCU); the
+  // icon inherits currentColor.
   return (
-    <span className={cn('inline-flex items-center gap-1.5 text-xs text-faint', className)}>
+    <span className={cn('inline-flex items-center gap-1.5 text-xs', className)}>
       <Eye className="h-3.5 w-3.5" />
       {count.toLocaleString()} visitors
     </span>
